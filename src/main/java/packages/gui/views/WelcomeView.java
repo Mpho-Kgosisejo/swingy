@@ -18,20 +18,25 @@ public class WelcomeView extends JFrame{
 
     public WelcomeView(){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setTitle("Welcome to... who cares");
         this.setSize(400, 150);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
 
+        this.init();
+    }
+
+    private void init(){
         this.lblWelcomeMssg = new JLabel("Welcome...", SwingConstants.LEFT);
         this.btnSelectHero = new JButton("Select Hero");
         this.btnCreateNewHero = new JButton("Create Hero");
 
         JPanel panelMain = new JPanel();
-        panelMain.setLayout(null);
-        panelMain.setSize(new Dimension(this.getWidth(), this.getHeight()));
         JPanel panelTop = new JPanel();
         JPanel panelBottom = new JPanel();
 
+        panelMain.setLayout(null);
+        panelMain.setSize(new Dimension(this.getWidth(), this.getHeight()));
         panelTop.setBackground(new Color(228, 228, 228));
         panelTop.setBounds(0, 0, this.getWidth(), 50);
         //panelBottom.setBackground(new Color(240, 238, 255));
@@ -40,10 +45,9 @@ public class WelcomeView extends JFrame{
         panelTop.add(this.lblWelcomeMssg);
         panelBottom.add(this.btnSelectHero);
         panelBottom.add(this.btnCreateNewHero);
-
         panelMain.add(panelTop);
         panelMain.add(panelBottom);
-
+        
         this.add(panelMain);
     }
 
