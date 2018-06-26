@@ -1,6 +1,6 @@
 package packages.storage;
 
-import packages.utils;
+/*import packages.utils;
 import packages.storage.HeroType;
 import java.io.*;
 
@@ -13,4 +13,4 @@ public class Hero
     {
 
     }
-}
+}*/

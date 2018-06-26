@@ -1,6 +1,8 @@
 package packages;
 
 import packages.gui.controllers.WelcomeController;
+import packages.console.View.*;
+import static packages.utils.Colours.*;
 import packages.gui.views.WelcomeView;
 import packages.utils.readFile;
 import java.io.*;
@@ -24,7 +26,8 @@ public class App
             String arg = args[0].trim().toLowerCase();
 
             if (arg.equals("console")){
-                System.out.println("Run app via cli");
+                System.out.println(ANSI_RED + ">>>>>> CONSOLE VIEW <<<<<<<< " + ANSI_RESET);
+                ConsoleView.start();
                 return ;
             }
             else if (arg.equals("gui")){
