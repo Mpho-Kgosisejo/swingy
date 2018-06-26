@@ -31,7 +31,7 @@ public class App
                 System.out.println("Run app via gui");
 
                 WelcomeView welcomeView = new WelcomeView();
-                WelcomeController welcomeController = new WelcomeController(welcomeView);
+                new WelcomeController(welcomeView);
                 welcomeView.setVisible(true);
                 return ;
             }
