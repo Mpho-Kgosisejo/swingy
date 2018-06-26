@@ -8,7 +8,7 @@ import packages.utils.readFile;
 import java.io.*;
 import java.util.*;
 
-public class App 
+public class App  //extends JFrame
 {
     public static void main( String[] args ) throws IOException
     {
@@ -35,6 +35,7 @@ public class App
 
                 WelcomeView welcomeView = new WelcomeView();
                 new WelcomeController(welcomeView);
+                welcomeView.setUndecorated(true); // -_-
                 welcomeView.setVisible(true);
                 return ;
             }
