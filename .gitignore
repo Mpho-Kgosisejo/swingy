@@ -1,0 +1,11 @@
+# Files #
+
+.settings
+.vscode
+.project
+.maven-build-log
+target
+bin
+
+# *.ext #
+*.class
