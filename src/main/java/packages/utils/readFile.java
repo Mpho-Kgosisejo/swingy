@@ -2,7 +2,7 @@ package packages.utils;
 
 import java.io.*;
 import java.util.*;
-import packages.storage;
+import packages.storage.Hero;
 import packages.storage.HeroType;
 
 public class readFile
@@ -16,10 +16,9 @@ public class readFile
             if (line != null)
             {
                 while((line = reader.readLine()) != null)
-                {
-                    String [] heroDes = line.split(",");
-                    Hero(heroDes[0].toString(), HeroType.values()heroDes[1],Integer.parseInt(heroDes[2]),
-                    Integer.parseInt(heroDes[3]), heroDes[4].toString(), heroDes[5].toString());
+                {   
+                    
+                    Hero.newHero(line.split(",")[0],line.split(",")[1], Integer.parseInt(line.split(" ")[2]), Integer.parseInt(line.split(" ")[3]), line.split(",")[4], line.split(",")[5]);
                     System.out.println(line);
                 }
             }
