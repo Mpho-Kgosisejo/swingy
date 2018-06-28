@@ -36,7 +36,10 @@ public class SelectHeroController extends JFrameHelper{
 
     class NavigateToCreateHeroListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-            new CreateHeroView().setVisible(true);
+            CreateHeroView createHeroView = new CreateHeroView();
+            createHeroView.setVisible(true);
+            new CreateHeroController(createHeroView, heroList);
+
             view.dispose();
 		}
     }
