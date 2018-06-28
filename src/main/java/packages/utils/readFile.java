@@ -2,9 +2,8 @@ package packages.utils;
 
 import java.io.*;
 import java.util.*;
-import packages.interfaces.IHero;
+
 import packages.models.HeroModel;
-import packages.models.WarriorModel;;
 
 public class readFile
 {
@@ -20,9 +19,17 @@ public class readFile
             {
                 while((line = reader.readLine()) != null)
                 {   
-                    
-                    //Hero.newHero(line.split(",")[0],line.split(",")[1], Integer.parseInt(line.split(" ")[2]), Integer.parseInt(line.split(" ")[3]), line.split(",")[4], line.split(",")[5]);
-                    System.out.println(line);
+                    try 
+                    {
+                        HeroModel iHero = HeroFactory.newHero(line.split(",")[0],line.split(",")[1], Integer.parseInt(line.split(",")[2]), Integer.parseInt(line.split(",")[3]), line.split(",")[4], line.split(",")[5]);
+                        heroList.add(iHero);
+                        
+                    }
+                    catch (NumberFormatException e)
+                    {
+                        System.out.println("eh eh eh");;
+                    }
+                    //System.out.println(line);
                 }
             }
         }catch(IOException e)
