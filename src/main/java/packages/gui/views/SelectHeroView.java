@@ -100,7 +100,7 @@ public class SelectHeroView extends JFrame{
         this.lblHeroImage.setBackground(new Color(0, 0, 0));
         this.lblHeroImage.setSize(10, 10);
         
-        if (this.setImage("/goinfre/mkgosise/Downloads/check-box-empty.png")){
+        if (this.setImage("/goinfre/tmekwa/Downloads/wallhaven-668239.jpg")){
             this.panelRightTop.add(this.lblHeroImage);
         }
 
@@ -172,7 +172,7 @@ public class SelectHeroView extends JFrame{
             "Armor: " + hero.getArmor();
         this.txtAHeroInfo.setText(hero_info);
 
-        if (!this.setImage("/goinfre/mkgosise/Downloads/default-image.png")){
+        if (!this.setImage("/goinfre/tmekwa/Downloads/wallhaven-668239.jpg")){
             JFrameHelper.ShowErrorDialog(this, "Error setting Hero Image.");
         }else{
             //todo: If no error setting image...
