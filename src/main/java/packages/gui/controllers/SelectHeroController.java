@@ -20,6 +20,11 @@ public class SelectHeroController extends JFrameHelper{
         this.view.navigateToCreateHeroListener(new NavigateToCreateHeroListener());
         this.view.loadHeroListener(new LoadHeroListener());
         this.view.heroClickListener(new HeroClickListener());
+        this.view.selectHeroListener(new SelectHeroListener());
+    }
+
+    public void doActionSelectHero(int index){
+        view.setSelectedHero();
     }
 
     class NavigateToCreateHeroListener implements ActionListener{
@@ -32,16 +37,26 @@ public class SelectHeroController extends JFrameHelper{
     class LoadHeroListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
             if (view.getMouseClickIndex() >= 0){
-                System.out.println("LoadHeroListener(); = " + view.getMouseClickIndex());
+                doActionSelectHero(view.getMouseClickIndex());
             }else{
                 ShowErrorDialog(view, "Select an item on te list before clicking \"Load Hero\"");
             }
 		}
     }
 
+    class SelectHeroListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+            System.out.println("setSelectedHero()");
+		}
+    }
+
     class HeroClickListener implements MouseListener{
 		public void mouseClicked(MouseEvent e) {
             view.setMouseClickIndex(e.getPoint());
+
+            if (e.getClickCount() == 2){
+                doActionSelectHero(view.getMouseClickIndex());
+            }
 		}
 
 		public void mousePressed(MouseEvent e) {}

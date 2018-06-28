@@ -35,7 +35,7 @@ public class App  //extends JFrame
 
                 WelcomeView welcomeView = new WelcomeView();
                 new WelcomeController(welcomeView);
-                welcomeView.setUndecorated(true); // -_-
+                //welcomeView.setUndecorated(true); // -_-
                 welcomeView.setVisible(true);
                 return ;
             }
