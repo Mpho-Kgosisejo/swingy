@@ -1,7 +1,7 @@
 package packages;
 
 import packages.gui.controllers.WelcomeController;
-import packages.console.View.*;
+import packages.console.view.*;
 import static packages.utils.Colours.*;
 import packages.gui.views.WelcomeView;
 import packages.interfaces.IHero;
