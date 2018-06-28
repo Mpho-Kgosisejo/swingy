@@ -4,18 +4,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
-import javax.swing.JOptionPane;
+import java.util.List;
 
 import packages.gui.views.CreateHeroView;
+import packages.gui.views.GameView;
 import packages.gui.views.SelectHeroView;
 import packages.utils.JFrameHelper;
+import packages.models.HeroModel;;
 
 public class SelectHeroController extends JFrameHelper{
     private SelectHeroView view;
+    private List<HeroModel> heroList;
 
-    public SelectHeroController(SelectHeroView view){
+    public SelectHeroController(SelectHeroView view, List<HeroModel> heroList){
         this.view = view;
+        this.heroList = heroList;
 
         this.view.navigateToCreateHeroListener(new NavigateToCreateHeroListener());
         this.view.loadHeroListener(new LoadHeroListener());
@@ -24,7 +27,11 @@ public class SelectHeroController extends JFrameHelper{
     }
 
     public void doActionSelectHero(int index){
-        view.setSelectedHero();
+        if (index < this.heroList.size()){
+            view.setSelectedHero();
+        }else{
+            ShowErrorDialog(view, "Select an item on te list before clicking \"Load Hero\"");
+        }
     }
 
     class NavigateToCreateHeroListener implements ActionListener{
@@ -46,7 +53,9 @@ public class SelectHeroController extends JFrameHelper{
 
     class SelectHeroListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-            System.out.println("setSelectedHero()");
+            new GameView().setVisible(true);
+            //todo: new GameController()
+            view.dispose();
 		}
     }
 

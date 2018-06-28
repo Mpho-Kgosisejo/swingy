@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
@@ -21,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import packages.gui.controllers.SelectHeroController;
+import packages.models.HeroModel;
 import packages.utils.JFrameHelper;
 
 public class SelectHeroView extends JFrame{
@@ -33,22 +35,35 @@ public class SelectHeroView extends JFrame{
     private JTextArea txtAHeroInfo;
     private JButton btnSelectHero;
     private int listIndex = -1;
-
+    private List<HeroModel> heroList;
     private Image heroImage;
     private JLabel lblHeroImage;
 
-    public SelectHeroView(DefaultListModel <String> herosList){
+    public SelectHeroView(List<HeroModel> heroList){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Select Hero");
         this.setSize(600, 300);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
 
-        this.init(herosList);
-        new SelectHeroController(this);
+        this.heroList = heroList;
+        this.init(getHeroNames());
+        new SelectHeroController(this, this.heroList);
     }
 
-    private void init(DefaultListModel <String> herosList){
+    private DefaultListModel<String> getHeroNames(){
+        DefaultListModel<String> list = new DefaultListModel<String>();
+        try {
+            for (HeroModel hero : this.heroList) {
+              list.addElement(hero.getName());
+            }
+          } catch (Exception exc) {
+            exc.printStackTrace();
+          }
+        return (list);
+    }
+
+    private void init(DefaultListModel<String> herosList){
         this.panelRight = new JPanel();
         JPanel panelMain = new JPanel();
         JPanel panelLeft = new JPanel();
@@ -146,16 +161,22 @@ public class SelectHeroView extends JFrame{
         this.listIndex = lstHeroNames.locationToIndex(point);
     }
 
-    //ToDo: Pass => interface [Hero()]
     public void setSelectedHero(){
+        HeroModel hero = this.heroList.get(listIndex);
         this.btnSelectHero.setEnabled(true);
-        this.lblHeroName.setText("<- Hero Name ->");
-        this.txtAHeroInfo.setText("<- Hero Info ->");
+        this.lblHeroName.setText(hero.getName());
+        String hero_info = "Name: " + hero.getName() + "\n" +
+            "Type: " + hero.getType() + "\n" +
+            "Level: " + hero.getLevel() + "\n" +
+            "X-Points: " + hero.getXPoints() + "\n" +
+            "Weapon: " + hero.getWeapon() + "\n" +
+            "Armor: " + hero.getArmor();
+        this.txtAHeroInfo.setText(hero_info);
 
         if (!this.setImage("/goinfre/mkgosise/Downloads/default-image.png")){
             JFrameHelper.ShowErrorDialog(this, "Error setting Hero Image.");
         }else{
-            
+            //todo: If no error setting image...
         }
     }
 }

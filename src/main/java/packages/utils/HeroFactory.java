@@ -13,7 +13,6 @@ public class HeroFactory
         String temp = "";
         HeroModel _heroModel;
 
-        System.out.println("created <" + name + "> " + type + ">" + level + " " + xPoints + " " + weapon + " " + armor);
         if (storeType.equals("warrior") == true)
             temp = "warrior";
         else if (storeType.equals("hunter") == true)
