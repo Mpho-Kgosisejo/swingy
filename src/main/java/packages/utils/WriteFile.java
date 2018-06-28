@@ -8,11 +8,11 @@ import java.io.PrintWriter;
 
 public class WriteFile
 {
-    FileWriter fw = null;
-    BufferedWriter bw = null;
-    PrintWriter out = null;
+    static FileWriter fw = null;
+    static BufferedWriter bw = null;
+    static PrintWriter out = null;
     
-    public void writeToFile(String type, String text)
+    public static void writeToFile(String type, String text)
     {
         try
         {
