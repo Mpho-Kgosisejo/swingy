@@ -1,4 +1,4 @@
-package packages.console.View;
+package packages.console.view;
 
 import packages.utils.HeroType;
 import packages.utils.Menus;

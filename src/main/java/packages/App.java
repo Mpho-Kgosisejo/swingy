@@ -1,15 +1,20 @@
 package packages;
 
 import packages.gui.controllers.WelcomeController;
-import packages.console.View.*;
+import packages.console.view.*;
 import static packages.utils.Colours.*;
 import packages.gui.views.WelcomeView;
+import packages.interfaces.IHero;
+import packages.models.HeroModel;
 import packages.utils.readFile;
+import packages.utils.HeroFactory;
+
 import java.io.*;
 import java.util.*;
 
 public class App  //extends JFrame
 {
+    //public static List<IHero> iHero = new ArrayList()
     public static void main( String[] args ) throws IOException
     {
 
@@ -17,12 +22,19 @@ public class App  //extends JFrame
             
             try
             {
-                readFile readFile = new readFile();
-                readFile.simulateFile(args[1]);
-            }catch(IOException e)
+                List<HeroModel> heroList = readFile.simulateFile(args[1]);
+
+                // for (HeroModel h: heroList){
+                //     System.out.println(h.getName());
+                // }
+
+            //}catch(IOException e)
+            }
+            catch(Exception e)
             {
                 System.out.println(e); 
             }
+            
             String arg = args[0].trim().toLowerCase();
 
             if (arg.equals("console")){

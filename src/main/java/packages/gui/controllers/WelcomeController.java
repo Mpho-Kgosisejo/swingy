@@ -22,11 +22,11 @@ public class WelcomeController{
     class NavigateToSelectHeroListener implements ActionListener{
       public void actionPerformed(ActionEvent e) {
         DefaultListModel<String> tmpHeroList = new DefaultListModel<String>();
-        tmpHeroList.addElement("Hero 1");
-        tmpHeroList.addElement("Hero 2");
-        tmpHeroList.addElement("Hero 3");
-        tmpHeroList.addElement("Hero 4");
-        tmpHeroList.addElement("Hero 5");
+        tmpHeroList.addElement("Knight");
+        tmpHeroList.addElement("Warrior");
+        tmpHeroList.addElement("Elf");
+        tmpHeroList.addElement("Hunter");
+        tmpHeroList.addElement("Villager");
 
         new SelectHeroView(tmpHeroList).setVisible(true);
         view.dispose();
