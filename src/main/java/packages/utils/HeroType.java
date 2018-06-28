@@ -1,4 +1,4 @@
-package packages.storage;
+package packages.utils;
 
 public enum HeroType
 {
