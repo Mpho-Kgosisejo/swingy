@@ -23,7 +23,6 @@ public class HeroModel
 		this._xPoints = xPoints;
 		this._weapon = weapon;
 		this._armor = armor;
-
 	}
 
 	private int getNextId()

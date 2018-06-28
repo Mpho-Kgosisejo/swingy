@@ -6,5 +6,5 @@ public enum HeroType
     warrior,
     elf,
     hunter,
-    Villager;
+    villager;
 }

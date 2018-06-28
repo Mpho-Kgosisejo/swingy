@@ -1,13 +1,15 @@
 package packages.console.view;
 
+import packages.models.HeroModel;
 import packages.utils.HeroType;
 import packages.utils.Menus;
+import packages.utils.WriteFile;
 
 import java.util.Scanner;
 
 public class ConsoleView
 {
-
+    public static HeroModel _hero;
     public static void start()
     {
         Scanner read = new Scanner(System.in);
@@ -52,7 +54,7 @@ public class ConsoleView
                     declareHero(HeroType.hunter);
                     break;
                 case 5:
-                    declareHero(HeroType.Villager);
+                    declareHero(HeroType.villager);
                     break;
                 default:
                     System.out.println("Choice does not correspond to given choices");
@@ -66,6 +68,7 @@ public class ConsoleView
         System.out.print("Give your " + htype + " a name: ");
         Scanner reader = new Scanner(System.in);
         String name = reader.next();
-        System.out.println("your hero's name is: " + name);
+        _hero = new HeroModel(name, htype, 0, 0, "none", "none");
+        WriteFile.writeToFile("write", _hero);
     }
 }

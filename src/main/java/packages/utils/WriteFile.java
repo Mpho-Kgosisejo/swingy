@@ -6,13 +6,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import packages.models.HeroModel;
+
 public class WriteFile
 {
     static FileWriter fw = null;
     static BufferedWriter bw = null;
     static PrintWriter out = null;
     
-    public static void writeToFile(String type, String text)
+    public static void writeToFile(String type, HeroModel _hero)
     {
         try
         {
@@ -21,7 +23,8 @@ public class WriteFile
                 fw = new FileWriter("test.txt", true);
                 bw = new BufferedWriter(fw);
                 out = new PrintWriter(bw);
-                out.println(text);
+                //out.println("");
+                out.println(_hero.getName() + "," + _hero.getType() + "," + _hero.getLevel() + "," + _hero.getXPoints() + "," + _hero.getWeapon() + "," + _hero.getArmor());
                 out.close();
             }
         } 
