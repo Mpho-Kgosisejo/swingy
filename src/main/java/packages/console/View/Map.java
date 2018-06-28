@@ -1,11 +1,11 @@
 package packages.console.view;
 
-import packages.storage.Hero;
+import packages.models.HeroModel;
 
 public class Map
 {
     public int map[][];
-    public void drawMap(Hero hero)
+    public void drawMap(HeroModel hero)
     {
         int sideLength = 38;
         int a = sideLength / 2;

@@ -2,9 +2,8 @@ package packages.utils;
 
 import java.io.*;
 import java.util.*;
-import packages.interfaces.IHero;
+
 import packages.models.HeroModel;
-import packages.models.WarriorModel;;
 
 public class readFile
 {
@@ -20,7 +19,6 @@ public class readFile
             {
                 while((line = reader.readLine()) != null)
                 {   
-<<<<<<< HEAD
                     try 
                     {
                         HeroModel iHero = HeroFactory.newHero(line.split(",")[0],line.split(",")[1], Integer.parseInt(line.split(",")[2]), Integer.parseInt(line.split(",")[3]), line.split(",")[4], line.split(",")[5]);
@@ -32,11 +30,6 @@ public class readFile
                         System.out.println("eh eh eh");;
                     }
                     //System.out.println(line);
-=======
-                    
-                    //Hero.newHero(line.split(",")[0],line.split(",")[1], Integer.parseInt(line.split(" ")[2]), Integer.parseInt(line.split(" ")[3]), line.split(",")[4], line.split(",")[5]);
-                    System.out.println(line);
->>>>>>> 59489f2b61d9b5b88027c89033061e01627f4c92
                 }
             }
         }catch(IOException e)
