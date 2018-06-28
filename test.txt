@@ -1,4 +1,4 @@
-John the Teenager,Knight,2,540,short sword,leather armor
-Alex the Great, Elf,3,124,longbow,leather armor
-Thor the Mighty,Knight,6,990,long sword,steel armor
-andile,Villager,0,0,none,none
+John the Teenager,Knight,2,540,short sword,leather armor,image path
+Alex the Great, Elf,3,124,longbow,leather armor,image path
+Thor the Mighty,Knight,6,990,long sword,steel armor,image path
+andile,Villager,0,0,none,none,image path

@@ -1,6 +1,5 @@
 package packages.models;
 
-import packages.interfaces.IHero;
 import packages.utils.HeroType;
 
 public class HeroModel
@@ -13,9 +12,11 @@ public class HeroModel
     protected int _xPoints;
     protected String _weapon;
 	protected String _armor;
+	protected String _icon;
 	
-	public HeroModel(String name, HeroType type, int level, int xPoints, String weapon, String armor)
+	public HeroModel(String name, HeroType type, int level, int xPoints, String weapon, String armor, String icon)
 	{
+		this._icon = icon;
 		this._id = getNextId();
 		this._name = name;
 		this._type = type;
@@ -23,6 +24,7 @@ public class HeroModel
 		this._xPoints = xPoints;
 		this._weapon = weapon;
 		this._armor = armor;
+		System.out.println("New Hero!");
 	}
 
 	private int getNextId()
@@ -60,4 +62,7 @@ public class HeroModel
 		return this._armor;
 	}
 
+	public String getIcon() {
+		return this._icon;
+	}
 }

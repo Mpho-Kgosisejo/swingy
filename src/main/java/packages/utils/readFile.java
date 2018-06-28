@@ -10,7 +10,6 @@ public class readFile
     public static List<HeroModel>  simulateFile(String filename) throws IOException
     {
         List<HeroModel> heroList = new ArrayList<HeroModel>();
-
         try
         {
             BufferedReader reader = new BufferedReader(new FileReader(filename));
@@ -21,7 +20,7 @@ public class readFile
                 {   
                     try 
                     {
-                        HeroModel iHero = HeroFactory.newHero(line.split(",")[0],line.split(",")[1], Integer.parseInt(line.split(",")[2]), Integer.parseInt(line.split(",")[3]), line.split(",")[4], line.split(",")[5]);
+                        HeroModel iHero = HeroFactory.newHero(line.split(",")[0], line.split(",")[1], Integer.parseInt(line.split(",")[2]), Integer.parseInt(line.split(",")[3]), line.split(",")[4], line.split(",")[5], line.split(",")[6]);
                         heroList.add(iHero);
                         
                     }
@@ -35,6 +34,9 @@ public class readFile
         }catch(IOException e)
         {
             System.out.println("Cannot find file" + e);
+        }
+        for (HeroModel h: heroList){
+            System.out.println("eh " + h.getName());;
         }
         return (heroList);
     }

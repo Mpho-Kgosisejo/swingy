@@ -68,7 +68,7 @@ public class ConsoleView
         System.out.print("Give your " + htype + " a name: ");
         Scanner reader = new Scanner(System.in);
         String name = reader.next();
-        _hero = new HeroModel(name, htype, 0, 0, "none", "none");
+        _hero = new HeroModel(name, htype, 0, 0, "none", "none", "none");
         WriteFile.writeToFile("write", _hero);
     }
 }
