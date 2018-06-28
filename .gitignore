@@ -4,6 +4,7 @@
 .vscode
 .project
 .maven-build-log
+.DS_Store
 target
 bin
 

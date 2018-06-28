@@ -3,7 +3,9 @@ package packages.gui.views;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -18,6 +20,7 @@ public class SelectHeroView extends JFrame{
     private JList<String> lstHeroNames;
     private JButton btnCreateHero;
     private JButton btnLoadHeroInfo;
+    private int listIndex = -1;
 
     public SelectHeroView(DefaultListModel <String> herosList){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,5 +67,17 @@ public class SelectHeroView extends JFrame{
 
     public void loadHeroListener(ActionListener action){
         this.btnLoadHeroInfo.addActionListener(action);
+    }
+
+    public void heroClickListener(MouseListener listener){
+        this.lstHeroNames.addMouseListener(listener);
+    }
+
+    public int getMouseClickIndex(){
+        return (this.listIndex);
+    }
+
+    public void setMouseClickIndex(Point point){
+        this.listIndex = lstHeroNames.locationToIndex(point);
     }
 }

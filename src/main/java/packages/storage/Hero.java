@@ -8,6 +8,7 @@ public class Hero
 {
     public static void newHero(String name, String type, int level, int xPoints, String weapon, String armor)
     {
+        Type type = new Type();
         String storeType = type.trim().toLowerCase();
         String temp = "";
 

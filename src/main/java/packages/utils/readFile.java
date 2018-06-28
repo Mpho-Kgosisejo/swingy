@@ -20,8 +20,8 @@ public class readFile
                     
                     Hero.newHero(line.split(",")[0],line.split(",")[1], Integer.parseInt(line.split(" ")[2]), Integer.parseInt(line.split(" ")[3]), line.split(",")[4], line.split(",")[5]);
                     System.out.println(line);
-                }
             }
+        }
         }catch(IOException e)
         {
             System.out.println("Cannot find file" + e);
