@@ -74,8 +74,8 @@ public class SelectHeroView extends JFrame{
         this.lstHeroNames = new JList<String>(herosList);
         this.btnCreateHero = new JButton("Create New Hero");
         this.btnLoadHeroInfo = new JButton("Load Hero...");
-        this.lblHeroName = new JLabel("<- ->");
-        this.txtAHeroInfo = new JTextArea("<- ->");
+        this.lblHeroName = new JLabel();
+        this.txtAHeroInfo = new JTextArea();
         this.btnSelectHero = new JButton("Select Hero");
 
         panelMain.setLayout(new GridLayout(1, 2));

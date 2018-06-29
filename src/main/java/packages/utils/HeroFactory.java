@@ -1,7 +1,7 @@
 package packages.utils;
 
 import packages.enums.ArmorType;
-import packages.enums.HeroType;
+import packages.enums.CharacterType;
 import packages.enums.WeaponType;
 import packages.enums.HelmType;
 import packages.models.ElfModel;
@@ -31,21 +31,19 @@ public class HeroFactory
         else
             temp = null;
         
-        System.out.println("Temp type: " + temp);
-        
         if (temp != null)
         {
-            for (HeroType etype : HeroType.values())
+            for (CharacterType etype : CharacterType.values())
             {
-                HeroType tempHeroType = HeroType.valueOf(temp);
+                CharacterType tempCharacterType = CharacterType.valueOf(temp);
                 HelmType tempHelmType = HelmType.valueOf(helm);
                 WeaponType tempWeaponType = WeaponType.valueOf(weapon);
                 ArmorType tempArmorType = ArmorType.valueOf(armor);
 
                 int i = 1;
-                if (etype.equals(tempHeroType) == true)
+                if (etype.equals(tempCharacterType) == true)
                 {
-                    switch(tempHeroType)
+                    switch(tempCharacterType)
                     {
                         case warrior:
                            return (new WarriorModel(name, etype, level, xPoints, attack, defense, hitPoints, tempWeaponType, tempArmorType, tempHelmType, icon));

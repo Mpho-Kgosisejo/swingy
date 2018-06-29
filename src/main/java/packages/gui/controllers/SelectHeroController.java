@@ -56,8 +56,9 @@ public class SelectHeroController extends JFrameHelper{
 
     class SelectHeroListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-            new GameView().setVisible(true);
-            //todo: new GameController()
+            GameView gameView = new GameView(heroList.get(view.getMouseClickIndex()));
+            gameView.setVisible(true);
+            new GameController(gameView);
             view.dispose();
 		}
     }

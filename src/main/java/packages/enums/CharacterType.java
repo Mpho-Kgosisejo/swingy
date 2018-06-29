@@ -1,10 +1,11 @@
 package packages.enums;
 
-public enum HeroType
+public enum CharacterType
 {
     knight,
     warrior,
     elf,
     hunter,
-    villager;
+    villager,
+    enemy
 }

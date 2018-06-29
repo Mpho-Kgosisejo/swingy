@@ -2,7 +2,7 @@ package packages.interfaces;
 
 import packages.enums.ArmorType;
 import packages.enums.HelmType;
-import packages.enums.HeroType;
+import packages.enums.CharacterType;
 import packages.enums.WeaponType;
 
 public interface IHero
@@ -11,7 +11,7 @@ public interface IHero
 
     public String getName();
     
-    public HeroType getType();
+    public CharacterType getType();
 
     public int getLevel();
 
