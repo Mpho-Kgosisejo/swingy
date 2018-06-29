@@ -2,7 +2,7 @@ package packages.models;
 
 import packages.console.controller.Coordinates;
 import packages.enums.ArmorType;
-import packages.enums.HeroType;
+import packages.enums.CharacterType;
 import packages.enums.WeaponType;
 import packages.enums.HelmType;
 
@@ -11,7 +11,7 @@ public class HeroModel
 	private int _idCounter = 0;
 	protected static int _id = 0;
 	protected String _name;
-    protected HeroType _type;
+    protected CharacterType _type;
     protected int _level;
 	protected int _xPoints;
     protected int _attack;
@@ -23,7 +23,7 @@ public class HeroModel
 	protected String _icon;
 	protected Coordinates _coordinates;	
 	
-	public HeroModel(String name, HeroType type, int level, int xPoints, int attack, int defense, int hitPoints, WeaponType weapon, ArmorType armor, HelmType helm, String icon)
+	public HeroModel(String name, CharacterType type, int level, int xPoints, int attack, int defense, int hitPoints, WeaponType weapon, ArmorType armor, HelmType helm, String icon)
 	{
 		this._icon = icon;
 		_id = getNextId();
@@ -37,7 +37,6 @@ public class HeroModel
 		this._weapon = weapon;
 		this._armor = armor;
 		this._helm = helm;
-		System.out.println("New Hero!");
 	}
 
 	public void setCoordinates(Coordinates coordinates)
@@ -49,7 +48,7 @@ public class HeroModel
 	{
 		return this._coordinates;
 	}
-	
+
 	private int getNextId()
 	{
 		return (++this._idCounter);
@@ -64,7 +63,7 @@ public class HeroModel
 		return this._name;
 	}
 
-    public HeroType getType()
+    public CharacterType getType()
     {
         return this._type;
     }
