@@ -21,7 +21,10 @@ import packages.models.HeroModel;
 import packages.models.HunterModel;
 import packages.models.KnightModel;
 import packages.models.VillagerModel;
-import packages.utils.HeroType;
+import packages.enums.ArmorType;
+import packages.enums.HelmType;
+import packages.enums.HeroType;
+import packages.enums.WeaponType;
 import packages.utils.JFrameHelper;
 
 public class CreateHeroView extends JFrame{
@@ -112,14 +115,14 @@ public class CreateHeroView extends JFrame{
 
         lblWeapon.setEnabled(false);
         txtFdWeapon.setEnabled(false);
-        txtFdWeapon.setText("none");
+        txtFdWeapon.setText("bow");
         panelTop5.add(lblWeapon);
         panelTop5.add(txtFdWeapon);
         panelMid.add(panelTop5);
 
         lblArmor.setEnabled(false);
         txtFdArmor.setEnabled(false);
-        txtFdArmor.setText("none");
+        txtFdArmor.setText("jacket");
         panelTop6.add(lblArmor);
         panelTop6.add(txtFdArmor);
         panelMid.add(panelTop6);
@@ -172,22 +175,27 @@ public class CreateHeroView extends JFrame{
 
             int level = Integer.parseInt(this.txtFdLevel.getText());
             int xPoint = Integer.parseInt(this.txtFdXPoints.getText());
+            int attack = 0;
+            int defense = 0;
+            int HP = 0;
+            WeaponType weapon = WeaponType.valueOf(this.txtFdWeapon.getText());
+            ArmorType armor = ArmorType.valueOf(this.txtFdArmor.getText());
             String iconPath = "icon-path";
 
             if (this.txtFdType.getText().equalsIgnoreCase(HeroType.elf.toString())){
-                this.newHero = new ElfModel(this.txtFdName.getText(), HeroType.elf, level, xPoint, this.txtFdWeapon.getText(), this.txtFdArmor.getText(), iconPath);
+                this.newHero = new ElfModel(this.txtFdName.getText(), HeroType.elf, level, xPoint, attack, defense, HP, weapon, armor, HelmType.pot, iconPath);
             }
             else if (this.txtFdType.getText().equalsIgnoreCase(HeroType.hunter.toString())){
-                this.newHero = new HunterModel(this.txtFdName.getText(), HeroType.elf, level, xPoint, this.txtFdWeapon.getText(), this.txtFdArmor.getText(), iconPath);
+                this.newHero = new HunterModel(this.txtFdName.getText(), HeroType.hunter, level, xPoint, attack, defense, HP, weapon, armor, HelmType.pot, iconPath);
             }
             else if (this.txtFdType.getText().equalsIgnoreCase(HeroType.knight.toString())){
-                this.newHero = new KnightModel(this.txtFdName.getText(), HeroType.elf, level, xPoint, this.txtFdWeapon.getText(), this.txtFdArmor.getText(), iconPath);
+                this.newHero = new KnightModel(this.txtFdName.getText(), HeroType.knight, level, xPoint, attack, defense, HP, weapon, armor, HelmType.pot, iconPath);
             }
             else if (this.txtFdType.getText().equalsIgnoreCase(HeroType.villager.toString())){
-                this.newHero = new VillagerModel(this.txtFdName.getText(), HeroType.elf, level, xPoint, this.txtFdWeapon.getText(), this.txtFdArmor.getText(), iconPath);
+                this.newHero = new VillagerModel(this.txtFdName.getText(), HeroType.villager, level, xPoint, attack, defense, HP, weapon, armor, HelmType.pot, iconPath);
             }
             else if (this.txtFdType.getText().equalsIgnoreCase(HeroType.warrior.toString())){
-                this.newHero = new HeroModel(this.txtFdName.getText(), HeroType.elf, level, xPoint, this.txtFdWeapon.getText(), this.txtFdArmor.getText(), iconPath);
+                this.newHero = new HeroModel(this.txtFdName.getText(), HeroType.warrior, level, xPoint, attack, defense, HP, weapon, armor, HelmType.pot, iconPath);
             }else{
                 JFrameHelper.ShowErrorDialog(this, "Hero type: " + this.txtFdType.getText() + " is unknown.");
             }

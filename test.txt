@@ -1,13 +1,5 @@
-<<<<<<< HEAD
 John the Teenager,Knight,2,540,10,5,5,sword,leather,pot,image path,
 Alex the Great, Elf,3,124,10,5,5,bow,leather,pot,image path
 Thor the Mighty,Knight,6,990,10,5,5,sword,steel,pot,image path
 andile,Villager,0,0,10,5,5,bow,jacket,pot,image path
-=======
-John the Teenager,Knight,2,540,short sword,leather armor,image path
-Alex the Great, Elf,3,124,longbow,leather armor,image path
-Thor the Mighty,Knight,6,990,long sword,steel armor,image path
-andile,Villager,0,0,none,none,image path
-Kaygo,elf,0,0,none,none,icon-path
-KaygoPhobos,elf,0,0,none,none,icon-path
->>>>>>> 5f18f20207c2237f12c80183dd28aa50e2ac7806
+Thato,hunter,0,0,0,0,0,bow,jacket,pot,icon-path
