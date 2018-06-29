@@ -4,8 +4,6 @@ import packages.gui.controllers.WelcomeController;
 import packages.console.view.ConsoleView;
 import static packages.utils.Colours.*;
 import packages.gui.views.WelcomeView;
-import packages.utils.Formulas;
-import packages.utils.readFile;
 
 import java.io.*;
 

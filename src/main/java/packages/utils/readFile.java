@@ -20,10 +20,12 @@ public class readFile
                 {   
                     try 
                     {
+                       if (line.trim().length() > 0){
                         HeroModel iHero = HeroFactory.newHero(line.split(",")[0], line.split(",")[1], Integer.parseInt(line.split(",")[2]), Integer.parseInt(line.split(",")[3]), Integer.parseInt(line.split(",")[4]),
-                         Integer.parseInt(line.split(",")[5]), Integer.parseInt(line.split(",")[6]), line.split(",")[7], line.split(",")[8], line.split(",")[9], line.split(",")[10]);
-                        heroList.add(iHero);
-                        
+                        Integer.parseInt(line.split(",")[5]), Integer.parseInt(line.split(",")[6]), line.split(",")[7], line.split(",")[8], line.split(",")[9], line.split(",")[10]);
+                    
+                        heroList.add(iHero); 
+                       }
                     }
                     catch (NumberFormatException e)
                     {

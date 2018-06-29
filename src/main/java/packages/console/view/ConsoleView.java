@@ -20,13 +20,13 @@ public class ConsoleView
 
     public static void start()
     {
-        /*try {
+        try {
             heroList = readFile.simulateFile("test.txt");
         }
         catch (IOException e)
         {
             System.out.println("hehehehehe");
-        }*/
+        }
         Scanner read = new Scanner(System.in);
         Menus.menu();
         while (read.hasNextLine())
@@ -38,7 +38,7 @@ public class ConsoleView
                     createHero();
                     break;
                 case 2:
-                    existingHero(heroList);
+                    existingHero();
                     break;
                 default:
                     System.out.println("Choice does not correspond to given choices");
@@ -91,8 +91,7 @@ public class ConsoleView
     }
 
 
-    public  static void existingHero(List<HeroModel> list) {
-        heroList = list;
+    public  static void existingHero() {
         for (HeroModel __hero : heroList) {
             System.out.println(__hero.getName());
         }
