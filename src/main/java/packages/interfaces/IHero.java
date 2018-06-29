@@ -1,6 +1,9 @@
 package packages.interfaces;
 
-import packages.utils.HeroType;
+import packages.enums.ArmorType;
+import packages.enums.HelmType;
+import packages.enums.HeroType;
+import packages.enums.WeaponType;
 
 public interface IHero
 {
@@ -14,8 +17,16 @@ public interface IHero
 
     public int getXPoints();
 
-    public String getWeapon();
+    public int getAttack();
+
+    public int getDefense();
     
-    public String getArmor();
+    public int getHitPoints();    
+
+    public WeaponType getWeapon();
+    
+    public ArmorType getArmor();
+
+    public HelmType getHelm();
 
 }

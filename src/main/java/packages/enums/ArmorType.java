@@ -1,6 +1,6 @@
-package packages.utils;
+package packages.enums;
 
-public enum Armor
+public enum ArmorType
 {
     leather,
     steel,

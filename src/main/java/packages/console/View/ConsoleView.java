@@ -1,11 +1,14 @@
 package packages.console.view;
 
+import java.util.Scanner;
+
 import packages.models.HeroModel;
-import packages.utils.HeroType;
+import packages.enums.ArmorType;
+import packages.enums.HelmType;
+import packages.enums.HeroType;
+import packages.enums.WeaponType;
 import packages.utils.Menus;
 import packages.utils.WriteFile;
-
-import java.util.Scanner;
 
 public class ConsoleView
 {
@@ -68,7 +71,7 @@ public class ConsoleView
         System.out.print("Give your " + htype + " a name: ");
         Scanner reader = new Scanner(System.in);
         String name = reader.next();
-        _hero = new HeroModel(name, htype, 0, 0, "none", "none", "none");
+        _hero = new HeroModel(name, htype, 0, 0, 0, 0, 0, WeaponType.bow, ArmorType.jacket, HelmType.frog_mouthed, "none");
         WriteFile.writeToFile("write", _hero);
     }
 }

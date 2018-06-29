@@ -24,7 +24,8 @@ public class WriteFile
                 bw = new BufferedWriter(fw);
                 out = new PrintWriter(bw);
                 //out.println("");
-                out.println(_hero.getName() + "," + _hero.getType() + "," + _hero.getLevel() + "," + _hero.getXPoints() + "," + _hero.getWeapon() + "," + _hero.getArmor());
+                out.println(_hero.getName() + "," + _hero.getType() + "," + _hero.getLevel() + "," + _hero.getXPoints() + "," + _hero.getAttack() +  "," 
+                + _hero.getDefense() + "," + _hero.getHitPoints() + "," + _hero.getWeapon() + "," + _hero.getArmor() + "," + _hero.getHelm());
                 out.close();
             }
         } 

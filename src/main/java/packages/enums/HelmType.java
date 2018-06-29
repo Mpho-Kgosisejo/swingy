@@ -1,6 +1,6 @@
-package packages.utils;
+package packages.enums;
 
-public enum Helm
+public enum HelmType
 {
     pot,
     great,

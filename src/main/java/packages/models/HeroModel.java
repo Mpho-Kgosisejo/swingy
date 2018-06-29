@@ -1,6 +1,6 @@
 package packages.models;
 
-import packages.utils.HeroType;
+import packages.enums.*;
 
 public class HeroModel
 {
@@ -9,12 +9,16 @@ public class HeroModel
 	protected String _name;
     protected HeroType _type;
     protected int _level;
-    protected int _xPoints;
-    protected String _weapon;
-	protected String _armor;
+	protected int _xPoints;
+    protected int _attack;
+    protected int _defense;
+    protected int _hitPoints;	
+    protected WeaponType _weapon;
+	protected ArmorType _armor;
+	protected HelmType _helm;	
 	protected String _icon;
 	
-	public HeroModel(String name, HeroType type, int level, int xPoints, String weapon, String armor, String icon)
+	public HeroModel(String name, HeroType type, int level, int xPoints, int attack, int defense, int hitPoints, WeaponType weapon, ArmorType armor, HelmType helm, String icon)
 	{
 		this._icon = icon;
 		this._id = getNextId();
@@ -22,8 +26,12 @@ public class HeroModel
 		this._type = type;
 		this._level = level;
 		this._xPoints = xPoints;
+		this._attack = attack;
+		this._defense = defense;
+		this._hitPoints = hitPoints;
 		this._weapon = weapon;
 		this._armor = armor;
+		this._helm = helm;
 		System.out.println("New Hero!");
 	}
 
@@ -54,12 +62,28 @@ public class HeroModel
 		return this._xPoints;
 	}
 
-	public String getWeapon() {
+	public int getAttack() {
+		return this._attack;
+	}
+
+	public int getDefense() {
+		return this._defense;
+	}
+
+	public int getHitPoints() {
+		return this._hitPoints;
+	}
+
+	public WeaponType getWeapon() {
 		return this._weapon;
 	}
 
-	public String getArmor() {
+	public ArmorType getArmor() {
 		return this._armor;
+	}
+
+	public HelmType getHelm() {
+		return this._helm;
 	}
 
 	public String getIcon() {
