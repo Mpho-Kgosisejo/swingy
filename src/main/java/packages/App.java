@@ -4,13 +4,8 @@ import packages.gui.controllers.WelcomeController;
 import packages.console.view.ConsoleView;
 import static packages.utils.Colours.*;
 import packages.gui.views.WelcomeView;
-import packages.interfaces.IHero;
-import packages.models.HeroModel;
-import packages.utils.readFile;
-import packages.utils.HeroFactory;
 
 import java.io.*;
-import java.util.*;
 
 public class App  //extends JFrame
 {
