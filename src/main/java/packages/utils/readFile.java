@@ -27,7 +27,7 @@ public class readFile
                     }
                     catch (NumberFormatException e)
                     {
-                        System.out.println("eh eh eh");;
+                        System.out.println("eh eh eh");
                     }
                     //System.out.println(line);
                 }
@@ -35,9 +35,6 @@ public class readFile
         }catch(IOException e)
         {
             System.out.println("Cannot find file" + e);
-        }
-        for (HeroModel h: heroList){
-            System.out.println("eh " + h.getName());;
         }
         return (heroList);
     }

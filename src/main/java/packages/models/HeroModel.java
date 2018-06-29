@@ -31,8 +31,11 @@ public class HeroModel
 		this._hitPoints = hitPoints;
 		this._weapon = weapon;
 		this._armor = armor;
+<<<<<<< HEAD
 		this._helm = helm;
 		System.out.println("New Hero!");
+=======
+>>>>>>> 5f18f20207c2237f12c80183dd28aa50e2ac7806
 	}
 
 	private int getNextId()

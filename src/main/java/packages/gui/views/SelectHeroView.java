@@ -80,24 +80,17 @@ public class SelectHeroView extends JFrame{
 
         panelMain.setLayout(new GridLayout(1, 2));
         panelMain.setSize(new Dimension(this.getWidth(), this.getHeight()));
-        panelLeft.setBackground(new Color(255, 229, 204));
         panelLeft.setLayout(null);
-        this.panelRight.setBackground(new Color(204, 229, 255));
         this.panelRight.setLayout(null);
         this.lstHeroNames.setBounds(10, 10, ((panelMain.getWidth() / 2) - 20), 230);
-        panelLeftControllers.setBackground(new Color(204, 204, 255));
         panelLeftControllers.setBounds(0, 240, (panelMain.getWidth() / 2), 60);
         this.panelRightTop.setBounds(0, 0, (panelMain.getWidth() / 2), 70);
-        this.panelRightTop.setBackground(new Color(204, 255, 229));
         panelRightMid.setBounds(0, 70, (panelMain.getWidth() / 2), 170);
         panelRightMid.setLayout(null);
-        panelRightMid.setBackground(new Color(255, 204, 229));
         panelRightBottom.setBounds(0, 240, (panelMain.getWidth() / 2), 50);
-        panelRightBottom.setBackground(new Color(255, 255, 204));
         this.txtAHeroInfo.setBounds(10, 0, ((panelMain.getWidth() / 2) - 20), 170);
         this.txtAHeroInfo.setEditable(false);
         this.lblHeroImage = new JLabel();
-        this.lblHeroImage.setBackground(new Color(0, 0, 0));
         this.lblHeroImage.setSize(10, 10);
         
         if (this.setImage("/goinfre/tmekwa/Downloads/wallhaven-668239.jpg")){
@@ -173,7 +166,8 @@ public class SelectHeroView extends JFrame{
         this.txtAHeroInfo.setText(hero_info);
 
         if (!this.setImage("/goinfre/tmekwa/Downloads/wallhaven-668239.jpg")){
-            JFrameHelper.ShowErrorDialog(this, "Error setting Hero Image.");
+            //JFrameHelper.ShowErrorDialog(this, "Error setting Hero Image.");
+            System.err.println("Error Setting Image");
         }else{
             //todo: If no error setting image...
         }

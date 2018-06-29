@@ -31,9 +31,4 @@ public class Coordinates {
 	public boolean Isequals(Coordinates other) {
 		return (this.y == other.y && this.x == other.x);
 	}
-
-	@Override
-	public String toString() {
-		return "{" + "x=" + x + ", y=" + y + '}';
-	}
 }
