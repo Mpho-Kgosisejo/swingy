@@ -9,9 +9,8 @@ public class Formulas{
     }
 
     public static int getXPoints(int level){
-        // Formula: level*1000+(level − 1)2*450
-        int xPoints = 0;
-        xPoints = (level * 1000) + (((level - 1) * 2) * 450);
-        return (xPoints);
+        double xPoints = 0;
+        xPoints = level * 1000 + Math.pow(((double)level) - 1, 2) * 450;
+        return (int)xPoints;
     }
 }

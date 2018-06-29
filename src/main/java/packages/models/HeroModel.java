@@ -7,8 +7,8 @@ import packages.enums.HelmType;
 
 public class HeroModel
 {
-	private static int _idCounter = 0;
-	protected int _id = 0;
+	private int _idCounter = 0;
+	protected static int _id = 0;
 	protected String _name;
     protected HeroType _type;
     protected int _level;
@@ -24,7 +24,7 @@ public class HeroModel
 	public HeroModel(String name, HeroType type, int level, int xPoints, int attack, int defense, int hitPoints, WeaponType weapon, ArmorType armor, HelmType helm, String icon)
 	{
 		this._icon = icon;
-		this._id = getNextId();
+		_id = getNextId();
 		this._name = name;
 		this._type = type;
 		this._level = level;

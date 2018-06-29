@@ -64,6 +64,7 @@ public class ConsoleView
                     break;
             }
         }
+        reader.close();
     }
 
     public  static void declareHero(HeroType htype)
@@ -73,5 +74,6 @@ public class ConsoleView
         String name = reader.next();
         _hero = new HeroModel(name, htype, 0, 0, 0, 0, 0, WeaponType.bow, ArmorType.jacket, HelmType.frog_mouthed, "none");
         WriteFile.writeToFile("write", _hero);
+        reader.close();
     }
 }
