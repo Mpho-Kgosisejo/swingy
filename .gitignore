@@ -1,5 +1,6 @@
 # Files #
 
+.idea
 .settings
 .vscode
 .project
@@ -7,6 +8,7 @@
 .DS_Store
 target
 bin
+swingy.iml
 
 # *.ext #
 *.class

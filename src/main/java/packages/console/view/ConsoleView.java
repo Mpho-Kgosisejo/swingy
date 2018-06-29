@@ -1,5 +1,7 @@
 package packages.console.view;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 import packages.models.HeroModel;
@@ -9,12 +11,16 @@ import packages.enums.HeroType;
 import packages.enums.WeaponType;
 import packages.utils.Menus;
 import packages.utils.WriteFile;
+import packages.utils.readFile;
 
 public class ConsoleView
 {
+    public static List<HeroModel> heroList;
     public static HeroModel _hero;
+
     public static void start()
     {
+
         Scanner read = new Scanner(System.in);
         Menus.menu();
         while (read.hasNextLine())
@@ -26,7 +32,13 @@ public class ConsoleView
                     createHero();
                     break;
                 case 2:
-                    System.out.println("you chose to select a hero");
+                    existingHero(heroList);
+                    try {
+                        heroList = readFile.simulateFile("test.txt");
+                    }catch(Exception e)
+                    {
+                        e.printStackTrace();
+                    }
                     break;
                 default:
                     System.out.println("Choice does not correspond to given choices");
@@ -37,8 +49,9 @@ public class ConsoleView
 
     public static void createHero()
     {
-        Menus.heroMenu();
         Scanner reader = new Scanner(System.in);
+        Menus.heroMenu();
+
         while (reader.hasNextLine())
         {
             int n = reader.nextInt();
@@ -76,4 +89,14 @@ public class ConsoleView
         WriteFile.writeToFile("write", _hero);
         reader.close();
     }
+
+
+    public  static void existingHero(List<HeroModel> list) {
+        heroList = list;
+        for (HeroModel __hero : heroList) {
+            System.out.println(__hero.getName());
+        }
+    }
+
+
 }
