@@ -1,4 +1,4 @@
-John the Teenager,Knight,2,540,10,5,5,sword,leather,pot,image path,
+John the Teenager,Knight,2,540,10,5,5,sword,leather,pot,image path
 Alex the Great, Elf,3,124,10,5,5,bow,leather,pot,image path
 Thor the Mighty,Knight,6,990,10,5,5,sword,steel,pot,image path
 andile,Villager,1,0,10,5,5,bow,jacket,pot,image path
