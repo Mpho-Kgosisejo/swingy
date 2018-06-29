@@ -1,5 +1,6 @@
 package packages.models;
 
+import packages.console.controller.Coordinates;
 import packages.enums.ArmorType;
 import packages.enums.HeroType;
 import packages.enums.WeaponType;
@@ -20,6 +21,7 @@ public class HeroModel
 	protected ArmorType _armor;
 	protected HelmType _helm;	
 	protected String _icon;
+	protected Coordinates _coordinates;	
 	
 	public HeroModel(String name, HeroType type, int level, int xPoints, int attack, int defense, int hitPoints, WeaponType weapon, ArmorType armor, HelmType helm, String icon)
 	{
@@ -38,6 +40,16 @@ public class HeroModel
 		System.out.println("New Hero!");
 	}
 
+	public void setCoordinates(Coordinates coordinates)
+	{
+		this._coordinates = coordinates;
+	}
+
+	public Coordinates getCoordinates()
+	{
+		return this._coordinates;
+	}
+	
 	private int getNextId()
 	{
 		return (++this._idCounter);
