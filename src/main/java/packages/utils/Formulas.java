@@ -16,7 +16,7 @@ public class Formulas{
         for (int i = 2; i >= 0; i--){
             power *= level;
         }
-        xPoints = (level * 1000) + (level * 450);
+        xPoints = (level * 1000) + (power * 450);
         return (xPoints);
     }
 }

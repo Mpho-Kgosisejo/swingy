@@ -101,7 +101,7 @@ public class CreateHeroView extends JFrame{
 
         lblLevel.setEnabled(false);
         txtFdLevel.setEnabled(false);
-        txtFdLevel.setText("0");
+        txtFdLevel.setText("1");
         panelTop3.add(lblLevel);
         panelTop3.add(txtFdLevel);
         panelMid.add(panelTop3);

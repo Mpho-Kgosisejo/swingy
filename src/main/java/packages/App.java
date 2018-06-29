@@ -13,11 +13,6 @@ public class App  //extends JFrame
     //public static List<IHero> iHero = new ArrayList()
     public static void main( String[] args ) throws IOException
     {
-        for(int i = 1; i < 10; i++){
-            System.out.println(">> " + i + " Lv => " + Formulas.getXPoints(i) + "XP");
-            //System.out.println(">> " + i + " => " + Formulas.sizeMap(i) + " Map");
-        }
-
         if (args.length == 2){
             String arg = args[0].trim().toLowerCase();
 
