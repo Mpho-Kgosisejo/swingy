@@ -11,7 +11,12 @@ public class Formulas{
     public static int getXPoints(int level){
         // Formula: level*1000+(level − 1)2*450
         int xPoints = 0;
-        xPoints = (level * 1000) + (((level - 1) * 2) * 450);
+        int power = 0;
+        level = level - 1;
+        for (int i = 2; i >= 0; i--){
+            power *= level;
+        }
+        xPoints = (level * 1000) + (level * 450);
         return (xPoints);
     }
 }
