@@ -161,8 +161,12 @@ public class SelectHeroView extends JFrame{
             "Type: " + hero.getType() + "\n" +
             "Level: " + hero.getLevel() + "\n" +
             "X-Points: " + hero.getXPoints() + "\n" +
+            "Attack: " + hero.getAttack() + "\n" +
+            "Defense: " + hero.getDefense() + "\n" +
+            "Hit Points: " + hero.getHitPoints() + "\n" +            
             "Weapon: " + hero.getWeapon() + "\n" +
-            "Armor: " + hero.getArmor();
+            "Armor: " + hero.getArmor() + "\n" + 
+            "Helm: " + hero.getHelm();            
         this.txtAHeroInfo.setText(hero_info);
 
         if (!this.setImage("/goinfre/tmekwa/Downloads/wallhaven-668239.jpg")){
