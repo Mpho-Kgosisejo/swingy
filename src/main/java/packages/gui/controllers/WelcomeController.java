@@ -22,24 +22,29 @@ public class WelcomeController{
     this.view.navigateToCreateHeroListener(new NavigateToCreateHeroListener());
   }
 
+  private List<HeroModel> getHeroList(){
+    List<HeroModel> heroList = null;
+
+    try {
+      heroList = readFile.simulateFile("test.txt");
+    } catch (Exception exc) {
+      exc.printStackTrace();
+    }
+    return (heroList);
+  }
+
   class NavigateToSelectHeroListener implements ActionListener{
     public void actionPerformed(ActionEvent e) {
-      List<HeroModel> heroList = null;
-
-      try {
-        heroList = readFile.simulateFile("test.txt");
-      } catch (Exception exc) {
-        exc.printStackTrace();
-      }
-
-      new SelectHeroView(heroList).setVisible(true);
+      new SelectHeroView(getHeroList()).setVisible(true);
       view.dispose();
     }
   }
 
   class NavigateToCreateHeroListener implements ActionListener{
     public void actionPerformed(ActionEvent e) {
-      new CreateHeroView().setVisible(true);;
+      CreateHeroView createHeroView = new CreateHeroView();
+      createHeroView.setVisible(true);
+      new CreateHeroController(createHeroView, getHeroList());
       view.dispose();
     }
   }

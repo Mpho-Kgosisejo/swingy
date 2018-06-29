@@ -2,3 +2,5 @@ John the Teenager,Knight,2,540,short sword,leather armor,image path
 Alex the Great, Elf,3,124,longbow,leather armor,image path
 Thor the Mighty,Knight,6,990,long sword,steel armor,image path
 andile,Villager,0,0,none,none,image path
+Kaygo,elf,0,0,none,none,icon-path
+KaygoPhobos,elf,0,0,none,none,icon-path

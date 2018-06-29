@@ -3,7 +3,9 @@ package packages.gui.views;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -12,6 +14,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.xml.validation.ValidatorHandler;
+
+import packages.models.ElfModel;
+import packages.models.HeroModel;
+import packages.models.HunterModel;
+import packages.models.KnightModel;
+import packages.models.VillagerModel;
+import packages.utils.HeroType;
+import packages.utils.JFrameHelper;
 
 public class CreateHeroView extends JFrame{
     private JLabel lblHeroImage;
@@ -19,6 +30,13 @@ public class CreateHeroView extends JFrame{
     private Image heroImage;
     private JButton btnCreateHero;
     private JButton btnCanel;
+    private JTextField txtFdName;
+    private JTextField txtFdType;
+    private JTextField txtFdLevel;
+    private JTextField txtFdXPoints;
+    private JTextField txtFdWeapon;
+    private JTextField txtFdArmor;
+    private HeroModel newHero = null;
 
     public CreateHeroView(){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,22 +55,22 @@ public class CreateHeroView extends JFrame{
         JPanel panelBottom = new JPanel();
         JPanel panelTop1 = new JPanel();
         JLabel lblName = new JLabel("Name:");
-        JTextField txtFdName = new JTextField(10);
+        this.txtFdName = new JTextField(10);
         JPanel panelTop2 = new JPanel();
         JLabel lblType = new JLabel("Type:");
-        JTextField txtFdType = new JTextField(10);
+        this.txtFdType = new JTextField(10);
         JPanel panelTop3 = new JPanel();
         JLabel lblLevel = new JLabel("Level:");
-        JTextField txtFdLevel = new JTextField(10);
+        this.txtFdLevel = new JTextField(10);
         JPanel panelTop4 = new JPanel();
         JLabel lblXPoints = new JLabel("X-Points:");
-        JTextField txtFdXPoints = new JTextField(8);
+        this.txtFdXPoints = new JTextField(8);
         JPanel panelTop5 = new JPanel();
         JLabel lblWeapon = new JLabel("Weapon:");
-        JTextField txtFdWeapon = new JTextField(9);
+        this.txtFdWeapon = new JTextField(9);
         JPanel panelTop6 = new JPanel();
         JLabel lblArmor = new JLabel("Armor:");
-        JTextField txtFdArmor = new JTextField(9);
+        this.txtFdArmor = new JTextField(9);
         this.lblHeroImage = new JLabel();
         this.btnSelectHeroImage = new JButton("Select Hero Image");
         this.btnCreateHero = new JButton("Create Hero");
@@ -125,5 +143,61 @@ public class CreateHeroView extends JFrame{
             System.err.println("Error Setting Image: " + exc.getMessage());
         }
         return (false);
+    }
+
+    public void createHeroListener(ActionListener listener){
+        this.btnCreateHero.addActionListener(listener);
+    }
+
+    public void cancelListener(ActionListener listener){
+        this.btnCanel.addActionListener(listener);
+    }
+
+    public void selectHeroImageListener(ActionListener listener){
+        this.btnSelectHeroImage.addActionListener(listener);
+    }
+
+    public void setNewHero(List<HeroModel> heroList){
+        try{
+            if (this.txtFdName.getText().isEmpty() || this.txtFdType.getText().isEmpty()){
+                JFrameHelper.ShowErrorDialog(this, "Hero Name and Type can not be empty!");
+                return ;
+            }
+            for (HeroModel hero : heroList) {
+                if (hero.getName().equalsIgnoreCase(this.txtFdName.getText())){
+                    JFrameHelper.ShowErrorDialog(this, "Hero named: \""+ this.txtFdName.getText() +"\" already exists.");
+                    return ;
+                }
+            }
+
+            int level = Integer.parseInt(this.txtFdLevel.getText());
+            int xPoint = Integer.parseInt(this.txtFdXPoints.getText());
+            String iconPath = "icon-path";
+
+            if (this.txtFdType.getText().equalsIgnoreCase(HeroType.elf.toString())){
+                this.newHero = new ElfModel(this.txtFdName.getText(), HeroType.elf, level, xPoint, this.txtFdWeapon.getText(), this.txtFdArmor.getText(), iconPath);
+            }
+            else if (this.txtFdType.getText().equalsIgnoreCase(HeroType.hunter.toString())){
+                this.newHero = new HunterModel(this.txtFdName.getText(), HeroType.elf, level, xPoint, this.txtFdWeapon.getText(), this.txtFdArmor.getText(), iconPath);
+            }
+            else if (this.txtFdType.getText().equalsIgnoreCase(HeroType.knight.toString())){
+                this.newHero = new KnightModel(this.txtFdName.getText(), HeroType.elf, level, xPoint, this.txtFdWeapon.getText(), this.txtFdArmor.getText(), iconPath);
+            }
+            else if (this.txtFdType.getText().equalsIgnoreCase(HeroType.villager.toString())){
+                this.newHero = new VillagerModel(this.txtFdName.getText(), HeroType.elf, level, xPoint, this.txtFdWeapon.getText(), this.txtFdArmor.getText(), iconPath);
+            }
+            else if (this.txtFdType.getText().equalsIgnoreCase(HeroType.warrior.toString())){
+                this.newHero = new HeroModel(this.txtFdName.getText(), HeroType.elf, level, xPoint, this.txtFdWeapon.getText(), this.txtFdArmor.getText(), iconPath);
+            }else{
+                JFrameHelper.ShowErrorDialog(this, "Hero type: " + this.txtFdType.getText() + " is unknown.");
+            }
+        }catch(Exception exc){
+            JFrameHelper.ShowErrorDialog(this, "Exception: " + exc.getMessage());
+            System.out.println("Exception: " + exc.getMessage());
+        }
+    }
+
+    public HeroModel getNewHero(){
+        return (this.newHero);
     }
 }
