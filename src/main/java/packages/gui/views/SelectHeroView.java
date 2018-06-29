@@ -131,7 +131,6 @@ public class SelectHeroView extends JFrame{
         }catch(Exception exc){
             System.err.println("Error Setting Image: " + exc.getMessage());
         }
-        //this.panelRightTop.remove(this.lblHeroImage);
         return (false);
     }
 
