@@ -20,7 +20,13 @@ public class ConsoleView
 
     public static void start()
     {
-
+        /*try {
+            heroList = readFile.simulateFile("test.txt");
+        }
+        catch (IOException e)
+        {
+            System.out.println("hehehehehe");
+        }*/
         Scanner read = new Scanner(System.in);
         Menus.menu();
         while (read.hasNextLine())
@@ -33,12 +39,6 @@ public class ConsoleView
                     break;
                 case 2:
                     existingHero(heroList);
-                    try {
-                        heroList = readFile.simulateFile("test.txt");
-                    }catch(Exception e)
-                    {
-                        e.printStackTrace();
-                    }
                     break;
                 default:
                     System.out.println("Choice does not correspond to given choices");

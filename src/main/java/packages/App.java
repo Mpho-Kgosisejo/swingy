@@ -20,7 +20,6 @@ public class App  //extends JFrame
             if (arg.equals("console")){
                 System.out.println(ANSI_RED + ">>>>>> CONSOLE VIEW <<<<<<<< " + ANSI_RESET);
                 ConsoleView.start();
-
                 return ;
             }
             else if (arg.equals("gui")){
