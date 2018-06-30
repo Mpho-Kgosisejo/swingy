@@ -10,6 +10,10 @@ import packages.enums.ArmorType;
 import packages.enums.HelmType;
 import packages.enums.CharacterType;
 import packages.enums.WeaponType;
+import packages.gui.controllers.SelectHeroController;
+import packages.gui.controllers.WelcomeController;
+import packages.gui.views.SelectHeroView;
+import packages.gui.views.WelcomeView;
 import packages.utils.Menus;
 import packages.utils.WriteFile;
 import packages.utils.readFile;
@@ -41,6 +45,11 @@ public class ConsoleView
                     break;
                 case 2:
                     existingHero();
+                    break;
+                case 3:
+                    WelcomeView view = new WelcomeView();
+                    view.setVisible(true);
+                    new WelcomeController(view);
                     break;
                 default:
                     System.out.println("\nChoice does not correspond to given choices\n");
@@ -92,20 +101,24 @@ public class ConsoleView
         String name = reader.next();
         _hero = new HeroModel(name, htype, 0, 0, 0, 0, 0, WeaponType.bow, ArmorType.jacket, HelmType.frog_mouthed, "none");
         WriteFile.writeToFile("write", _hero);
+        CliGame.run(_hero);
     }
 
 
     public  static void existingHero() {
-        System.out.println(ANSI_GREEN + "\nCharacters to choose from\n" + ANSI_RESET);
+        System.out.println(ANSI_GREEN + "\nCharacters to choose from [type 'gui' to switch to gui]\n" + ANSI_RESET);
         int a = heroList.size();
-        System.out.println(a);
         int index = 0;
-        while (index < a)
+        for (index = 0; index < a; index++)
+        {
+            System.out.println(index + ". " + heroList.get(index).getName() + " | level: " + heroList.get(index).getLevel());
+        }
+        /*while (index < a)
         {
             System.out.println(index + ". " + heroList.get(index).getName() + " | level: " + heroList.get(index).getLevel());
             index++;
-        }
-        System.out.println(ANSI_GREEN + "\nType in the name: \n" + ANSI_RESET);
+        }*/
+        System.out.println(ANSI_GREEN + "\nType in the name of the Hero you'd like: \n" + ANSI_RESET);
         Scanner reader = new Scanner(System.in);
         String choice = reader.nextLine();
         int i = 0;
@@ -117,9 +130,12 @@ public class ConsoleView
                 CliGame.run(heroList.get(i));
                 //_hero = new HeroModel(heroList.get(i).getName(), heroList.get(i).getType(), heroList.get(i).getLevel(), heroList.get(i).getXPoints(), heroList.get(i).getAttack(), heroList.get(i).getDefense(), heroList.get(i).getHitPoints(), heroList.get(i).getWeapon(), heroList.get(i).getArmor(), heroList.get(i).getHelm(), heroList.get(i).getIcon());
             } 
-            else if (i == heroList.size())
+            else if (choice.toLowerCase().equals("gui"))
             {
-                System.out.println("-match");
+                SelectHeroView view = new SelectHeroView(heroList);
+                view.setVisible(true);
+                new SelectHeroController(view, heroList);
+                break;
             }   
             i++;
         }
