@@ -26,7 +26,7 @@ public class WelcomeController{
     List<HeroModel> heroList = null;
 
     try {
-      heroList = readFile.simulateFile("test.txt");
+      heroList = readFile.simulateFile();
     } catch (Exception exc) {
       exc.printStackTrace();
     }

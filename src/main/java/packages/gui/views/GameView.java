@@ -8,6 +8,7 @@ import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class GameView extends JFrame{
     private JFrame thisFrame;
     private JLabel lblHeroImage;
     private JPanel panelMain;
+    private List<HeroModel> _heroList;
 
     public GameView(HeroModel hero){
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -39,6 +41,13 @@ public class GameView extends JFrame{
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.thisFrame = this;
+        try {
+            _heroList = readFile.simulateFile();
+        }
+        catch (IOException e)
+        {
+            System.out.println("hehehehehe");
+        }
 
         if (thisFrame.getComponentCount() > 1)
         {
@@ -47,7 +56,7 @@ public class GameView extends JFrame{
 
         
         this.hero = hero;
-        // WriteFile.writeToFileH(HeroModel, this.hero);
+        WriteFile.findAndUpdate(_heroList, this.hero);
         this.init();        
 
         this.addWindowListener(new WindowAdapter() {
@@ -55,7 +64,7 @@ public class GameView extends JFrame{
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
                 List<HeroModel> heroList = null;
                 try{
-                    heroList = readFile.simulateFile("test.txt");
+                    heroList = readFile.simulateFile();
                 }catch(Exception exc){
 
                 }

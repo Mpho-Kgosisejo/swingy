@@ -7,12 +7,12 @@ import packages.models.HeroModel;
 
 public class readFile
 {
-    public static List<HeroModel>  simulateFile(String filename) throws IOException
+    public static List<HeroModel>  simulateFile() throws IOException
     {
         List<HeroModel> heroList = new ArrayList<HeroModel>();
         try
         {
-            BufferedReader reader = new BufferedReader(new FileReader(filename));
+            BufferedReader reader = new BufferedReader(new FileReader(WriteFile.FileName));
             String line = "";
             if (line != null)
             {

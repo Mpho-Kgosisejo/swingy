@@ -27,7 +27,7 @@ public class CreateHeroController{
     private void navigateToSelectHero(){
         List<HeroModel> heros;
         try {
-            heros = readFile.simulateFile("test.txt");
+            heros = readFile.simulateFile();
         } catch (Exception e) {
             JFrameHelper.ShowErrorDialog(view, "Error getting new Hero List. Old Hero List will be passed.");
             heros = this.heroList;
@@ -56,7 +56,7 @@ public class CreateHeroController{
 		public void actionPerformed(ActionEvent e) {
             view.setNewHero(heroList);
             if (view.getNewHero() != null){
-                WriteFile.writeToFile("write", view.getNewHero());
+                WriteFile.writeToFile(view.getNewHero());
                 navigateToSelectHero();
             }
 		}
