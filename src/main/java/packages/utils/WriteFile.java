@@ -7,6 +7,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import packages.enums.ArmorType;
+import packages.enums.CharacterType;
+import packages.enums.HelmType;
+import packages.enums.WeaponType;
 import packages.models.HeroModel;
 
 public class WriteFile
@@ -14,39 +18,43 @@ public class WriteFile
     static FileWriter fw = null;
     static BufferedWriter bw = null;
     static PrintWriter out = null;
+    private static List<HeroModel> _heroList;
+    private HeroModel _hero;
+    public static String FileName = "hero-stats.txt";
     
-    public static void writeToFile(String type, HeroModel _hero)
+    public static void writeToFile(HeroModel _hero)
     {
         try
         {
-            if (type.equals("write") == true)
-            {
-                fw = new FileWriter("test.txt", true);
+                _heroList = readFile.simulateFile();
+                fw = new FileWriter(FileName, true);
                 bw = new BufferedWriter(fw);
                 out = new PrintWriter(bw);
                 //out.println("");
                 out.println(_hero.getName() + "," + _hero.getType() + "," + _hero.getLevel() + "," + _hero.getXPoints() + "," + _hero.getAttack() +  "," 
                 + _hero.getDefense() + "," + _hero.getHitPoints() + "," + _hero.getWeapon() + "," + _hero.getArmor() + "," + _hero.getHelm() + "," + _hero.getIcon());
                 out.close();
-            }
         } 
         catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static void writeToFileH(List<HeroModel> _heroList, HeroModel _hero){
+    public static void findAndUpdate(List<HeroModel> _heroList, HeroModel _hero){
         try
         {
-            fw = new FileWriter("test.txt", true);
+            File _file = new File(FileName);
+            fw = new FileWriter(FileName);
             bw = new BufferedWriter(fw);
             out = new PrintWriter(bw);
             out.print("");
+            System.out.println(_file.length());
             for (HeroModel hero : _heroList) {
                 if (_hero.getName().equalsIgnoreCase(hero.getName())){
-                    writeToFile("write", _hero);    
+                    HeroModel tempHero = new HeroModel("name", CharacterType.enemy, 2, 243, 0, 0, 0, WeaponType.pistol, ArmorType.steel, HelmType.great, "No icon");
+                    writeToFile(tempHero);    
                 }else{
-                    writeToFile("write", hero);
+                    writeToFile(hero);
                 }
             }
         }catch(Exception ex)

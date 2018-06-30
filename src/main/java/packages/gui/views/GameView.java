@@ -8,6 +8,8 @@ import java.awt.Toolkit;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -35,6 +37,7 @@ public class GameView extends JFrame{
     private JFrame thisFrame;
     private JLabel lblHeroImage;
     private JPanel panelMain;
+    private List<HeroModel> _heroList;
     private int mapSize = 0;
     private List<EnemyModel> enemiesList;
 
@@ -44,6 +47,13 @@ public class GameView extends JFrame{
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.thisFrame = this;
+        try {
+            _heroList = readFile.simulateFile();
+        }
+        catch (IOException e)
+        {
+            System.out.println("hehehehehe");
+        }
 
         if (thisFrame.getComponentCount() > 1)
         {
@@ -58,7 +68,7 @@ public class GameView extends JFrame{
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
                 List<HeroModel> heroList = null;
                 try{
-                    heroList = readFile.simulateFile("test.txt");
+                    heroList = readFile.simulateFile();
                 }catch(Exception exc){
 
                 }
@@ -112,7 +122,7 @@ public class GameView extends JFrame{
         }
         this.panelMain.revalidate();
         this.panelMain.repaint();
-        
+
         //Check if Enemy.Coordinates equals(=) Hero.Coordinates
         for (EnemyModel enemy: this.enemiesList) {
             if (enemy.getCoordinates().Isequals(this.hero.getCoordinates())){

@@ -27,7 +27,7 @@ public class ConsoleView
     public static void start()
     {
         try {
-            heroList = readFile.simulateFile("test.txt");
+            heroList = readFile.simulateFile();
         }
         catch (IOException e)
         {
@@ -100,7 +100,7 @@ public class ConsoleView
         Scanner reader = new Scanner(System.in);
         String name = reader.next();
         _hero = new HeroModel(name, htype, 0, 0, 0, 0, 0, WeaponType.bow, ArmorType.jacket, HelmType.frog_mouthed, "none");
-        WriteFile.writeToFile("write", _hero);
+        WriteFile.writeToFile(_hero);
         CliGame.run(_hero);
     }
 
