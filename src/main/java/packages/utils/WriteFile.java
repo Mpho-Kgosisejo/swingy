@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import packages.models.HeroModel;
 
@@ -32,5 +33,25 @@ public class WriteFile
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void writeToFileH(List<HeroModel> _heroList, HeroModel _hero){
+        try
+        {
+            fw = new FileWriter("test.txt", true);
+            bw = new BufferedWriter(fw);
+            out = new PrintWriter(bw);
+            out.print("");
+            for (HeroModel hero : _heroList) {
+                if (_hero.getName().equalsIgnoreCase(hero.getName())){
+                    writeToFile("write", _hero);    
+                }else{
+                    writeToFile("write", hero);
+                }
+            }
+        }catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }   
     }
 }

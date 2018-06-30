@@ -21,6 +21,8 @@ import packages.console.controller.Coordinates;
 import packages.gui.controllers.SelectHeroController;
 import packages.models.HeroModel;
 import packages.utils.Formulas;
+import packages.utils.UpdateFile;
+import packages.utils.WriteFile;
 import packages.utils.readFile;
 
 public class GameView extends JFrame{
@@ -38,9 +40,16 @@ public class GameView extends JFrame{
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.thisFrame = this;
+
+        if (thisFrame.getComponentCount() > 1)
+        {
+            thisFrame.setVisible(false);
+        }
+
         
         this.hero = hero;
-        this.init();
+        // WriteFile.writeToFileH(HeroModel, this.hero);
+        this.init();        
 
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -82,6 +91,7 @@ public class GameView extends JFrame{
         for (int y = 0; y < this.mapSize; y++){
             for (int x = 0; x < this.mapSize; x++){
                 JPanel panel = new JPanel();
+                panelMain.add(panel);
                 if (this.hero.getCoordinates().getY() == y && this.hero.getCoordinates().getX() == x){
                     this.setImage(hero.getIcon());
                     panel.setBackground(new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)));
