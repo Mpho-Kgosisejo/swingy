@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -60,10 +61,13 @@ public class GameView extends JFrame{
         System.out.println("Hero Level: " + this.hero.getLevel());
         for (int y = 0; y < mapSize; y++){
             for (int x = 0; x < mapSize; x++){
-                System.out.println("Y: " + y + ", X: " + x);
-                panelMain.add(new JPanel());
+                // System.out.println("Y: " + y + ", X: " + x);
+                // System.out.print("[" + (y + "" + x) + "] ");
+                JPanel panel = new JPanel();
+                panelMain.add(panel);
             }   
         }
+        panelMain.removeAll();
         System.out.println("H: " + screenSize.height + ", W: " + screenSize.width);
         this.add(panelMain);
     }
