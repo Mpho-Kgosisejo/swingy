@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.text.PlainDocument;
 
 import packages.gui.controllers.SelectHeroController;
 import packages.models.HeroModel;
@@ -24,12 +25,19 @@ public class GameView extends JFrame{
     private JFrame thisFrame;
 
     public GameView(HeroModel hero){
-        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setTitle("Game");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.thisFrame = this;
-        
+        System.out.println("Game View is proper, Windows: " + thisFrame.getComponentCount());
+        System.out.println("Game View is proper, Windows: " + this.getComponentCount());        
+        if (thisFrame.getComponentCount() > 1)
+        {
+            System.out.print("Multiple windows");
+            thisFrame.setVisible(false);
+        }
+
         this.hero = hero;
         this.init();        
 
@@ -61,10 +69,15 @@ public class GameView extends JFrame{
         System.out.println("Hero Level: " + this.hero.getLevel());
         for (int y = 0; y < mapSize; y++){
             for (int x = 0; x < mapSize; x++){
+<<<<<<< HEAD
+                //System.out.println("Y: " + y + ", X: " + x);
+                panelMain.add(new JPanel());
+=======
                 // System.out.println("Y: " + y + ", X: " + x);
                 // System.out.print("[" + (y + "" + x) + "] ");
                 JPanel panel = new JPanel();
                 panelMain.add(panel);
+>>>>>>> 0e16bc403e1fd07277c89b84c7e5d2082a9f609c
             }   
         }
         panelMain.removeAll();
