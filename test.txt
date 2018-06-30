@@ -1,3 +1,6 @@
 John the Teenager,Knight,2,540,10,5,5,sword,leather,pot,src/main/java/packages/images/default-image.png
 Alex the Great, Elf,3,124,10,5,5,bow,leather,pot,/goinfre/mkgosise/Downloads/check-box-empty.png
 Thor the Mighty,Knight,6,990,10,5,5,sword,steel,pot,src/main/java/packages/images/default-image.png
+sandza,knight,0,0,0,0,0,bow,jacket,frog_mouthed,none
+MALIKA,villager,1,0,0,0,0,bow,jacket,frog_mouthed,none
+minnie,warrior,0,0,0,0,0,bow,jacket,frog_mouthed,none

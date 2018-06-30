@@ -5,6 +5,7 @@ import packages.enums.ArmorType;
 import packages.enums.CharacterType;
 import packages.enums.WeaponType;
 import packages.enums.HelmType;
+import packages.utils.Formulas;
 
 public class HeroModel
 {
@@ -37,6 +38,12 @@ public class HeroModel
 		this._weapon = weapon;
 		this._armor = armor;
 		this._helm = helm;
+		_coordinates = new Coordinates(0, 0);
+		
+		//set hero coordinates to initially be at the center of map
+		int sideLength = Formulas.sizeMap(this._level);
+        getCoordinates().setX(sideLength / 2);
+        getCoordinates().setY(sideLength / 2);
 	}
 
 	public void setCoordinates(Coordinates coordinates)
@@ -56,7 +63,7 @@ public class HeroModel
 
 	public int getId()
     {
-        return this._id;
+        return _id;
     }
 
 	public String getName() {
