@@ -7,9 +7,8 @@ import packages.gui.views.WelcomeView;
 
 import java.io.*;
 
-public class App  //extends JFrame
+public class App
 {
-    //public static List<IHero> iHero = new ArrayList()
     public static void main( String[] args ) throws IOException
     {
         if (args.length == 2){
@@ -25,7 +24,6 @@ public class App  //extends JFrame
 
                 WelcomeView welcomeView = new WelcomeView();
                 new WelcomeController(welcomeView);
-                //welcomeView.setUndecorated(true); // -_-
                 welcomeView.setVisible(true);
                 return ;
             }

@@ -14,7 +14,6 @@ public class GameController{
     public GameController(GameView view){
         this.view = view;
         this.hero = this.view.getHero();
-
         this.view.setKeyListener(new TheKeyListener());
     }
 
@@ -31,6 +30,8 @@ public class GameController{
     private void moveHero(int code){
         int x = hero.getCoordinates().getX();
         int y = hero.getCoordinates().getY();
+        int oldX = x;
+        int oldY = y;
 
         switch (code){
             case 38:
@@ -53,6 +54,8 @@ public class GameController{
         x = Coordinates.getPositionMax(x, (this.view.getMapSize() - 1));
         y = Coordinates.getPositionMax(y, (this.view.getMapSize() - 1));
         hero.setCoordinates(new Coordinates(x, y));
-        this.view.drawMap();
+        //if (oldX != x && oldY != y){
+            this.view.drawMap();
+        //}
     }
 }

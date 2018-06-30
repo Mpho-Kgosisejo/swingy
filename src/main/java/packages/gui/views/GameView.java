@@ -19,8 +19,11 @@ import javax.swing.JPanel;
 
 import packages.console.controller.Coordinates;
 import packages.gui.controllers.SelectHeroController;
+import packages.models.EnemyModel;
 import packages.models.HeroModel;
+import packages.utils.EnemyFactory;
 import packages.utils.Formulas;
+import packages.utils.JFrameHelper;
 import packages.utils.UpdateFile;
 import packages.utils.WriteFile;
 import packages.utils.readFile;
@@ -33,6 +36,7 @@ public class GameView extends JFrame{
     private JLabel lblHeroImage;
     private JPanel panelMain;
     private int mapSize = 0;
+    private List<EnemyModel> enemiesList;
 
     public GameView(HeroModel hero){
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -46,9 +50,7 @@ public class GameView extends JFrame{
             thisFrame.setVisible(false);
         }
 
-        
         this.hero = hero;
-        // WriteFile.writeToFileH(HeroModel, this.hero);
         this.init();        
 
         this.addWindowListener(new WindowAdapter() {
@@ -70,7 +72,6 @@ public class GameView extends JFrame{
 
     private void init(){
         this.mapSize = Formulas.sizeMap(this.hero.getLevel());
-
         this.setSize(800, 800);
         panelMain = new JPanel();
         panelMain.setBackground(new Color(255, 255, 255));
@@ -79,6 +80,7 @@ public class GameView extends JFrame{
         this.lblHeroImage = new JLabel();
 
         this.hero.setCoordinates(new Coordinates((this.mapSize / 2), (this.mapSize / 2)));
+        this.enemiesList = EnemyFactory.getEnemyList(this.hero);
         this.drawMap();
 
         this.add(panelMain);
@@ -87,21 +89,37 @@ public class GameView extends JFrame{
     public void drawMap(){
         Random rand = new Random();
         this.panelMain.removeAll();
-        
+
         for (int y = 0; y < this.mapSize; y++){
             for (int x = 0; x < this.mapSize; x++){
                 JPanel panel = new JPanel();
-                panelMain.add(panel);
-                if (this.hero.getCoordinates().getY() == y && this.hero.getCoordinates().getX() == x){
+                Coordinates loopCoordinates = new Coordinates(x, y);
+                if (this.hero.getCoordinates().Isequals(loopCoordinates)){
                     this.setImage(hero.getIcon());
                     panel.setBackground(new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)));
                     panel.add(this.lblHeroImage);
                 }
+                for (EnemyModel enemy: this.enemiesList) {
+                    if (enemy.getCoordinates().Isequals(loopCoordinates)){
+                        //this.setImage(enemy.getIcon());
+                        panel.setBackground(new Color(80, 80, 80));
+                        //panel.add(this.lblHeroImage);
+                    }
+                }
+                
                 this.panelMain.add(panel);
             }   
         }
         this.panelMain.revalidate();
         this.panelMain.repaint();
+        
+        //Check if Enemy.Coordinates equals(=) Hero.Coordinates
+        for (EnemyModel enemy: this.enemiesList) {
+            if (enemy.getCoordinates().Isequals(this.hero.getCoordinates())){
+                JFrameHelper.ShowErrorDialog(this, "ShowOptionDialog() -> Fight or Run");
+                System.out.println("ShowOptionDialog() -> Fight or Run");
+            }
+        }
     }
 
     private boolean setImage(String imagePath){
@@ -128,5 +146,9 @@ public class GameView extends JFrame{
 
     public int getMapSize(){
         return (this.mapSize);
+    }
+
+    public List<EnemyModel> getEnemyList(List<EnemyModel> list){
+        return (this.enemiesList);
     }
 }
