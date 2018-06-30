@@ -15,6 +15,7 @@ import packages.models.HeroModel;;
 public class SelectHeroController extends JFrameHelper{
     private SelectHeroView view;
     private List<HeroModel> heroList;
+    public static int countWin;    
 
     public SelectHeroController(SelectHeroView view, List<HeroModel> heroList){
         this.view = view;
@@ -55,12 +56,15 @@ public class SelectHeroController extends JFrameHelper{
     }
 
     class SelectHeroListener implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-            GameView gameView = new GameView(heroList.get(view.getMouseClickIndex()));
-            gameView.setVisible(true);
-            new GameController(gameView);
-            view.dispose();
-		}
+		public void actionPerformed(ActionEvent e) { 
+           // if (countWin == 0)
+                countWin = 1;
+                GameView gameView = new GameView(heroList.get(view.getMouseClickIndex()));
+                gameView.setVisible(true);
+                new GameController(gameView);
+                view.dispose();
+            System.out.println("Window count: " + countWin);
+        }
     }
 
     class HeroClickListener implements MouseListener{
