@@ -1,13 +1,11 @@
 package packages.gui.views;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.List;
 
@@ -23,7 +21,6 @@ import javax.swing.JTextArea;
 
 import packages.gui.controllers.SelectHeroController;
 import packages.models.HeroModel;
-import packages.utils.JFrameHelper;
 
 public class SelectHeroView extends JFrame{
     private JPanel panelRight;
@@ -93,7 +90,7 @@ public class SelectHeroView extends JFrame{
         this.lblHeroImage = new JLabel();
         this.lblHeroImage.setSize(10, 10);
         
-        if (this.setImage("/goinfre/tmekwa/Downloads/wallhaven-668239.jpg")){
+        if (this.setImage("src/main/java/packages/images/default-image.png")){
             this.panelRightTop.add(this.lblHeroImage);
         }
 
@@ -117,6 +114,7 @@ public class SelectHeroView extends JFrame{
     private boolean setImage(String imagePath){
         try{
             ImageIcon imageIcon = new ImageIcon(ImageIO.read(new File(imagePath)));
+            //ImageIcon imageIcon = new ImageIcon(this.getClass().getClassLoader().getResource("packages/images/default-image.png"));
             Image image = imageIcon.getImage();
             this.heroImage = image.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
             this.lblHeroImage.setIcon(new ImageIcon(this.heroImage));
