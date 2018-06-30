@@ -5,12 +5,13 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -34,6 +35,7 @@ public class GameView extends JFrame{
     private JLabel lblHeroImage;
     private JPanel panelMain;
     private List<HeroModel> _heroList;
+    private int mapSize = 0;
 
     public GameView(HeroModel hero){
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -77,38 +79,39 @@ public class GameView extends JFrame{
     }
 
     private void init(){
-        int mapSize = Formulas.sizeMap(this.hero.getLevel());
+        this.mapSize = Formulas.sizeMap(this.hero.getLevel());
 
         this.setSize(800, 800);
         panelMain = new JPanel();
         panelMain.setBackground(new Color(255, 255, 255));
-        panelMain.setLayout(new GridLayout(mapSize, mapSize, 2, 2));
+        panelMain.setLayout(new GridLayout(this.mapSize, this.mapSize, 1, 1));
         panelMain.setBounds(5, 5, (this.getWidth() - 10), (this.getHeight() - 10));
         this.lblHeroImage = new JLabel();
 
-        this.hero.setCoordinates(new Coordinates((mapSize / 2), (mapSize / 2)));
-        this.drawMap(mapSize);
+        this.hero.setCoordinates(new Coordinates((this.mapSize / 2), (this.mapSize / 2)));
+        this.drawMap();
 
         this.add(panelMain);
     }
 
-    private void drawMap(int mapSize){
+    public void drawMap(){
+        Random rand = new Random();
+        this.panelMain.removeAll();
         
-        for (int y = 0; y < mapSize; y++){
-            for (int x = 0; x < mapSize; x++){
-                // System.out.println("Y: " + y + ", X: " + x);
-                // System.out.print("[" + (y + "" + x) + "] ");
+        for (int y = 0; y < this.mapSize; y++){
+            for (int x = 0; x < this.mapSize; x++){
                 JPanel panel = new JPanel();
                 panelMain.add(panel);
                 if (this.hero.getCoordinates().getY() == y && this.hero.getCoordinates().getX() == x){
                     this.setImage(hero.getIcon());
-                    panel.setBackground(new Color(100, 100, 100));
+                    panel.setBackground(new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)));
                     panel.add(this.lblHeroImage);
                 }
                 this.panelMain.add(panel);
             }   
         }
-        //panelMain.removeAll();
+        this.panelMain.revalidate();
+        this.panelMain.repaint();
     }
 
     private boolean setImage(String imagePath){
@@ -127,5 +130,13 @@ public class GameView extends JFrame{
 
     public HeroModel getHero(){
          return (this.hero);
+    }
+
+    public void setKeyListener(KeyListener listener){
+        this.addKeyListener(listener);
+    }
+
+    public int getMapSize(){
+        return (this.mapSize);
     }
 }

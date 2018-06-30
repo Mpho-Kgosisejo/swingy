@@ -5,8 +5,16 @@ public class Coordinates {
 	private int x, y;
 
 	public Coordinates(int x, int y) {
-		this.x = x;
-		this.y = y;
+		if (x < 0){
+			this.x = 0;
+		}else{
+			this.x = x;
+		}
+		if (y < 0){
+			this.y = 0;
+		}else{
+			this.y = y;
+		}
 	}
 
 	public void advance(String direction) {
@@ -40,5 +48,12 @@ public class Coordinates {
 
 	public boolean Isequals(Coordinates other) {
 		return (this.y == other.y && this.x == other.x);
+	}
+
+	public static int getPositionMax(int pos, int max){
+		if (pos <= max){
+			return (pos);
+		}
+		return (max);
 	}
 }
