@@ -12,6 +12,7 @@ import packages.enums.WeaponType;
 import packages.utils.Menus;
 import packages.utils.WriteFile;
 import packages.utils.readFile;
+import static packages.utils.Colours.*;
 
 public class ConsoleView
 {
@@ -41,7 +42,7 @@ public class ConsoleView
                     existingHero();
                     break;
                 default:
-                    System.out.println("Choice does not correspond to given choices");
+                    System.out.println("\nChoice does not correspond to given choices\n");
             }
         }
         read.close();
@@ -72,8 +73,11 @@ public class ConsoleView
                 case 5:
                     declareHero(CharacterType.villager);
                     break;
+                case 6:
+                    start();
+                    break;
                 default:
-                    System.out.println("Choice does not correspond to given choices");
+                    System.out.println("\nChoice does not correspond to given choices\n");
                     break;
             }
         }
@@ -82,7 +86,7 @@ public class ConsoleView
 
     public  static void declareHero(CharacterType htype)
     {
-        System.out.print("Give your " + htype + " a name: ");
+        System.out.print("\nGive your " + htype + " a name: ");
         Scanner reader = new Scanner(System.in);
         String name = reader.next();
         _hero = new HeroModel(name, htype, 0, 0, 0, 0, 0, WeaponType.bow, ArmorType.jacket, HelmType.frog_mouthed, "none");
@@ -92,10 +96,15 @@ public class ConsoleView
 
 
     public  static void existingHero() {
-        for (HeroModel __hero : heroList) {
-            System.out.println(__hero.getName());
+        System.out.println(ANSI_GREEN + "\nCharacters to choose from\n" + ANSI_RESET);
+        int a = heroList.size();
+        System.out.println(a);
+        int index = 0;
+        while (index < a)
+        {
+            System.out.println(index + ". " + heroList.get(index).getName());
+            index++;
         }
+        Scanner reader = new Scanner(System.in);
     }
-
-
 }
