@@ -29,7 +29,7 @@ public class readFile
                     }
                     catch (NumberFormatException e)
                     {
-                        System.out.println("eh eh eh");
+                        System.out.println("Number badly formatted");
                     }
                     //System.out.println(line);
                 }
