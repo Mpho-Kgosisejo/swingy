@@ -167,7 +167,7 @@ public class SelectHeroView extends JFrame{
             "Helm: " + hero.getHelm();            
         this.txtAHeroInfo.setText(hero_info);
 
-        if (!this.setImage("/goinfre/tmekwa/Downloads/wallhaven-668239.jpg")){
+        if (!this.setImage(hero.getIcon())){
             //JFrameHelper.ShowErrorDialog(this, "Error setting Hero Image.");
             System.err.println("Error Setting Image");
         }else{
