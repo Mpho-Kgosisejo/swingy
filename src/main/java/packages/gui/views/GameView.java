@@ -71,19 +71,23 @@ public class GameView extends JFrame{
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent windowEvent) {
-                List<HeroModel> heroList = null;
-                try{
-                    heroList = readFile.simulateFile();
-                }catch(Exception exc){
-
-                }
-                SelectHeroView selectHeroView = new SelectHeroView(heroList);
-                selectHeroView.setVisible(true);
-                new SelectHeroController(selectHeroView, heroList);
-                FrameCount--;
-                thisFrame.dispose();
+                disposeWindow();
             }
         });
+    }
+
+    public void disposeWindow(){
+        List<HeroModel> heroList = null;
+        try{
+            heroList = readFile.simulateFile();
+        }catch(Exception exc){
+
+        }
+        SelectHeroView selectHeroView = new SelectHeroView(heroList);
+        selectHeroView.setVisible(true);
+        new SelectHeroController(selectHeroView, heroList);
+        FrameCount--;
+        thisFrame.dispose();
     }
 
     private void init(){
@@ -106,10 +110,12 @@ public class GameView extends JFrame{
         Random rand = new Random();
         this.panelMain.removeAll();
 
-        Coordinates c = null;
-        for (EnemyModel enemy: this.enemiesList) {
-            if (enemy.getCoordinates().Isequals(this.hero.getCoordinates())){
-                c = new Coordinates(enemy.getCoordinates().getX(), enemy.getCoordinates().getY());
+        Coordinates heroEnemyCoordinatesMatch = null;
+        EnemyModel enemy = null;
+        for (EnemyModel enemyLoop: this.enemiesList) {
+            if (enemyLoop.getCoordinates().Isequals(this.hero.getCoordinates())){
+                heroEnemyCoordinatesMatch = new Coordinates(enemyLoop.getCoordinates().getX(), enemyLoop.getCoordinates().getY());
+                enemy = enemyLoop;
             }
         }
 
@@ -122,41 +128,33 @@ public class GameView extends JFrame{
                     panel.setBackground(new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)));
                     panel.add(this.lblHeroImage);
                 }
-                for (EnemyModel enemy: this.enemiesList) {
-                    if (c != null){
-                        if (loopCoordinates.Isequals(c)){
-                            JLabel lblEnemyImage = new JLabel();
-                            this.setImage(enemy.getIcon(), lblEnemyImage);
+                for (EnemyModel enemyLoop: this.enemiesList) {
+                    if (loopCoordinates.Isequals(enemyLoop.getCoordinates()) && enemyLoop.getHitPoints() > 0){
+                        JLabel lblEnemyImage = new JLabel();
+                        this.setImage(enemyLoop.getIcon(), lblEnemyImage);
+                        panel.add(lblEnemyImage);
+
+                        if((heroEnemyCoordinatesMatch != null && enemy != null) && enemy.getCoordinates().Isequals(enemyLoop.getCoordinates())){
                             panel.setBackground(new Color(255, 50, 50));
-                            panel.add(lblEnemyImage);
-                            //enemy.setHP(0);
                         }
                     }
-                    // for testing....
-                    if (enemy.getCoordinates().Isequals(loopCoordinates) && enemy.getHitPoints() > 0){
-                        JLabel lblEnemyImage = new JLabel();
-                        this.setImage(enemy.getIcon(), lblEnemyImage);
-                        //panel.setBackground(new Color(150, 150, 150));
-                        panel.add(lblEnemyImage);
-                        JFrameHelper.ShowErrorDialog(this, "It works");
-                    }
-                    else if  (enemy.getCoordinates().Isequals(loopCoordinates) && enemy.getHitPoints() <= 0){
-                        
-                    }
                 }
-
                 this.panelMain.add(panel);
             }   
         }
         this.panelMain.revalidate();
         this.panelMain.repaint();
+        
+        if (heroEnemyCoordinatesMatch != null && enemy != null){
+            // for testing....
+            if (enemy.getHitPoints() > 0){
+                JFrameHelper.ShowErrorDialog(this, "Fight Enemy or Run");
 
-        //Check if Enemy.Coordinates equals(=) Hero.Coordinates
-        for (EnemyModel enemy: this.enemiesList) {
-            // if (enemy.getCoordinates().Isequals(this.hero.getCoordinates())){
-            //     System.out.println("ShowOptionDialog() -> Fight or Run");
-            //     JFrameHelper.ShowErrorDialog(this, "ShowOptionDialog() -> Fight or Run");
-            // }
+                enemy.setHitPoints(0);
+            }
+            else{
+                JFrameHelper.ShowErrorDialog(this, "Enemy was here... now dead! :-)");
+            }
         }
     }
 

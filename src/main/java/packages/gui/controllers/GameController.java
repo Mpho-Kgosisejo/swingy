@@ -51,6 +51,12 @@ public class GameController{
                 // Right
                 x++;
             break;
+            case 81:
+                this.view.disposeWindow();
+            break;
+            case 27:
+                this.view.disposeWindow();
+            break;
         }
         x = Coordinates.getPositionMax(x, (this.view.getMapSize() - 1));
         y = Coordinates.getPositionMax(y, (this.view.getMapSize() - 1));
