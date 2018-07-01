@@ -53,21 +53,7 @@ public class GameView extends JFrame{
         this.setLocationRelativeTo(null);
         this.thisFrame = this;
         FrameCount++;
-        try {
-            _heroList = readFile.simulateFile();
-        }
-        catch (IOException e)
-        {
-            System.out.println("hehehehehe");
-        }
-
-        if (thisFrame.getComponentCount() > 1)
-        {
-            thisFrame.setVisible(false);
-        }
         
-        System.out.println("Frame count: " + FrameCount);
-
         this.hero = hero;
         this.init();        
 
@@ -155,11 +141,10 @@ public class GameView extends JFrame{
         
         if (heroEnemyCoordinatesMatch != null && enemy != null){
             if (enemy.getHitPoints() > 0){
-                if (JFrameHelper.ShowConfirmDialog(this, "Fight or Run", "Fight Enemy (Y) or Run (N)")){
+                if (JFrameHelper.ShowConfirmDialog(this, "Fight || Run", "You have encounterd a Villan" + "\n      (N)Run Or (Y)Fight ")){
                     // Start fight sim...
                     GameSimulationView gameSimulationView = new GameSimulationView();
                     new GameSimulationController(gameSimulationView, enemy, this.hero);
-                    gameSimulationView.setVisible(true);
                     enemy.setHitPoints(0);
                 }else{
                     // eg.: hero level -= 1
