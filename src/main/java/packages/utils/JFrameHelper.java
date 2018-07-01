@@ -1,6 +1,12 @@
 package packages.utils;
 
+import java.awt.Image;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class JFrameHelper{
@@ -16,4 +22,20 @@ public class JFrameHelper{
         }
         return (false);
     }
+
+    public static JLabel getLabelImage(String imagePath)
+    {
+        try{
+            ImageIcon imageIcon = new ImageIcon(ImageIO.read(new File(imagePath)));
+            Image image = imageIcon.getImage();
+            Image imageScaled = image.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+            JLabel lblImage = new JLabel();
+            lblImage.setIcon(new ImageIcon(imageScaled));
+            return (lblImage);
+        }catch(Exception exc){
+            System.err.println("Error Setting Image: " + exc.getMessage());
+        }
+        return (null);
+    }
 }
+

@@ -18,4 +18,6 @@ public class GameSimulationController
         this._hero = hero;
         this._view = view;
     }
+
+    
 }
