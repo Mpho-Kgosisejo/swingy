@@ -26,6 +26,7 @@ public class GameSimulationView extends JFrame
     private EnemyModel _enemy;
     private HeroModel _hero;
     private JPanel mainPanel;
+    private JPanel bottomPanel;
     private JPanel heroPanel;
     private JPanel simulationPanel;
     private JTextArea _txtASimulation;
@@ -50,22 +51,26 @@ public class GameSimulationView extends JFrame
 
     public void init()
     {
-        this._txtASimulation = new JTextArea(null, 0, 0);
+        this._txtASimulation = new JTextArea(null, 10, 10);
+        JScrollPane scroll = new JScrollPane(_txtASimulation);
         this.mainPanel = new JPanel();
         this.simulationPanel = new JPanel();        
         this.mainPanel.setLayout(null);
         this.heroPanel = new JPanel();
+        this.bottomPanel = new JPanel();
         this.villanPanel = new JPanel();
         String test = "This is an editable JTextArea. " +
-        "A text area is a \"plain\" text component, " +
-        "which means that although it can display text " +
-        "in any font, all of the text is in the same font.";
+        "\nA text area is a \"plain\" text component, " +
+        "\nwhich means that although it can display text " +
+        "\nin any font, all of the text is in the same font.";
 
         this.simulationPanel.setBackground(new Color(255, 0, 0));   
+        this.bottomPanel.setBackground(new Color(255, 0, 0));   
         //this.simulationPanel.setLayout(null);     
         this.heroPanel.setBackground(new Color(0, 0, 0));
         this.villanPanel.setBackground(new Color(204, 204, 204));
 
+        this.bottomPanel.setBounds(0, 0, this.getWidth(), this.getHeight() - 250);
         this.heroPanel.setBounds(0, 0, this.getHeight(), this.getHeight());
         this.villanPanel.setBounds(this.getWidth() - this.heroPanel.getWidth(), 0, this.getWidth() - this.heroPanel.getHeight(), this.heroPanel.getHeight());        
         this.simulationPanel.setBounds(this.heroPanel.getWidth(), 0, (this.getWidth() - (this.heroPanel.getHeight() * 2)), this.getHeight());
@@ -73,9 +78,10 @@ public class GameSimulationView extends JFrame
         this._txtASimulation.setText(test);
         this.simulationPanel.add(this._txtASimulation);        
         
-        // this.mainPanel.add( this.heroPanel, BorderLayout.WEST );        
+        this.mainPanel.add( this.heroPanel, BorderLayout.WEST );        
         this.mainPanel.add( this.simulationPanel, BorderLayout.CENTER );
-        // this.mainPanel.add( this.villanPanel, BorderLayout.EAST );        
+        this.mainPanel.add( this.villanPanel, BorderLayout.EAST );
+
         
         // JLabel lblImg = JFrameHelper.getLabelImage(_enemy.getIcon());
         // if (lblImg != null){
