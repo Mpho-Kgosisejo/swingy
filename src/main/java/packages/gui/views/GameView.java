@@ -25,6 +25,7 @@ import packages.console.controller.Coordinates;
 import packages.gui.controllers.GameSimulationController;
 import packages.gui.controllers.SelectHeroController;
 import packages.models.EnemyModel;
+import packages.models.GameSimulationModel;
 import packages.models.HeroModel;
 import packages.utils.EnemyFactory;
 import packages.utils.Formulas;
@@ -143,9 +144,19 @@ public class GameView extends JFrame{
             if (enemy.getHitPoints() > 0){
                 if (JFrameHelper.ShowConfirmDialog(this, "Fight || Run", "You have encounterd a Villan" + "\n      (N)Run Or (Y)Fight ")){
                     // Start fight sim...
+                    GameSimulationModel gameSimulation = new GameSimulationModel(this.hero, enemy);
                     GameSimulationView gameSimulationView = new GameSimulationView();
                     new GameSimulationController(gameSimulationView, enemy, this.hero);
-                    enemy.setHitPoints(0);
+
+                    try {
+                        while(gameSimulation.nextFight()){
+                            System.out.println("SimulationOutput() => " + gameSimulation.getSimulationOutput());
+                            //gameSimulationView.setSimulationText(gameSimulation.getSimulationOutput());
+                        }
+                        System.out.println("Game ended...");
+                    } catch (Exception e) {
+                        
+                    }
                 }else{
                     // eg.: hero level -= 1
                 }
