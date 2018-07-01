@@ -24,7 +24,7 @@ public class EnemyFactory{
         for(int i = 0; i <= numberOfEnemies; i++){
             EnemyModel enemy = new EnemyModel("EnemyName", CharacterType.enemy, 1, 0, 10, 10, 1, WeaponType.spear, ArmorType.jacket, HelmType.pot, "src/main/java/packages/images/green-monster.png");
             enemy.setCoordinates(new Coordinates(random.nextInt(mapSize), random.nextInt(mapSize)));
-            if (isSamePosition(enemyList, enemy)){
+            if (isSamePosition(enemyList, enemy) || enemy.getCoordinates().Isequals(hero.getCoordinates())){
                 i--;
                 continue ;
             }

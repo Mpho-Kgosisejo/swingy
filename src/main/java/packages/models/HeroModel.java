@@ -27,7 +27,7 @@ public class HeroModel
 	public HeroModel(String name, CharacterType type, int level, int xPoints, int attack, int defense, int hitPoints, WeaponType weapon, ArmorType armor, HelmType helm, String icon)
 	{
 		this._icon = icon;
-		_id = getNextId();
+		_id = setNextId();
 		this._name = name;
 		this._type = type;
 		this._level = level;
@@ -41,9 +41,9 @@ public class HeroModel
 		_coordinates = new Coordinates(0, 0);
 		
 		//set hero coordinates to initially be at the center of map
-		int sideLength = Formulas.sizeMap(this._level);
-        getCoordinates().setX(sideLength / 2);
-        getCoordinates().setY(sideLength / 2);
+		// int sideLength = Formulas.sizeMap(this._level);
+        // setCoordinates().setX(sideLength / 2);
+        // setCoordinates().setY(sideLength / 2);
 	}
 
 	public void setCoordinates(Coordinates coordinates)
@@ -51,12 +51,7 @@ public class HeroModel
 		this._coordinates = coordinates;
 	}
 
-	public Coordinates getCoordinates()
-	{
-		return this._coordinates;
-	}
-
-	private int getNextId()
+	private int setNextId()
 	{
 		return (++this._idCounter);
 	}
@@ -65,6 +60,51 @@ public class HeroModel
     {
         return _id;
     }
+
+	public void setName(String name) {
+		this._name = name;
+	}
+
+    public void setType(CharacterType characterType)
+    {
+        this._type = characterType;
+    }
+
+	public void setLevel(int level) {
+		this._level = level;
+	}
+
+	public void setXPoints(int xPoints) {
+		this._xPoints = xPoints;
+	}
+
+	public void setAttack(int attack) {
+		this._attack = attack;
+	}
+
+	public void setDefense(int defense) {
+		this._defense = defense;
+	}
+
+	public void setHitPoints(int hitPoints) {
+		this._hitPoints = hitPoints;
+	}
+
+	public void setWeapon(WeaponType weaponType) {
+		this._weapon = weaponType;
+	}
+
+	public void setArmor(ArmorType armorType) {
+		this._armor = armorType;
+	}
+
+	public void setHelm(HelmType helmType) {
+		this._helm = helmType;
+	}
+
+	public void setIcon(String icon) {
+		this._icon = icon;
+	}
 
 	public String getName() {
 		return this._name;
@@ -109,5 +149,10 @@ public class HeroModel
 
 	public String getIcon() {
 		return this._icon;
+	}
+
+	public Coordinates getCoordinates()
+	{
+		return this._coordinates;
 	}
 }
