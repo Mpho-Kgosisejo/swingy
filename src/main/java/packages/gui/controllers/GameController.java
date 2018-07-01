@@ -1,15 +1,21 @@
 package packages.gui.controllers;
 
+import java.awt.List;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 import packages.console.controller.Coordinates;
+import packages.gui.controllers.WelcomeController.NavigateToSelectHeroListener;
 import packages.gui.views.GameView;
+import packages.gui.views.SelectHeroView;
 import packages.models.HeroModel;
 
 public class GameController{
     private GameView view;
     private HeroModel hero;
+    
+    //private List<HeroModel> _heroList = new ArrayList<>();
 
     public GameController(GameView view){
         this.view = view;
@@ -51,6 +57,8 @@ public class GameController{
                 // Right
                 x++;
             break;
+            case 81:
+                break;
         }
         x = Coordinates.getPositionMax(x, (this.view.getMapSize() - 1));
         y = Coordinates.getPositionMax(y, (this.view.getMapSize() - 1));
