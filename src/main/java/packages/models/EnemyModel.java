@@ -21,6 +21,6 @@ public class EnemyModel extends HeroModel implements IHero
         this._weapon = WeaponType.spear;        
         this._armor = ArmorType.leather;
         this._helm = HelmType.pot;
-        this._icon = "ZombieImage";
+        this._icon = icon;
     }
 }

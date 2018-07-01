@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class GameView extends JFrame{
     private List<HeroModel> _heroList;
     private int mapSize = 0;
     private List<EnemyModel> enemiesList;
+    public static int FrameCount;
 
     public GameView(HeroModel hero){
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -47,6 +49,7 @@ public class GameView extends JFrame{
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.thisFrame = this;
+        FrameCount++;
         try {
             _heroList = readFile.simulateFile();
         }
@@ -59,13 +62,15 @@ public class GameView extends JFrame{
         {
             thisFrame.setVisible(false);
         }
+        
+        System.out.println("Frame count: " + FrameCount);
 
         this.hero = hero;
         this.init();        
 
         this.addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            public void windowClosing(WindowEvent windowEvent) {
                 List<HeroModel> heroList = null;
                 try{
                     heroList = readFile.simulateFile();
@@ -75,6 +80,7 @@ public class GameView extends JFrame{
                 SelectHeroView selectHeroView = new SelectHeroView(heroList);
                 selectHeroView.setVisible(true);
                 new SelectHeroController(selectHeroView, heroList);
+                FrameCount--;
                 thisFrame.dispose();
             }
         });
@@ -100,23 +106,44 @@ public class GameView extends JFrame{
         Random rand = new Random();
         this.panelMain.removeAll();
 
+        Coordinates c = null;
+        for (EnemyModel enemy: this.enemiesList) {
+            if (enemy.getCoordinates().Isequals(this.hero.getCoordinates())){
+                c = new Coordinates(enemy.getCoordinates().getX(), enemy.getCoordinates().getY());
+            }
+        }
+
         for (int y = 0; y < this.mapSize; y++){
             for (int x = 0; x < this.mapSize; x++){
                 JPanel panel = new JPanel();
                 Coordinates loopCoordinates = new Coordinates(x, y);
                 if (this.hero.getCoordinates().Isequals(loopCoordinates)){
-                    this.setImage(hero.getIcon());
+                    this.setImage(hero.getIcon(), this.lblHeroImage);
                     panel.setBackground(new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)));
                     panel.add(this.lblHeroImage);
                 }
                 for (EnemyModel enemy: this.enemiesList) {
-                    if (enemy.getCoordinates().Isequals(loopCoordinates)){
-                        //this.setImage(enemy.getIcon());
-                        panel.setBackground(new Color(80, 80, 80));
-                        //panel.add(this.lblHeroImage);
+                    if (c != null){
+                        if (loopCoordinates.Isequals(c)){
+                            JLabel lblEnemyImage = new JLabel();
+                            this.setImage(enemy.getIcon(), lblEnemyImage);
+                            panel.setBackground(new Color(255, 50, 50));
+                            panel.add(lblEnemyImage);
+                            //enemy.setHP(0);
+                        }
+                    }
+                    // for testing....
+                    if (enemy.getCoordinates().Isequals(loopCoordinates) && enemy.getHitPoints() > 0){
+                        JLabel lblEnemyImage = new JLabel();
+                        this.setImage(enemy.getIcon(), lblEnemyImage);
+                        //panel.setBackground(new Color(150, 150, 150));
+                        panel.add(lblEnemyImage);
+                    }
+                    else if  (enemy.getCoordinates().Isequals(loopCoordinates) && enemy.getHitPoints() <= 0){
+                        
                     }
                 }
-                
+
                 this.panelMain.add(panel);
             }   
         }
@@ -126,19 +153,19 @@ public class GameView extends JFrame{
         //Check if Enemy.Coordinates equals(=) Hero.Coordinates
         for (EnemyModel enemy: this.enemiesList) {
             if (enemy.getCoordinates().Isequals(this.hero.getCoordinates())){
-                JFrameHelper.ShowErrorDialog(this, "ShowOptionDialog() -> Fight or Run");
                 System.out.println("ShowOptionDialog() -> Fight or Run");
+                JFrameHelper.ShowErrorDialog(this, "ShowOptionDialog() -> Fight or Run");
             }
         }
     }
 
-    private boolean setImage(String imagePath){
+    private boolean setImage(String imagePath, JLabel lblImage){
         try{
             int imageSize = ((this.getWidth() / Formulas.sizeMap(this.hero.getLevel())) - 12);
             ImageIcon imageIcon = new ImageIcon(ImageIO.read(new File(imagePath)));
             Image image = imageIcon.getImage();
             Image heroImage = image.getScaledInstance(imageSize, imageSize, Image.SCALE_SMOOTH);
-            this.lblHeroImage.setIcon(new ImageIcon(heroImage));
+            lblImage.setIcon(new ImageIcon(heroImage));
             return (true);
         }catch(Exception exc){
             System.err.println("Error Setting Image: " + exc.getMessage());
