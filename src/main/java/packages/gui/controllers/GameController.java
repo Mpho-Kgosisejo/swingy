@@ -33,7 +33,6 @@ public class GameController{
         int oldX = x;
         int oldY = y;
 
-        System.out.println(code);
         switch (code){
             case 38:
                 // Up
