@@ -48,6 +48,7 @@ public class GameView extends JFrame{
     public GameView(HeroModel hero){
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setTitle("Game");
+        //Todo: setResizable(true) ? Make a class ResizeListener() and invoke this.drawMap()
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.thisFrame = this;
@@ -132,6 +133,7 @@ public class GameView extends JFrame{
                 }
                 for (EnemyModel enemyLoop: this.enemiesList) {
                     if (loopCoordinates.Isequals(enemyLoop.getCoordinates()) && enemyLoop.getHitPoints() > 0){
+                        // Enemy is here, and alive
                         JLabel lblEnemyImage = new JLabel();
                         this.setImage(enemyLoop.getIcon(), lblEnemyImage);
                         panel.add(lblEnemyImage);
@@ -139,6 +141,10 @@ public class GameView extends JFrame{
                         if((heroEnemyCoordinatesMatch != null && enemy != null) && enemy.getCoordinates().Isequals(enemyLoop.getCoordinates())){
                             panel.setBackground(new Color(255, 50, 50));
                         }
+                    }
+                    if (loopCoordinates.Isequals(enemyLoop.getCoordinates()) && enemyLoop.getHitPoints() <= 0){
+                        // Enemy is here, but deaddead
+                        panel.setBackground(new Color(255, 150, 150));
                     }
                 }
                 this.panelMain.add(panel);
@@ -148,15 +154,19 @@ public class GameView extends JFrame{
         this.panelMain.repaint();
         
         if (heroEnemyCoordinatesMatch != null && enemy != null){
-            // for testing....
             if (enemy.getHitPoints() > 0){
-                JFrameHelper.ShowErrorDialog(this, "Fight Enemy or Run");
-                GameSimulationView gameSimulationView = new GameSimulationView();
-                new GameSimulationController(gameSimulationView, enemy, this.hero);
-                gameSimulationView.setVisible(true);
-                enemy.setHitPoints(0);
+                if (JFrameHelper.ShowConfirmDialog(this, "Fight or Run", "Fight Enemy (Y) or Run (N)")){
+                    // Start fight sim...
+                    GameSimulationView gameSimulationView = new GameSimulationView();
+                    new GameSimulationController(gameSimulationView, enemy, this.hero);
+                    gameSimulationView.setVisible(true);
+                    enemy.setHitPoints(0);
+                }else{
+                    // eg.: hero level -= 1
+                }
             }
             else{
+                // Enemy is dead, show Dead monster or something
                 JFrameHelper.ShowErrorDialog(this, "Enemy was here... now dead! :-)");
             }
         }
