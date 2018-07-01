@@ -50,7 +50,7 @@ public class GameSimulationView extends JFrame
 
     public void init()
     {
-        this._txtASimulation = new JTextArea(null, 0, 0);
+        this._txtASimulation = new JTextArea(null, 3, 3);
         this.mainPanel = new JPanel();
         this.simulationPanel = new JPanel();        
         this.mainPanel.setLayout(null);
@@ -101,5 +101,7 @@ public class GameSimulationView extends JFrame
     public      void setSimulationText(String simulationText)
     {
         this._txtASimulation.setText(simulationText);
+        this.mainPanel.revalidate();
+        this.mainPanel.repaint();
     }
 }

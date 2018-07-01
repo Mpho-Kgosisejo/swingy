@@ -150,9 +150,9 @@ public class GameView extends JFrame{
 
                     try {
                         while(gameSimulation.nextFight()){
-                            System.out.println("SimulationOutput() => " + gameSimulation.getSimulationOutput());
-                            //gameSimulationView.setSimulationText(gameSimulation.getSimulationOutput());
+                            gameSimulationView.setSimulationText(gameSimulation.getSimulationOutput());
                         }
+                        gameSimulationView.setSimulationText("Game ended...");
                         System.out.println("Game ended...");
                     } catch (Exception e) {
                         

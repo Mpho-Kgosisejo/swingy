@@ -7,7 +7,7 @@ public class GameSimulationModel{
     private HeroModel hero;
     private EnemyModel enemy;
     private String simulationOutput = "";
-    private static int simulationCount;
+    private int simulationCount = 0;
 
     public GameSimulationModel(HeroModel hero, EnemyModel enemy){
         this.hero = hero;
