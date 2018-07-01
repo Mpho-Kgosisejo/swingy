@@ -138,6 +138,7 @@ public class GameView extends JFrame{
                         this.setImage(enemy.getIcon(), lblEnemyImage);
                         //panel.setBackground(new Color(150, 150, 150));
                         panel.add(lblEnemyImage);
+                        JFrameHelper.ShowErrorDialog(this, "It works");
                     }
                     else if  (enemy.getCoordinates().Isequals(loopCoordinates) && enemy.getHitPoints() <= 0){
                         
@@ -152,10 +153,10 @@ public class GameView extends JFrame{
 
         //Check if Enemy.Coordinates equals(=) Hero.Coordinates
         for (EnemyModel enemy: this.enemiesList) {
-            if (enemy.getCoordinates().Isequals(this.hero.getCoordinates())){
-                System.out.println("ShowOptionDialog() -> Fight or Run");
-                JFrameHelper.ShowErrorDialog(this, "ShowOptionDialog() -> Fight or Run");
-            }
+            // if (enemy.getCoordinates().Isequals(this.hero.getCoordinates())){
+            //     System.out.println("ShowOptionDialog() -> Fight or Run");
+            //     JFrameHelper.ShowErrorDialog(this, "ShowOptionDialog() -> Fight or Run");
+            // }
         }
     }
 
