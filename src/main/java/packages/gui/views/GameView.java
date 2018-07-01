@@ -18,9 +18,11 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import packages.console.controller.Coordinates;
+import packages.gui.controllers.GameSimulationController;
 import packages.gui.controllers.SelectHeroController;
 import packages.models.EnemyModel;
 import packages.models.HeroModel;
@@ -149,7 +151,9 @@ public class GameView extends JFrame{
             // for testing....
             if (enemy.getHitPoints() > 0){
                 JFrameHelper.ShowErrorDialog(this, "Fight Enemy or Run");
-
+                GameSimulationView gameSimulationView = new GameSimulationView();
+                new GameSimulationController(gameSimulationView, enemy, this.hero);
+                gameSimulationView.setVisible(true);
                 enemy.setHitPoints(0);
             }
             else{
