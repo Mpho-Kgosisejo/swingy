@@ -17,7 +17,7 @@ public class Formulas{
     }
 
     public static int getNumberOfEnemiesToSpawn(HeroModel hero){
-        int level = hero.getLevel();
+        int level = hero.getLevel() * 5;
         int ret = 0;
         
         ret = level + 5;

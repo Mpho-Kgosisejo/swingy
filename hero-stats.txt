@@ -3,4 +3,4 @@ Alex the Great, Elf,3,124,10,5,5,bow,leather,pot,/goinfre/mkgosise/Downloads/che
 Thor the Mighty,Knight,6,990,10,5,5,sword,steel,pot,src/main/java/packages/images/default-image.png
 KaygoPhobos,knight,0,0,0,0,10,bow,jacket,pot,icon-path
 adefef,knight,0,0,0,0,10,bow,jacket,pot,icon-path
-andile,knight,0,0,0,0,0,bow,jacket,frog_mouthed,none
+andile,knight,2,0,0,0,0,bow,jacket,frog_mouthed,none
