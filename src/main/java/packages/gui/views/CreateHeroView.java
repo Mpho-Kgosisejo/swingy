@@ -28,6 +28,7 @@ import packages.enums.ArmorType;
 import packages.enums.HelmType;
 import packages.enums.CharacterType;
 import packages.enums.WeaponType;
+import packages.utils.HeroFactory;
 import packages.utils.JFrameHelper;
 
 public class CreateHeroView extends JFrame{
@@ -186,26 +187,27 @@ public class CreateHeroView extends JFrame{
             int xPoint = Integer.parseInt(this.txtFdXPoints.getText());
             int attack = 0;
             int defense = 0;
-            int HP = 0;
-            WeaponType weapon = WeaponType.valueOf(this.txtFdWeapon.getText());
-            ArmorType armor = ArmorType.valueOf(this.txtFdArmor.getText());
+            int HP = 10;
+            // WeaponType weapon = WeaponType.valueOf(this.txtFdWeapon.getText());
+            // ArmorType armor = ArmorType.valueOf(this.txtFdArmor.getText());
             String iconPath = "icon-path";
 
-            if (this.listFdType.getSelectedItem().toString().equals(CharacterType.elf.toString()) == true){
-                this.newHero = new ElfModel(this.txtFdName.getText(), CharacterType.elf, level, xPoint, attack, defense, HP, weapon, armor, HelmType.pot, iconPath);
-            }
-            else if (this.listFdType.getSelectedItem().toString().equals(CharacterType.hunter.toString()) == true){
-                this.newHero = new HunterModel(this.txtFdName.getText(), CharacterType.hunter, level, xPoint, attack, defense, HP, weapon, armor, HelmType.pot, iconPath);
-            }
-            else if (this.listFdType.getSelectedItem().toString().equals(CharacterType.knight.toString()) == true){
-                this.newHero = new KnightModel(this.txtFdName.getText(), CharacterType.knight, level, xPoint, attack, defense, HP, weapon, armor, HelmType.pot, iconPath);
-            }
-            else if (this.listFdType.getSelectedItem().toString().equals(CharacterType.villager.toString()) == true){
-                this.newHero = new VillagerModel(this.txtFdName.getText(), CharacterType.villager, level, xPoint, attack, defense, HP, weapon, armor, HelmType.pot, iconPath);
-            }
-            else if (this.listFdType.getSelectedItem().toString().equals(CharacterType.warrior.toString()) == true){
-                this.newHero = new WarriorModel(this.txtFdName.getText(), CharacterType.warrior, level, xPoint, attack, defense, HP, weapon, armor, HelmType.pot, iconPath);
-            }
+            this.newHero = HeroFactory.newHero(this.txtFdName.getText(), this.listFdType.getSelectedItem().toString(), level, xPoint, attack, defense, HP, this.txtFdWeapon.getText(), this.txtFdArmor.getText(), HelmType.pot.toString(), iconPath);
+            // if (this.listFdType.getSelectedItem().toString().equals(CharacterType.elf.toString()) == true){
+            //     this.newHero = new ElfModel(this.txtFdName.getText(), CharacterType.elf, level, xPoint, attack, defense, HP, weapon, armor, HelmType.pot, iconPath);
+            // }
+            // else if (this.listFdType.getSelectedItem().toString().equals(CharacterType.hunter.toString()) == true){
+            //     this.newHero = new HunterModel(this.txtFdName.getText(), CharacterType.hunter, level, xPoint, attack, defense, HP, weapon, armor, HelmType.pot, iconPath);
+            // }
+            // else if (this.listFdType.getSelectedItem().toString().equals(CharacterType.knight.toString()) == true){
+            //     this.newHero = new KnightModel(this.txtFdName.getText(), CharacterType.knight, level, xPoint, attack, defense, HP, weapon, armor, HelmType.pot, iconPath);
+            // }
+            // else if (this.listFdType.getSelectedItem().toString().equals(CharacterType.villager.toString()) == true){
+            //     this.newHero = new VillagerModel(this.txtFdName.getText(), CharacterType.villager, level, xPoint, attack, defense, HP, weapon, armor, HelmType.pot, iconPath);
+            // }
+            // else if (this.listFdType.getSelectedItem().toString().equals(CharacterType.warrior.toString()) == true){
+            //     this.newHero = new WarriorModel(this.txtFdName.getText(), CharacterType.warrior, level, xPoint, attack, defense, HP, weapon, armor, HelmType.pot, iconPath);
+            // }
 
         }catch(Exception exc){
             JFrameHelper.ShowErrorDialog(this, "Exception: " + exc.getMessage());

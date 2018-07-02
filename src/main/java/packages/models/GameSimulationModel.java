@@ -31,12 +31,18 @@ public class GameSimulationModel{
     }
 
     public String getSimulationOutput(){
-        String ret = this.simulationOutput;
-        this.simulationOutput = "";
-        return (ret);
+        return (this.simulationOutput);
     }
 
     private Boolean isHeroAlive(HeroModel hero){
         return (hero.getHitPoints() > 0);
+    }
+
+    public HeroModel getHeroModel(){
+        return (this.hero);
+    }
+
+    public EnemyModel getEnemyModel(){
+        return (this.enemy);
     }
 }
