@@ -144,17 +144,26 @@ public class GameView extends JFrame{
             if (enemy.getHitPoints() > 0){
                 if (JFrameHelper.ShowConfirmDialog(this, "Fight || Run", "You have encounterd a Villan" + "\n      (N)Run Or (Y)Fight ")){
                     // Start fight sim...
-                    GameSimulationModel gameSimulationModel = new GameSimulationModel(this.hero, enemy);
                     GameSimulationView gameSimulationView = new GameSimulationView();
-                    new GameSimulationController(gameSimulationView, gameSimulationModel);
-                    System.out.println("Hero: "+ this.hero.getHitPoints() +"HP , Enemy: " + enemy.getHitPoints() + "HP");
+                    gameSimulationView.setVisible(true);
+                    GameSimulationModel gameSimulationModel = new GameSimulationModel(this.hero, enemy);
+                    GameSimulationController gameSimulationController = new GameSimulationController(gameSimulationView, gameSimulationModel);
+                    //gameSimulationController.startSimulation();
+
+                    this.drawMap();
+                    if (this.hero.getHitPoints() > 0){
+                        JOptionPane.showMessageDialog(this, this.hero.getName() + " won the fight", "Fight Won", JOptionPane.INFORMATION_MESSAGE);
+                    }else{
+                        JOptionPane.showMessageDialog(this, this.hero.getName() + " lost the fight", "Fight Lost", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    //gameSimulationView.dispose();
                 }else{
                     // eg.: hero level -= 1
                 }
             }
             else{
                 // Enemy is dead, show Dead monster or something
-                JFrameHelper.ShowErrorDialog(this, "Enemy was here... now dead! :-)");
+                //JFrameHelper.ShowErrorDialog(this, "Enemy was here... now dead! :-)");
             }
         }
     }

@@ -44,14 +44,14 @@ public class GameSimulationView extends JFrame
         this.setSize(1060, 300);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.setVisible(true);       
+            
         this.init();
         //this.setLayout(null);
     }
 
     public void init()
     {
-        this._txtASimulation = new JTextArea(null, 10, 10);
+        this._txtASimulation = new JTextArea();//null, 10, 10);
         JScrollPane scroll = new JScrollPane(_txtASimulation);
         this.mainPanel = new JPanel();
         this.simulationPanel = new JPanel();        
@@ -106,8 +106,8 @@ public class GameSimulationView extends JFrame
 
     public      void setSimulationText(String simulationText)
     {
-        this._txtASimulation.setText(simulationText);
         this.mainPanel.revalidate();
         this.mainPanel.repaint();
+        this._txtASimulation.setText(simulationText);
     }
 }

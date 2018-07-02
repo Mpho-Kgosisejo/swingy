@@ -17,11 +17,13 @@ public class GameSimulationController
         this._view = view;
         this._model = gameSimulationModel;
 
-        System.out.println("Hero: "+ this._model.getHeroModel().getHitPoints() +"HP , Enemy: " + this._model.getEnemyModel().getHitPoints() + "HP");
-        this.startSimulation();
+        //this.startSimulation();
+        this._model.getEnemyModel().setHitPoints(0);
     }
 
-    private void startSimulation(){
+    public void startSimulation(){
+        System.out.println("Hero: "+ this._model.getHeroModel().getHitPoints() +"HP , Enemy: " + this._model.getEnemyModel().getHitPoints() + "HP");
+
         try {
             while(this._model.nextFight()){
                 this._view.setSimulationText(this._model.getSimulationOutput());
@@ -29,8 +31,9 @@ public class GameSimulationController
             }
             this._view.setSimulationText("Game ended...");
             System.out.println("Game ended...");
+            System.out.println("Hero: "+ this._model.getHeroModel().getHitPoints() +"HP , Enemy: " + this._model.getEnemyModel().getHitPoints() + "HP");
         } catch (Exception e) {
-            
+            System.out.println("Error @ GameSimulation(): " + e.getMessage());
         }
     }
 }
