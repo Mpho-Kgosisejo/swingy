@@ -43,7 +43,8 @@ public class GameSimulationController
     {
         public void actionPerformed(ActionEvent e) 
         {
-            startSimulation();
+            Runnable runnable = new StartSimulation();
+            new Thread(runnable).start();
 		}
     }
 
@@ -52,6 +53,12 @@ public class GameSimulationController
         public void actionPerformed(ActionEvent e) 
         {
             System.out.println("Skip button clicked!");
+		}
+    }
+
+    private class StartSimulation implements Runnable{
+		public void run() {
+			startSimulation();
 		}
     }
 }
