@@ -41,4 +41,12 @@ public class Menus {
             "4. South\n";
         System.out.print(movement);
     }
+    
+    public static void SimulationChoice() 
+    {
+        String choice = "\nYou have encountered an enemy, what do you want to do?\n" + 
+            "1. Run\n" + 
+            "2. Fight\n";
+        System.out.println(choice);     
+    }
 }

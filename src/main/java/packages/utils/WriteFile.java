@@ -51,8 +51,7 @@ public class WriteFile
             System.out.println(_file.length());
             for (HeroModel hero : _heroList) {
                 if (_hero.getName().equalsIgnoreCase(hero.getName())){
-                    HeroModel tempHero = new HeroModel("name", CharacterType.enemy, 2, 243, 0, 0, 0, WeaponType.pistol, ArmorType.steel, HelmType.great, "No icon");
-                    writeToFile(tempHero);    
+                    writeToFile(_hero);    
                 }else{
                     writeToFile(hero);
                 }

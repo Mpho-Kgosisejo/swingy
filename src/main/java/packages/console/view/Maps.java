@@ -8,6 +8,7 @@ import packages.models.*;
 import packages.utils.EnemyFactory;
 import packages.utils.Formulas;
 import packages.utils.Menus;
+import packages.utils.WriteFile;
 
 import static packages.utils.Colours.*;
 import packages.console.controller.*;
@@ -29,7 +30,22 @@ public class Maps
         enemyList = EnemyFactory.getEnemyList(hero);
     }
 
-    public void move(Scanner scan, HeroModel hero) {
+    public void move(Scanner scan, HeroModel hero, int MapSize) {
+        System.out.println("map: " + MapSize + "\n" + hero.getCoordinates().getX());
+        if (hero.getCoordinates().getX() == MapSize - 1 || hero.getCoordinates().getY() == MapSize - 1 || hero.getCoordinates().getY() == 0 || hero.getCoordinates().getX() == 0)
+        {
+            System.out.println(ANSI_YELLOW +  "\n>>>>>> You won the game! <<<<<<\n" + ANSI_RESET);
+            hero.setName("LALALALALALALA");
+            WriteFile.findAndUpdate(ConsoleView.heroList, hero);
+            ConsoleView.start();
+        }
+        for (EnemyModel enemyLoop: enemyList) {
+            if (enemyLoop.getCoordinates().Isequals(hero.getCoordinates())){
+                //heroEnemyCoordinatesMatch = new Coordinates(enemyLoop.getCoordinates().getX(), enemyLoop.getCoordinates().getY());
+                Menus.SimulationChoice();
+            }
+        }
+
         while (scan.hasNextLine())
         {
             int n = scan.nextInt();
@@ -74,6 +90,11 @@ public class Maps
                             System.out.print(ANSI_PURPLE + "E " + ANSI_RESET);
                             didShow = true;
                         }
+                        /*else if (hero.getCoordinates().Isequals(enemyModel.getCoordinates()))
+                        {
+                            Menus.SimulationChoice();
+                            //FightOrRun(hero, enemyModel);
+                        }*/
                     }
                     if (!didShow)
                     {
@@ -87,11 +108,6 @@ public class Maps
 
         Menus.printMovementMenu();
         Scanner reader = new Scanner(System.in);
-        move(reader, hero);
-        /*if (heroEnemyCoordinatesMatch != null && enemy != null){
-            if (enemy.getHitPoints() > 0){
-                //
-            }
-        }*/
+        move(reader, hero, mapSize);
     }
 }
