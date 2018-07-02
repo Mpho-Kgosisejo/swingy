@@ -4,10 +4,13 @@ import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JFrame;
+
 import packages.gui.views.GameSimulationView;
 import packages.models.EnemyModel;
 import packages.models.GameSimulationModel;
 import packages.models.HeroModel;
+import packages.utils.JFrameHelper;
 
 public class GameSimulationController
 {
@@ -21,8 +24,9 @@ public class GameSimulationController
 
         this._view.startBtnListener(new StartBtnListener());
         this._view.skipBtnListener(new SkipBtnListener());
+        //this._view.setCharacterImgs(JFrameHelper.getLabelImage(this._model.getHeroModel().getIcon()), JFrameHelper.getLabelImage(this._model.getEnemyModel().getIcon()));
     }
-
+    
     public void startSimulation(){
         System.out.println("Hero: "+ this._model.getHeroModel().getHitPoints() +"HP , Enemy: " + this._model.getEnemyModel().getHitPoints() + "HP");
 
