@@ -27,12 +27,12 @@ public class JFrameHelper{
         return (false);
     }
 
-    public static JLabel getLabelImage(String imagePath)
+    public static JLabel getLabelImage(String imagePath, int imageSize)
     {
         try{
             ImageIcon imageIcon = new ImageIcon(ImageIO.read(new File(imagePath)));
             Image image = imageIcon.getImage();
-            Image imageScaled = image.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+            Image imageScaled = image.getScaledInstance(imageSize, imageSize, Image.SCALE_SMOOTH);
             JLabel lblImage = new JLabel();
             lblImage.setIcon(new ImageIcon(imageScaled));
             return (lblImage);

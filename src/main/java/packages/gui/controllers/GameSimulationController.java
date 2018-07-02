@@ -4,6 +4,8 @@ import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JFrame;
+
 import packages.gui.views.GameSimulationView;
 import packages.gui.views.GameView;
 import packages.models.EnemyModel;
@@ -28,7 +30,7 @@ public class GameSimulationController extends JFrameHelper
 
         this.startSimulation();
     }
-
+    
     public void startSimulation(){
         new Thread(new StartSimulation()).start();
     }

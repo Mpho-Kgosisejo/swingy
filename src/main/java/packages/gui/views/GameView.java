@@ -144,7 +144,8 @@ public class GameView extends JFrame{
             if (enemy.getHitPoints() > 0){
                 if (JFrameHelper.ShowConfirmDialog(this, "Fight || Run", "You have encounterd a Villan" + "\n      (N)Run Or (Y)Fight ")){
                     // Start fight sim...
-                    new GameSimulationController(new GameSimulationView(), new GameSimulationModel(this.hero, enemy), this);
+                    GameSimulationModel model  =  new GameSimulationModel(this.hero, enemy);
+                    new GameSimulationController(new GameSimulationView(model), model, this);
                     this.setVisible(false);
                 }else{
                     // eg.: hero level -= 1

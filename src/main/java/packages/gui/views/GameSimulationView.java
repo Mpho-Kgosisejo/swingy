@@ -7,17 +7,24 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+
+import packages.models.GameSimulationModel;
+import packages.utils.JFrameHelper;
 
 public class GameSimulationView extends JFrame
 {
     private JTextArea _txtASimulation;
     private JButton _btnStart;
     private JButton _btnSkip;
+    private JLabel _lblHero;
+    private JLabel _lblVillan;
+    private GameSimulationModel _model;
 
-    public GameSimulationView()
+    public GameSimulationView(GameSimulationModel model)
     {
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setTitle("Game Simulation");
@@ -25,6 +32,7 @@ public class GameSimulationView extends JFrame
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        this._model = model;
             
         this.init();
     }
@@ -39,21 +47,28 @@ public class GameSimulationView extends JFrame
         JPanel heroPanel = new JPanel();
         JPanel bottomPanel = new JPanel();
         JPanel villanPanel = new JPanel();
+        // this._lblVillan = new JLabel();
+        // this._lblHero = new JLabel();
         this._btnStart = new JButton("Start");
         this._btnSkip = new JButton("Skip");
         this._txtASimulation.setEditable(false);
 
-        simulationPanel.setBackground(new Color(255, 0, 0));   
-        bottomPanel.setBackground(new Color(255, 100, 100));   
-        heroPanel.setBackground(new Color(0, 0, 0));
-        villanPanel.setBackground(new Color(204, 204, 204));
+        // simulationPanel.setBackground(new Color(255, 0, 0));   
+        // bottomPanel.setBackground(new Color(255, 100, 100));   
+        // heroPanel.setBackground(new Color(255, 255, 255));
+        // villanPanel.setBackground(new Color(255, 255, 255));
 
-        
+        this._lblHero = JFrameHelper.getLabelImage(this._model.getHeroModel().getIcon(), 260);
+        this._lblVillan = JFrameHelper.getLabelImage(this._model.getEnemyModel().getIcon(), 260);
+        heroPanel.add(this._lblHero);
+        villanPanel.add(this._lblVillan);
+
         heroPanel.setBounds(0, 0, this.getHeight(), this.getHeight());
-        villanPanel.setBounds(this.getWidth() - heroPanel.getWidth(), 0, this.getWidth() - heroPanel.getHeight(), heroPanel.getHeight());        
+        villanPanel.setBounds(this.getWidth() - heroPanel.getWidth(), 0, heroPanel.getHeight(), heroPanel.getHeight());        
         simulationPanel.setBounds(heroPanel.getWidth(), 0, (this.getWidth() - (heroPanel.getHeight() * 2)), this.getHeight() -60);
         bottomPanel.setBounds(heroPanel.getWidth(), simulationPanel.getHeight(), simulationPanel.getWidth(), 60);
         this._txtASimulation.setBounds(0, 0, simulationPanel.getWidth(), simulationPanel.getHeight());
+        
         bottomPanel.add(this._btnStart);
         bottomPanel.add(this._btnSkip);
         simulationPanel.add(this._txtASimulation);        
