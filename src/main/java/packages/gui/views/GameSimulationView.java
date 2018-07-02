@@ -19,11 +19,12 @@ public class GameSimulationView extends JFrame
 
     public GameSimulationView()
     {
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setTitle("Game Simulation");
         this.setSize(1060, 300);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        this.setVisible(true);
             
         this.init();
     }
@@ -74,7 +75,6 @@ public class GameSimulationView extends JFrame
     {
         this._btnStart.addActionListener(listener);
     }
-
 
     public void skipBtnListener(ActionListener listener)
     {

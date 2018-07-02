@@ -11,7 +11,11 @@ import javax.swing.JOptionPane;
 
 public class JFrameHelper{
     public static void ShowErrorDialog(JFrame jFrame, String message){
-        JOptionPane.showMessageDialog(jFrame, message,"Warning!", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(jFrame, message, "Warning!", JOptionPane.WARNING_MESSAGE);
+    }
+
+    public static void ShowInfoDialog(JFrame jFrame, String title, String message){
+        JOptionPane.showMessageDialog(jFrame, message, title, JOptionPane.INFORMATION_MESSAGE);
     }
 
     public static Boolean ShowConfirmDialog(JFrame jFrame, String title, String message){

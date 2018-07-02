@@ -144,20 +144,8 @@ public class GameView extends JFrame{
             if (enemy.getHitPoints() > 0){
                 if (JFrameHelper.ShowConfirmDialog(this, "Fight || Run", "You have encounterd a Villan" + "\n      (N)Run Or (Y)Fight ")){
                     // Start fight sim...
-                    GameSimulationView gameSimulationView = new GameSimulationView();
-                    gameSimulationView.setVisible(true);
-                    GameSimulationModel gameSimulationModel = new GameSimulationModel(this.hero, enemy);
-                    GameSimulationController gameSimulationController = new GameSimulationController(gameSimulationView, gameSimulationModel);
-                    //gameSimulationController.startSimulation();
-                    //enemy.setHitPoints(0);
-
-                    //this.drawMap();
-                    // if (this.hero.getHitPoints() > 0){
-                    //     JOptionPane.showMessageDialog(this, this.hero.getName() + " won the fight", "Fight Won", JOptionPane.INFORMATION_MESSAGE);
-                    // }else{
-                    //     JOptionPane.showMessageDialog(this, this.hero.getName() + " lost the fight", "Fight Lost", JOptionPane.INFORMATION_MESSAGE);
-                    // }
-                    //gameSimulationView.dispose();
+                    new GameSimulationController(new GameSimulationView(), new GameSimulationModel(this.hero, enemy), this);
+                    this.setVisible(false);
                 }else{
                     // eg.: hero level -= 1
                 }

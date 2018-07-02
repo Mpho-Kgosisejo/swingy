@@ -34,7 +34,7 @@ public class GameSimulationModel{
         return (this.simulationOutput);
     }
 
-    private Boolean isHeroAlive(HeroModel hero){
+    public Boolean isHeroAlive(HeroModel hero){
         return (hero.getHitPoints() > 0);
     }
 
