@@ -12,6 +12,7 @@ public class CliGame
         _hero = hero;
         Menus.printStats(_hero);
         Maps map = new Maps();
+        map.init(_hero);
         map.drawMap(_hero);
     }
 }

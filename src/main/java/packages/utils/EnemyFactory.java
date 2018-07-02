@@ -20,7 +20,7 @@ public class EnemyFactory{
         int level = hero.getLevel();
         int numberOfEnemies = Formulas.getNumberOfEnemiesToSpawn(hero);
 
-        for(int i = 0; i <= numberOfEnemies; i++){
+        for(int i = 0; i <= numberOfEnemies + (hero.getLevel() * 5); i++){
             EnemyModel enemy = new EnemyModel("EnemyName", CharacterType.enemy, level, 0, 10, 10, hero.getHitPoints(), WeaponType.spear, ArmorType.jacket, HelmType.pot, "src/main/java/packages/images/green-monster.png");
             enemy.setCoordinates(new Coordinates(random.nextInt(mapSize), random.nextInt(mapSize)));
             if (isSamePosition(enemyList, enemy) || enemy.getCoordinates().Isequals(hero.getCoordinates())){

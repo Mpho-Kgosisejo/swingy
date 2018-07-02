@@ -1,24 +1,97 @@
 package packages.console.view;
 
-import packages.models.HeroModel;
+import packages.enums.ArmorType;
+import packages.enums.CharacterType;
+import packages.enums.HelmType;
+import packages.enums.WeaponType;
+import packages.models.*;
+import packages.utils.EnemyFactory;
 import packages.utils.Formulas;
+import packages.utils.Menus;
+
 import static packages.utils.Colours.*;
+import packages.console.controller.*;
+
+import java.io.*;
+import java.util.*;
 
 public class Maps
 {
     public int map[][];
+    private int mapSize;
+
+    private static List<EnemyModel> enemyList;
+
+    public void init(HeroModel hero) {
+        
+        this.mapSize = Formulas.sizeMap(hero.getLevel());
+        hero.setCoordinates(new Coordinates((this.mapSize / 2), (this.mapSize / 2)));
+        enemyList = EnemyFactory.getEnemyList(hero);
+    }
+
+    public void move(Scanner scan, HeroModel hero) {
+        while (scan.hasNextLine())
+        {
+            int n = scan.nextInt();
+            switch (n)
+            {
+                case 1:
+                    hero.getCoordinates().advance(1);
+                    break;
+                case 2:
+                    hero.getCoordinates().advance(2);
+                    break;
+                case 3:
+                    hero.getCoordinates().advance(3);
+                    break;
+                case 4:
+                    hero.getCoordinates().advance(4);
+                    break;
+                default:
+                    break;
+            }
+            drawMap(hero);
+        }
+    }
+
     public void drawMap(HeroModel hero)
     {
-        int sideLength = Formulas.sizeMap(hero.getLevel());
+        System.out.println();
+        for (int x = 0; x < this.mapSize; x++) {
+            for (int y = 0; y < this.mapSize; y++) {
+                Coordinates loopCoordinates = new Coordinates(x, y);
+                boolean didShow = false;
+                if (loopCoordinates.Isequals(hero.getCoordinates()))
+                {
+                    System.out.print(ANSI_GREEN + "0 " + ANSI_RESET);
+                }
+                else 
+                {
+                    for (EnemyModel enemyModel : enemyList)
+                    {
+                        if (loopCoordinates.Isequals(enemyModel.getCoordinates()))
+                        {
+                            System.out.print(ANSI_PURPLE + "E " + ANSI_RESET);
+                            didShow = true;
+                        }
+                    }
+                    if (!didShow)
+                    {
+                        System.out.print("* ");
+                    }
+                }
 
-        for (int x = 0; x < sideLength; x++) {
-            for (int y = 0; y < sideLength; y++) {
-                if (hero.getCoordinates().getY() == y && hero.getCoordinates().getX() == x )
-                    System.out.print(ANSI_PURPLE + "0 " + ANSI_RESET);
-                else
-                    System.out.print("* ");
             }
-            System.out.println(""); //Short for new line.
+            System.out.println(); 
         }
+
+        Menus.printMovementMenu();
+        Scanner reader = new Scanner(System.in);
+        move(reader, hero);
+        /*if (heroEnemyCoordinatesMatch != null && enemy != null){
+            if (enemy.getHitPoints() > 0){
+                //
+            }
+        }*/
     }
 }

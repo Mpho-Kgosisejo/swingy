@@ -17,15 +17,15 @@ public class Coordinates {
 		}
 	}
 
-	public void advance(String direction) {
-		if (direction == "north")
-			y -= 1;
-		else if (direction == "east")
-			x += 1;
-		else if (direction == "south")
-			y += 1;
-		else if (direction == "west")
+	public void advance(int direction) {
+		if (direction == 1)
 			x -= 1;
+		else if (direction == 2)
+			y += 1;
+		else if (direction == 3)
+			y -= 1;
+		else if (direction == 4)
+			x += 1;
 	}
 
 	public int getX() {
