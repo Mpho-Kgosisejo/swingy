@@ -54,6 +54,14 @@ public class GameSimulationController extends JFrameHelper
     private class StartSimulation implements Runnable{
 		public void run() {
 			try {
+                _view.setText("\t\t" + _model.getHeroModel().getName()   + "\n"+ 
+                "\t\t _____ _____   \n" +
+                "\t\t|  |  |   __|  \n" +
+                "\t\t|  |  |__   |  \n" +
+                "\t\t\\___/|_____|  \n"
+                       +  "\n"      + "\t\t"+ _model.getEnemyModel().getName()); 
+                Thread.sleep(2000);
+                _view.setText("");
                 while(_model.nextFight()){
                     _view.setSimulationText(_model.getSimulationOutput() + "\n");
                     System.out.println(">> " + _model.getSimulationOutput());

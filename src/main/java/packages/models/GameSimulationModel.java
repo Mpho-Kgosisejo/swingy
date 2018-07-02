@@ -15,7 +15,7 @@ public class GameSimulationModel{
     }
 
     public Boolean nextFight() throws InterruptedException{
-        if (this.isHeroAlive(this.hero) && this.isHeroAlive(this.enemy)){
+        if (this.isHeroAlive(this.hero) && this.isHeroAlive(this.enemy)){            
             simulationCount++;
             this.enemy.setHitPoints((this.enemy.getHitPoints() - 1));
 

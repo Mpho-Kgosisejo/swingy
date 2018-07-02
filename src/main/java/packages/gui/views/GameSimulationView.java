@@ -23,6 +23,7 @@ public class GameSimulationView extends JFrame
     private JLabel _lblHero;
     private JLabel _lblVillan;
     private GameSimulationModel _model;
+    private String _heroName;
 
     public GameSimulationView(GameSimulationModel model)
     {
@@ -99,5 +100,10 @@ public class GameSimulationView extends JFrame
     public      void setSimulationText(String simulationText)
     {
         this._txtASimulation.append(simulationText);
+    }
+
+    public void setText(String message)
+    {
+        this._txtASimulation.setText(message);
     }
 }
