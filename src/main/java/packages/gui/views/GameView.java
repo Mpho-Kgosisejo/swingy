@@ -149,13 +149,14 @@ public class GameView extends JFrame{
                     GameSimulationModel gameSimulationModel = new GameSimulationModel(this.hero, enemy);
                     GameSimulationController gameSimulationController = new GameSimulationController(gameSimulationView, gameSimulationModel);
                     //gameSimulationController.startSimulation();
+                    //enemy.setHitPoints(0);
 
-                    this.drawMap();
-                    if (this.hero.getHitPoints() > 0){
-                        JOptionPane.showMessageDialog(this, this.hero.getName() + " won the fight", "Fight Won", JOptionPane.INFORMATION_MESSAGE);
-                    }else{
-                        JOptionPane.showMessageDialog(this, this.hero.getName() + " lost the fight", "Fight Lost", JOptionPane.INFORMATION_MESSAGE);
-                    }
+                    //this.drawMap();
+                    // if (this.hero.getHitPoints() > 0){
+                    //     JOptionPane.showMessageDialog(this, this.hero.getName() + " won the fight", "Fight Won", JOptionPane.INFORMATION_MESSAGE);
+                    // }else{
+                    //     JOptionPane.showMessageDialog(this, this.hero.getName() + " lost the fight", "Fight Lost", JOptionPane.INFORMATION_MESSAGE);
+                    // }
                     //gameSimulationView.dispose();
                 }else{
                     // eg.: hero level -= 1
