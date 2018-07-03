@@ -1,19 +1,16 @@
 package packages.utils;
 
-import java.awt.List;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.util.ArrayList;
 
 import packages.models.HeroModel;
 
 public class UpdateFile
 {
-    private static int     _level;
-    private static int     _xPoints;    
+    //private static int     _level;
+    //private static int     _xPoints;    
     private static String  _replacor = null;    
     private static String  _line = null;
     

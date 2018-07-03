@@ -7,7 +7,7 @@ import packages.models.HeroModel;
 
 public class readFile
 {
-    public static List<HeroModel>  simulateFile() throws IOException
+    public static List<HeroModel>  simulateFile()
     {
         List<HeroModel> heroList = new ArrayList<HeroModel>();
         try

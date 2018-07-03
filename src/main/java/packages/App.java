@@ -15,7 +15,7 @@ public class App
             String arg = args[0].trim().toLowerCase();
 
             if (arg.equals("console")){
-                System.out.println(ANSI_BLUE + "\n>>>>>> CONSOLE VIEW <<<<<<<< \n" + ANSI_RESET);
+                System.out.println(ANSI_BLUE + "\n######## CONSOLE VIEW ######## \n" + ANSI_RESET);
                 ConsoleView.start();
                 return ;
             }

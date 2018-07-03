@@ -1,9 +1,15 @@
-John the Teenager,Knight,2,540,10,5,5,sword,leather,pot,src/main/java/packages/images/default-image.png
-Alex the Great, Elf,3,124,10,5,5,bow,leather,pot,src/main/java/packages/images/default-image.png
-Thor the Mighty,Knight,6,990,10,5,5,sword,steel,pot,src/main/java/packages/images/default-image.png
-KaygoPhobos,knight,0,0,0,0,10,bow,jacket,pot,src/main/java/packages/images/default-image.png
+John the Teenager,knight,2,540,10,5,5,sword,leather,pot,src/main/java/packages/images/default-image.png
+Alex the Great,elf,3,124,10,5,5,bow,leather,pot,src/main/java/packages/images/default-image.png
+Thor the Mighty,knight,6,990,10,5,5,sword,steel,pot,src/main/java/packages/images/default-image.png
+KaygoPhobos,knight,1,0,0,0,10,bow,jacket,pot,src/main/java/packages/images/default-image.png
 adefef,knight,0,0,0,0,10,bow,jacket,pot,src/main/java/packages/images/default-image.png
+<<<<<<< HEAD
 andile,knight,0,0,0,0,0,bow,jacket,frog_mouthed,src/main/java/packages/images/default-image.png
 Godess of Evil,knight,0,0,0,0,10,bow,jacket,pot,src/main/java/packages/images/default-image.pngThato,knight,0,0,0,0,10,bow,jacket,pot,icon-path
 Sods,knight,0,0,0,0,10,bow,jacket,pot,/goinfre/tmekwa/Desktop/Workspace/main@2x.png
 uktfyugkbj,knight,0,0,0,0,10,bow,jacket,pot,/goinfre/tmekwa/Pictures/Wallhaven/wallhaven-668358.png
+=======
+andile,knight,5,0,0,0,0,bow,jacket,frog_mouthed,src/main/java/packages/images/default-image.png
+Godess of Evil,knight,15,0,0,0,100,bow,jacket,pot,src/main/java/packages/images/default-image.png
+hel,warrior,0,0,0,0,0,bow,jacket,frog_mouthed,none
+>>>>>>> 8f3d31aa0cafc9a7af53af0de40c75ad9c3b0224
