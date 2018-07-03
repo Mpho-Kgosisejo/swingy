@@ -1,8 +1,5 @@
 package packages.models;
 
-import packages.gui.controllers.GameSimulationController;
-import packages.gui.views.GameSimulationView;
-
 public class GameSimulationModel{
     private HeroModel hero;
     private EnemyModel enemy;

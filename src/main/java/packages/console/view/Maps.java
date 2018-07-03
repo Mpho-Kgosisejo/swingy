@@ -35,7 +35,7 @@ public class Maps
         if (hero.getCoordinates().getX() == MapSize - 1 || hero.getCoordinates().getY() == MapSize - 1 || hero.getCoordinates().getY() == 0 || hero.getCoordinates().getX() == 0)
         {
             System.out.println(ANSI_YELLOW +  "\n>>>>>> You won the game! <<<<<<\n" + ANSI_RESET);
-            hero.setName("LALALALALALALA");
+            hero.setXPoints(hero.getXPoints() + 100);;
             WriteFile.findAndUpdate(ConsoleView.heroList, hero);
             ConsoleView.start();//why should it start again?
         }
