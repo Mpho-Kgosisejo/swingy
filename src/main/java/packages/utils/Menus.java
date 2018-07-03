@@ -6,7 +6,7 @@ import packages.models.HeroModel;
 public class Menus {
     public static void menu()
     {
-        System.out.print(ANSI_GREEN + "\nSelect one of the options\n" + ANSI_RESET + "1. create a new Hero\n" + "2. Select from existing Heroes\n" + "3. Switch to gui\n");
+        System.out.println(ANSI_GREEN + "\nSelect one of the options\n" + ANSI_RESET + "1. create a new Hero\n" + "2. Select from existing Heroes\n" + "3. Switch to gui\n");
     }
 
     public static void heroMenu()

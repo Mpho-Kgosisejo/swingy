@@ -101,7 +101,8 @@ public class GameView extends JFrame{
         JFrameHelper.ShowInfoDialog(this, "title", "message");
         
         //Level up the hero...
-        this.hero.setLevel(5);
+        this.hero.setLevel(this.hero.getLevel() + 1);
+        this.hero.setXPoints(Formulas.getXPoints(this.hero.getLevel()));
 
         WriteFile.findAndUpdate(this._heroList, this.hero);
         SelectHeroView selectHeroView = new SelectHeroView(readFile.simulateFile());
