@@ -72,32 +72,39 @@ public class ConsoleView
 
         while (reader.hasNextLine())
         {
-            int n = reader.nextInt();
-            switch (n)
+            if (reader.hasNextInt())
             {
-                case 1:
-                    declareHero(CharacterType.knight);
-                    break;
-                case 2:
-                    declareHero(CharacterType.warrior);
-                    break;
-                case 3:
-                    declareHero(CharacterType.elf);
-                    break;
-                case 4:
-                    declareHero(CharacterType.hunter);
-                    break;
-                case 5:
-                    declareHero(CharacterType.villager);
-                    break;
-                case 6:
-                    CreateHeroView view = new CreateHeroView();
-                    view.setVisible(true);
-                    new CreateHeroController(view, heroList);
-                    break;
-                default:
-                    System.out.println("\nChoice does not correspond to given choices\n");
-                    break;
+                int n = reader.nextInt();
+                switch (n) {
+                    case 1:
+                        declareHero(CharacterType.knight);
+                        break;
+                    case 2:
+                        declareHero(CharacterType.warrior);
+                        break;
+                    case 3:
+                        declareHero(CharacterType.elf);
+                        break;
+                    case 4:
+                        declareHero(CharacterType.hunter);
+                        break;
+                    case 5:
+                        declareHero(CharacterType.villager);
+                        break;
+                    case 6:
+                        CreateHeroView view = new CreateHeroView();
+                        view.setVisible(true);
+                        new CreateHeroController(view, heroList);
+                        break;
+                    default:
+                        System.out.println("\nChoice does not correspond to given choices\n");
+                        break;
+                }
+            }
+            else
+            {
+                System.out.println("Input must be numeric please select another option");
+                createHero();
             }
         }
         reader.close();
@@ -116,33 +123,47 @@ public class ConsoleView
 
 
     public  static void existingHero() {
+        boolean isMatch = false;
         System.out.println(ANSI_GREEN + "\nCharacters to choose from [type 'gui' to switch to gui]\n" + ANSI_RESET);
         int a = heroList.size();
-        for (int index = 0; index < a; index++)
+        if (a == 0)
         {
-            Menus.printStats(heroList.get(index));
+            System.out.println(ANSI_RED + "THERE ARE NO HERO'S YOU CAN CHOOSE!!!" + ANSI_RESET);
+        }
+        else {
+            for (int index = 0; index < a; index++) {
+                Menus.printStats(heroList.get(index));
+            }
         }
         System.out.println(ANSI_GREEN + "\nType in the name of the Hero you'd like: \n" + ANSI_RESET);
         Scanner reader = new Scanner(System.in);
         String choice = reader.nextLine();
         int i = 0;
-        for (HeroModel __hero : heroList)
-        {
-            if (choice.toLowerCase().equals(heroList.get(i).getName().toLowerCase()))
+            for (HeroModel __hero : heroList)
             {
-                CliGame.run(heroList.get(i));
-                backToStart();
-            } 
-            else if (choice.toLowerCase().equals("gui"))
-            {
-                SelectHeroView view = new SelectHeroView(heroList);
-                view.setVisible(true);
-                new SelectHeroController(view, heroList);
-                break;
+                if (choice.equalsIgnoreCase(heroList.get(i).getName()))
+                {
+                    CliGame.run(heroList.get(i));
+                    isMatch = true;
+                    backToStart();
+                }
+                else if (choice.toLowerCase().equals("gui"))
+                {
+                    SelectHeroView view = new SelectHeroView(heroList);
+                    view.setVisible(true);
+                    new SelectHeroController(view, heroList);
+                    break;
+                }
+                else if(!(choice.toLowerCase().equals(heroList.get(i).getName().toLowerCase())))
+                    isMatch = false;
+                i++;
             }
-            i++;
+            if (!isMatch)
+            {
+                System.out.println(ANSI_RED +  "The hero you selected does not exist!! redirecting you back to start" + ANSI_RESET);
+                start();
+            }
         }
-    }
 
     public static void backToStart()
    {
@@ -151,13 +172,12 @@ public class ConsoleView
        while (reader.hasNextLine())
        {
            int n = reader.nextInt();
-           switch(n)
-
-           {
-               case 0:
-                   start();
-                   break;
-           }
+               switch (n)
+               {
+                   case 0:
+                       start();
+                       break;
+               }
        }
    }
 }

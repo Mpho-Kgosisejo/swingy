@@ -37,7 +37,7 @@ public class Maps
             System.out.println(ANSI_YELLOW +  "\n>>>>>> You won the game! <<<<<<\n" + ANSI_RESET);
             hero.setName("LALALALALALALA");
             WriteFile.findAndUpdate(ConsoleView.heroList, hero);
-            ConsoleView.start();
+            ConsoleView.start();//why should it start again?
         }
         for (EnemyModel enemyLoop: enemyList) {
             if (enemyLoop.getCoordinates().Isequals(hero.getCoordinates())){
@@ -62,6 +62,9 @@ public class Maps
                     break;
                 case 4:
                     hero.getCoordinates().advance(4);
+                    break;
+                case 0:
+                    ConsoleView.start();
                     break;
                 default:
                     break;
@@ -109,5 +112,7 @@ public class Maps
         Menus.printMovementMenu();
         Scanner reader = new Scanner(System.in);
         move(reader, hero, mapSize);
+
+
     }
 }
