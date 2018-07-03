@@ -11,10 +11,12 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.DefaultStyledDocument.ElementSpec;
 import javax.xml.validation.ValidatorHandler;
 
@@ -32,6 +34,7 @@ import packages.utils.HeroFactory;
 import packages.utils.JFrameHelper;
 
 public class CreateHeroView extends JFrame{
+    private static JFileChooser chooseFile;
     private JLabel lblHeroImage;
     private JButton btnSelectHeroImage;
     private Image heroImage;
@@ -45,6 +48,8 @@ public class CreateHeroView extends JFrame{
     private JTextField txtFdWeapon;
     private JTextField txtFdArmor;
     private HeroModel newHero = null;
+    private String _heroImagePath = "";
+    
     public CreateHeroView(){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Create Hero");
@@ -56,6 +61,7 @@ public class CreateHeroView extends JFrame{
     }
 
     private void init(){
+        this.chooseFile = new JFileChooser();
         JPanel panelMain = new JPanel();
         JPanel panelTop = new JPanel();
         JPanel panelMid = new JPanel();
@@ -85,6 +91,8 @@ public class CreateHeroView extends JFrame{
         this.btnCreateHero = new JButton("Create Hero");
         this.btnCanel = new JButton("Cancel");
 
+
+    
         panelMain.setLayout(null);
         panelMain.setBounds(0, 0, this.getWidth(), this.getHeight());
         panelTop.setBounds(0, 0, this.getWidth(), 80);
@@ -190,7 +198,7 @@ public class CreateHeroView extends JFrame{
             int HP = 10;
             // WeaponType weapon = WeaponType.valueOf(this.txtFdWeapon.getText());
             // ArmorType armor = ArmorType.valueOf(this.txtFdArmor.getText());
-            String iconPath = "icon-path";
+            String iconPath = getHeroImagePath();
 
             this.newHero = HeroFactory.newHero(this.txtFdName.getText(), this.listFdType.getSelectedItem().toString(), level, xPoint, attack, defense, HP, this.txtFdWeapon.getText(), this.txtFdArmor.getText(), HelmType.pot.toString(), iconPath);
             // if (this.listFdType.getSelectedItem().toString().equals(CharacterType.elf.toString()) == true){
@@ -217,5 +225,15 @@ public class CreateHeroView extends JFrame{
 
     public HeroModel getNewHero(){
         return (this.newHero);
+    }
+
+    public void setHeroImagePath(String path)
+    {
+        this._heroImagePath = path;
+    }
+
+    public String getHeroImagePath()
+    {
+        return this._heroImagePath;
     }
 }

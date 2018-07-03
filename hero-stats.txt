@@ -4,4 +4,6 @@ Thor the Mighty,Knight,6,990,10,5,5,sword,steel,pot,src/main/java/packages/image
 KaygoPhobos,knight,0,0,0,0,10,bow,jacket,pot,src/main/java/packages/images/default-image.png
 adefef,knight,0,0,0,0,10,bow,jacket,pot,src/main/java/packages/images/default-image.png
 andile,knight,0,0,0,0,0,bow,jacket,frog_mouthed,src/main/java/packages/images/default-image.png
-Godess of Evil,knight,0,0,0,0,10,bow,jacket,pot,src/main/java/packages/images/default-image.png
+Godess of Evil,knight,0,0,0,0,10,bow,jacket,pot,src/main/java/packages/images/default-image.pngThato,knight,0,0,0,0,10,bow,jacket,pot,icon-path
+Sods,knight,0,0,0,0,10,bow,jacket,pot,/goinfre/tmekwa/Desktop/Workspace/main@2x.png
+uktfyugkbj,knight,0,0,0,0,10,bow,jacket,pot,/goinfre/tmekwa/Pictures/Wallhaven/wallhaven-668358.png
