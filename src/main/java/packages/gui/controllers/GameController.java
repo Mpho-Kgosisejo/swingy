@@ -43,18 +43,22 @@ public class GameController{
             case 38:
                 // Up
                 y--;
+                hero.getCoordinates().setY(y);
             break;
             case 40:
                 // Down
                 y++;
+                hero.getCoordinates().setY(y);
             break;
             case 37:
                 // Left
                 x--;
+                hero.getCoordinates().setX(x);
             break;
             case 39:
                 // Right
                 x++;
+                hero.getCoordinates().setX(x);
             break;
             case 81:
                 this.view.disposeWindow();
@@ -63,9 +67,9 @@ public class GameController{
                 this.view.disposeWindow();
             break;
         }
-        x = Coordinates.getPositionMax(x, (this.view.getMapSize() - 1));
-        y = Coordinates.getPositionMax(y, (this.view.getMapSize() - 1));
-        hero.setCoordinates(new Coordinates(x, y));
+        // x = Coordinates.getPositionMax(x, (this.view.getMapSize() - 1));
+        // y = Coordinates.getPositionMax(y, (this.view.getMapSize() - 1));
+        // hero.setCoordinates(new Coordinates(x, y));
         //if (oldX != x && oldY != y){
             this.view.drawMap();
         //}

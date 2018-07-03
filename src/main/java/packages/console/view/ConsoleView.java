@@ -27,7 +27,7 @@ public class ConsoleView
         try {
             heroList = readFile.simulateFile();
         }
-        catch (IOException e)
+        catch (Exception e)
         {
             System.out.println("Could not read from file");
         }
