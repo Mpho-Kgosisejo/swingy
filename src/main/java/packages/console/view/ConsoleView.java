@@ -29,7 +29,7 @@ public class ConsoleView
         }
         catch (IOException e)
         {
-            System.out.println("hehehehehe");
+            System.out.println("Could not read from file");
         }
         Scanner read = new Scanner(System.in);
         Menus.menu();
@@ -134,6 +134,7 @@ public class ConsoleView
             for (int index = 0; index < a; index++) {
                 Menus.printStats(heroList.get(index));
             }
+            System.out.println(ANSI_GREEN + "YOUR MISSION IS TO GET TO THE BORDERS OF THE MAP, ENJOY!!" + ANSI_RESET);
         }
         System.out.println(ANSI_GREEN + "\nType in the name of the Hero you'd like: \n" + ANSI_RESET);
         Scanner reader = new Scanner(System.in);

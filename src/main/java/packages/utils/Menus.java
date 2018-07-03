@@ -1,8 +1,6 @@
 package packages.utils;
 
 import static packages.utils.Colours.*;
-
-import packages.console.view.ConsoleView;
 import packages.models.HeroModel;
 
 public class Menus {
