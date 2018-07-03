@@ -48,28 +48,35 @@ public class Maps
 
         while (scan.hasNextLine())
         {
-            int n = scan.nextInt();
-            switch (n)
+            if (scan.hasNextInt())
             {
-                case 1:
-                    hero.getCoordinates().advance(1);
-                    break;
-                case 2:
-                    hero.getCoordinates().advance(2);
-                    break;
-                case 3:
-                    hero.getCoordinates().advance(3);
-                    break;
-                case 4:
-                    hero.getCoordinates().advance(4);
-                    break;
-                case 0:
-                    ConsoleView.start();
-                    break;
-                default:
-                    break;
+                int n = scan.nextInt();
+                switch (n) {
+                    case 1:
+                        hero.getCoordinates().advance(1);
+                        break;
+                    case 2:
+                        hero.getCoordinates().advance(2);
+                        break;
+                    case 3:
+                        hero.getCoordinates().advance(3);
+                        break;
+                    case 4:
+                        hero.getCoordinates().advance(4);
+                        break;
+                    case 0:
+                        ConsoleView.start();
+                        break;
+                    default:
+                        break;
+                }
+                drawMap(hero);
             }
-            drawMap(hero);
+            else
+            {
+                System.out.println(ANSI_RED + "INPUT MUST BE NUMERIC!!!REDIRECTING YOU TO THE START MENU\n" + ANSI_RESET);
+                ConsoleView.start();
+            }
         }
     }
 
