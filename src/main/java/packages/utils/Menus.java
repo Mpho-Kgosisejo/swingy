@@ -2,6 +2,7 @@ package packages.utils;
 
 import static packages.utils.Colours.*;
 
+import packages.console.view.ConsoleView;
 import packages.models.HeroModel;
 
 public class Menus {
@@ -38,7 +39,8 @@ public class Menus {
             "1. North\n" +
             "2. East\n" +
             "3. West\n" +
-            "4. South\n";
+            "4. South\n" +
+                "0. Back\n";
         System.out.print(movement);
     }
     
