@@ -1,13 +1,11 @@
 package packages.models;
 
-import packages.gui.controllers.GameSimulationController;
-import packages.gui.views.GameSimulationView;
-
 public class GameSimulationModel{
     private HeroModel hero;
     private EnemyModel enemy;
     private String simulationOutput = "";
     private int simulationCount = 0;
+    private int simulationMiliSecs = 1500;
 
     public GameSimulationModel(HeroModel hero, EnemyModel enemy){
         this.hero = hero;
@@ -20,7 +18,7 @@ public class GameSimulationModel{
             this.enemy.setHitPoints((this.enemy.getHitPoints() - 1));
 
             simulationOutput = "* simulation " + simulationCount + "*";
-            Thread.sleep(1000);
+            Thread.sleep(this.simulationMiliSecs);
             return (true);
         }
         return (false);
@@ -44,5 +42,13 @@ public class GameSimulationModel{
 
     public EnemyModel getEnemyModel(){
         return (this.enemy);
+    }
+
+    public void setSimulationMiliSecs(int value){
+        this.simulationMiliSecs = value;
+    }
+
+    public int getSimulationMiliSecs(){
+        return (this.simulationMiliSecs);
     }
 }

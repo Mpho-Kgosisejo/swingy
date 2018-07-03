@@ -39,7 +39,14 @@ public class GameSimulationController extends JFrameHelper
     {
         public void actionPerformed(ActionEvent e) 
         {
-            System.out.println("StartBtnListener clicked!");
+            int speed = _model.getSimulationMiliSecs();
+            if (speed > 0){
+                speed -= 100;
+            }else{
+                speed = 0;
+            }
+            System.out.print("Speed: " + speed + ";\n");
+            _model.setSimulationMiliSecs(speed);
 		}
     }
 
@@ -47,7 +54,7 @@ public class GameSimulationController extends JFrameHelper
     {
         public void actionPerformed(ActionEvent e) 
         {
-            System.out.println("Skip button clicked!");
+            _model.setSimulationMiliSecs(0);
 		}
     }
 

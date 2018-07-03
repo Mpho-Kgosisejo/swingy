@@ -1,15 +1,12 @@
 package packages.gui.views;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Desktop.Action;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import packages.models.GameSimulationModel;
@@ -23,7 +20,6 @@ public class GameSimulationView extends JFrame
     private JLabel _lblHero;
     private JLabel _lblVillan;
     private GameSimulationModel _model;
-    private String _heroName;
 
     public GameSimulationView(GameSimulationModel model)
     {
@@ -48,16 +44,9 @@ public class GameSimulationView extends JFrame
         JPanel heroPanel = new JPanel();
         JPanel bottomPanel = new JPanel();
         JPanel villanPanel = new JPanel();
-        // this._lblVillan = new JLabel();
-        // this._lblHero = new JLabel();
         this._btnStart = new JButton("Start");
         this._btnSkip = new JButton("Skip");
         this._txtASimulation.setEditable(false);
-
-        // simulationPanel.setBackground(new Color(255, 0, 0));   
-        // bottomPanel.setBackground(new Color(255, 100, 100));   
-        // heroPanel.setBackground(new Color(255, 255, 255));
-        // villanPanel.setBackground(new Color(255, 255, 255));
 
         this._lblHero = JFrameHelper.getLabelImage(this._model.getHeroModel().getIcon(), 260);
         this._lblVillan = JFrameHelper.getLabelImage(this._model.getEnemyModel().getIcon(), 260);
@@ -79,11 +68,6 @@ public class GameSimulationView extends JFrame
         mainPanel.add( bottomPanel, BorderLayout.CENTER );
         mainPanel.add( villanPanel, BorderLayout.EAST );
 
-        
-        // JLabel lblImg = JFrameHelper.getLabelImage(_enemy.getIcon());
-        // if (lblImg != null){
-        //     this.villanPanel.add(lblImg);
-        // }
         this.add(mainPanel);
     }
 
