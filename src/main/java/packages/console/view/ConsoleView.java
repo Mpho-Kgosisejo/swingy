@@ -36,6 +36,7 @@ public class ConsoleView
         Menus.menu();
         while (read.hasNextLine())
         {
+
             if (read.hasNextInt())
                 {
                     int n = read.nextInt();
@@ -53,13 +54,14 @@ public class ConsoleView
                             new WelcomeController(view);
                             break;
                         default:
-                            System.out.println("\nChoice does not correspond to given choices\n");
+                            System.out.println(ANSI_RED + "\nYOUR CHOICE DOES NOT CORRESPOND TO GIVEN CHOICES\n" + ANSI_RESET);
                             break;
                     }
+
                 }
                 else
                 {
-                    System.out.println("Input must be numeric please enter another option");
+                    System.out.println(ANSI_RED + "INPUT MUST BE NUMERIC PLEASE SELECT ANOTHER OPTION" + ANSI_RESET);
                     start();
                 }
         }
@@ -98,13 +100,13 @@ public class ConsoleView
                         new CreateHeroController(view, heroList);
                         break;
                     default:
-                        System.out.println("\nChoice does not correspond to given choices\n");
+                        System.out.println(ANSI_RED + "\nYOUR CHOICE DOES NOT CORRESPOND TO GIVEN CHOICES\n" + ANSI_RESET);
                         break;
                 }
             }
             else
             {
-                System.out.println("Input must be numeric please select another option");
+                System.out.println(ANSI_RED + "INPUT MUST BE NUMERIC PLEASE SELECT ANOTHER OPTION" + ANSI_RESET);
                 createHero();
             }
         }
@@ -113,7 +115,7 @@ public class ConsoleView
 
     public  static void declareHero(CharacterType htype)
     {
-        System.out.print("\nGive your " + htype + " a name: ");
+        System.out.print(ANSI_CYAN + "\nGive your " + htype + " a name: " + ANSI_RESET);
         Scanner reader = new Scanner(System.in);
         String name = reader.next();
         _hero = HeroFactory.newHero(name, htype.toString(), 0, 0, 0, 0, 20, WeaponType.bow.toString(), ArmorType.jacket.toString(), HelmType.frog_mouthed.toString(), "none");
@@ -125,7 +127,7 @@ public class ConsoleView
 
     public  static void existingHero() {
         boolean isMatch = false;
-        System.out.println(ANSI_GREEN + "\nCharacters to choose from [type 'gui' to switch to gui]\n" + ANSI_RESET);
+        System.out.println(ANSI_CYAN+ "\nCHARACTERS TO CHOOSE FROM OR TYPE IN GUI TO SWITCH TO GUI\n" + ANSI_RESET);
         int a = heroList.size();
         if (a == 0)
         {
@@ -136,7 +138,7 @@ public class ConsoleView
                 Menus.printStats(heroList.get(index));
             }
         }
-        System.out.println(ANSI_GREEN + "\nType in the name of the Hero you'd like: \n" + ANSI_RESET);
+        System.out.println(ANSI_CYAN + "\nTYPE IN THE NAME OF THE HERO YOU'D LIKE: " + ANSI_RESET);
         Scanner reader = new Scanner(System.in);
         String choice = reader.nextLine();
         int i = 0;
@@ -161,7 +163,7 @@ public class ConsoleView
             }
             if (!isMatch)
             {
-                System.out.println(ANSI_RED +  "The hero you selected does not exist!! redirecting you back to start" + ANSI_RESET);
+                System.out.println(ANSI_RED +  "THE HERO YOU SELECTED DOES NOT EXIST!!!REDIRECTING YOU TO START\n" + ANSI_RESET);
                 start();
             }
         }
