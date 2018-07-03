@@ -1,16 +1,11 @@
 package packages.gui.controllers;
 
-import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
-
 import packages.gui.views.GameSimulationView;
 import packages.gui.views.GameView;
-import packages.models.EnemyModel;
 import packages.models.GameSimulationModel;
-import packages.models.HeroModel;
 import packages.utils.JFrameHelper;
 
 public class GameSimulationController extends JFrameHelper
@@ -25,7 +20,7 @@ public class GameSimulationController extends JFrameHelper
         this._model = gameSimulationModel;
         this._gameView = gameView;
 
-        this._view.startBtnListener(new StartBtnListener());
+        this._view._btnIncreaseSpeedListener(new BtnIncreaseSpeedListener());
         this._view.skipBtnListener(new SkipBtnListener());
 
         this.startSimulation();
@@ -35,7 +30,7 @@ public class GameSimulationController extends JFrameHelper
         new Thread(new StartSimulation()).start();
     }
 
-    private class StartBtnListener implements ActionListener
+    private class BtnIncreaseSpeedListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e) 
         {
@@ -44,9 +39,9 @@ public class GameSimulationController extends JFrameHelper
                 speed -= 100;
             }else{
                 speed = 0;
-            }
-            System.out.print("Speed: " + speed + ";\n");
+            }            
             _model.setSimulationMiliSecs(speed);
+            _view.setBtnIncreaseSpeedText("Speed ("+ _model.getSimulationMiliSecs() +"/1500)");
 		}
     }
 
@@ -76,6 +71,7 @@ public class GameSimulationController extends JFrameHelper
                 _model.getEnemyModel().getName()); 
                 Thread.sleep(2000);
                 _view.setText("");
+
                 while(_model.nextFight()){
                     _view.setSimulationText(_model.getSimulationOutput() + "\n");
                     System.out.println(">> " + _model.getSimulationOutput());

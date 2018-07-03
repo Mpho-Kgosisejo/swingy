@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import packages.models.GameSimulationModel;
@@ -15,7 +16,7 @@ import packages.utils.JFrameHelper;
 public class GameSimulationView extends JFrame
 {
     private JTextArea _txtASimulation;
-    private JButton _btnStart;
+    private JButton _btnIncreaseSpeed;
     private JButton _btnSkip;
     private JLabel _lblHero;
     private JLabel _lblVillan;
@@ -44,10 +45,13 @@ public class GameSimulationView extends JFrame
         JPanel heroPanel = new JPanel();
         JPanel bottomPanel = new JPanel();
         JPanel villanPanel = new JPanel();
-        this._btnStart = new JButton("Start");
+        this._btnIncreaseSpeed = new JButton("Speed (1500/1500)");
+        this._btnIncreaseSpeed.setToolTipText("Increase Speed (1500/1500)");
         this._btnSkip = new JButton("Skip");
         this._txtASimulation.setEditable(false);
-
+        JScrollPane scrollableTextArea = new JScrollPane(this._txtASimulation);  
+        simulationPanel.scrollRectToVisible(this._txtASimulation.getBounds());
+        scrollableTextArea.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);  
         this._lblHero = JFrameHelper.getLabelImage(this._model.getHeroModel().getIcon(), 260);
         this._lblVillan = JFrameHelper.getLabelImage(this._model.getEnemyModel().getIcon(), 260);
         heroPanel.add(this._lblHero);
@@ -57,11 +61,11 @@ public class GameSimulationView extends JFrame
         villanPanel.setBounds(this.getWidth() - heroPanel.getWidth(), 0, heroPanel.getHeight(), heroPanel.getHeight());        
         simulationPanel.setBounds(heroPanel.getWidth(), 0, (this.getWidth() - (heroPanel.getHeight() * 2)), this.getHeight() -60);
         bottomPanel.setBounds(heroPanel.getWidth(), simulationPanel.getHeight(), simulationPanel.getWidth(), 60);
-        this._txtASimulation.setBounds(0, 0, simulationPanel.getWidth(), simulationPanel.getHeight());
+        scrollableTextArea.setBounds(0, 0, simulationPanel.getWidth(), simulationPanel.getHeight());
         
-        bottomPanel.add(this._btnStart);
+        bottomPanel.add(this._btnIncreaseSpeed);
         bottomPanel.add(this._btnSkip);
-        simulationPanel.add(this._txtASimulation);        
+        simulationPanel.add(scrollableTextArea);   
         
         mainPanel.add( heroPanel, BorderLayout.WEST );        
         mainPanel.add( simulationPanel, BorderLayout.CENTER );
@@ -71,9 +75,14 @@ public class GameSimulationView extends JFrame
         this.add(mainPanel);
     }
 
-    public void startBtnListener(ActionListener listener)
+    public void _btnIncreaseSpeedListener(ActionListener listener)
     {
-        this._btnStart.addActionListener(listener);
+        this._btnIncreaseSpeed.addActionListener(listener);
+    }
+
+    public void setBtnIncreaseSpeedText(String str){
+        this._btnIncreaseSpeed.setText(str);
+        this._btnIncreaseSpeed.setToolTipText("Increase " + str);
     }
 
     public void skipBtnListener(ActionListener listener)
