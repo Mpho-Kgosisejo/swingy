@@ -34,7 +34,7 @@ public class GameSimulationModel{
     public static void winGame(HeroModel hero){
         hero.setLevel(hero.getLevel() + 1);
         hero.setXPoints(Formulas.getXPoints(hero.getLevel()));
-
+        hero.setHitPoints(10);
         WriteFile.findAndUpdate(readFile.simulateFile(), hero);
     }
 

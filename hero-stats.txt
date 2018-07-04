@@ -1,12 +1,5 @@
 John the Teenager,knight,5,540,10,5,5,sword,leather,pot,src/main/java/packages/images/default-image.png
-Alex the Great,elf,3,124,10,5,5,bow,leather,pot,src/main/java/packages/images/default-image.png
+Alex the Great,elf,3,124,10,5,10,bow,leather,pot,src/main/java/packages/images/default-image.png
 Thor the Mighty,knight,7,23200,10,5,2,sword,steel,pot,src/main/java/packages/images/default-image.png
 KaygoPhobos,knight,1,0,0,0,10,bow,jacket,pot,src/main/java/packages/images/default-image.png
-adefef,knight,0,0,0,0,10,bow,jacket,pot,src/main/java/packages/images/default-image.png
-andile,knight,1,1000,0,0,0,bow,jacket,frog_mouthed,src/main/java/packages/images/default-image.png
-Godess of Evil,knight,0,0,0,0,10,bow,jacket,pot,src/main/java/packages/images/default-image.png
-Thato,knight,0,0,0,0,10,bow,jacket,pot,icon-path
-Sods,knight,1,1000,0,0,10,bow,jacket,pot,/goinfre/tmekwa/Desktop/Workspace/main@2x.png
-uktfyugkbj,knight,0,0,0,0,10,bow,jacket,pot,/goinfre/tmekwa/Pictures/Wallhaven/wallhaven-668358.png
-Gama the legend,hunter,0,0,0,0,10,bow,jacket,pot,src/main/java/packages/images/default-image.png
-Gamas Friend he is also a legend i promise,hunter,0,0,0,0,10,bow,jacket,pot,/goinfre/tmekwa/Pictures/Wallhaven/wallhaven-668709.jpg
+
