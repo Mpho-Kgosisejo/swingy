@@ -61,7 +61,6 @@ public class CreateHeroController{
                 File file = fileChooser.getSelectedFile();
                 String filePath = file.getPath();
                 view.setHeroImagePath(filePath);
-                System.out.println(filePath);
             }
 		}
     }

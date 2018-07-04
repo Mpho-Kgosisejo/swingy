@@ -33,25 +33,15 @@ public class Maps
         enemyList = EnemyFactory.getEnemyList(hero);
     }
 
-    private void winGame(HeroModel hero){
-        System.out.println(ANSI_YELLOW +  "\n>>>>>> You won the game! <<<<<<\n" + ANSI_RESET);
-        hero.setLevel(hero.getLevel() + 1);
-        hero.setXPoints(Formulas.getXPoints(hero.getLevel()));
-
-        WriteFile.findAndUpdate(ConsoleView.heroList, hero);
-    }
-
-
     public void move(Scanner scan, HeroModel hero, int MapSize) {
-        System.out.println("map: " + MapSize + "\n" + hero.getCoordinates().getX());
         if (hero.getCoordinates().getX() == MapSize || hero.getCoordinates().getY() == MapSize || hero.getCoordinates().getY() == - 1 || hero.getCoordinates().getX() == - 1)
         {
-            winGame(hero);
+            System.out.println(ANSI_YELLOW +  "\n>>>>>> You won the game! <<<<<<\n" + ANSI_RESET);
+            GameSimulationModel.winGame(hero);
             ConsoleView.start();
         }
         for (EnemyModel enemyLoop: enemyList) {
             if (enemyLoop.getCoordinates().Isequals(hero.getCoordinates())){
-                //heroEnemyCoordinatesMatch = new Coordinates(enemyLoop.getCoordinates().getX(), enemyLoop.getCoordinates().getY());
                 Menus.SimulationChoice();
                 FightOrRun(hero, enemyLoop);
             }
@@ -127,8 +117,6 @@ public class Maps
             }
             System.out.println(); 
         }
-        //if (isSamePosition == true)
-            //FightOrRun(hero, enemy);
         Menus.printMovementMenu();
         Scanner reader = new Scanner(System.in);
         move(reader, hero, mapSize);
@@ -139,7 +127,6 @@ public class Maps
         System.out.println("bleh bleh bleh: " + enemy.getHitPoints());
         if (enemy.getHitPoints() > 0)
         {
-            //Menus.SimulationChoice();
             Scanner _reader = new Scanner(System.in);
         
             System.out.println(ANSI_CYAN + hero.getName().toUpperCase() + ANSI_RESET  + " VS " + enemy.getName().toUpperCase());
@@ -193,7 +180,8 @@ public class Maps
 
                 if (gsm.isHeroAlive(gsm.getHeroModel())){
                     mssg = gsm.getHeroModel().getName() + " won the fight";
-                    System.out.println(ANSI_CYAN + "Fight Won: " + ANSI_RESET +  mssg);
+                    System.out.println(ANSI_CYAN + "Fight Won: " + ANSI_RESET +  mssg); 
+                    GameSimulationModel.dropArtifact(hero, enemy);
                     enemyList.remove(enemy);
                     drawMap(hero);
                 }else{

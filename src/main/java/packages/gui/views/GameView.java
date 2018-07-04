@@ -97,20 +97,6 @@ public class GameView extends JFrame{
         this.add(panelMain);
     }
 
-    private void winGame(){
-        JFrameHelper.ShowInfoDialog(this, "title", "message");
-        
-        //Level up the hero...
-        this.hero.setLevel(this.hero.getLevel() + 1);
-        this.hero.setXPoints(Formulas.getXPoints(this.hero.getLevel()));
-
-        WriteFile.findAndUpdate(this._heroList, this.hero);
-        SelectHeroView selectHeroView = new SelectHeroView(readFile.simulateFile());
-        selectHeroView.setVisible(true);
-
-        this.dispose();
-    }
-
     public void drawMap(){
         Random rand = new Random();
         Coordinates heroEnemyCoordinatesMatch = null;
@@ -119,12 +105,18 @@ public class GameView extends JFrame{
 
         //Check if Hero is outside the map...
         if ((this.hero.getCoordinates().getX() < 0 || this.hero.getCoordinates().getY() < 0) || (this.hero.getCoordinates().getX() >= this.mapSize || this.hero.getCoordinates().getY() >= this.mapSize)){
-            this.winGame();
+            GameSimulationModel.winGame(this.hero);
         }
         if (this.hero.getHitPoints() <= 0){
+            System.out.println("if (this.hero.getHitPoints() <= 0) {}");
+            this.hero.setHitPoints(10);
             GameSimulationModel.lostGame(this.hero);
+            
+            this.dispose();
             SelectHeroView selectHeroView = new SelectHeroView(readFile.simulateFile());
             selectHeroView.setVisible(true);
+            System.out.println("if () {}");
+            return ;
         }
 
         for (EnemyModel enemyLoop: this.enemiesList) {
