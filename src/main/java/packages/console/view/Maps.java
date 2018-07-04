@@ -142,7 +142,9 @@ public class Maps
                             if (rn == 0)
                             {
                                 System.out.println(ANSI_GREEN + "\n YOU CHOSE TO RUN YOU COWARD, GO BACK TO PREVIOUS SPOT!!");
+                                enemyList.remove(enemyModel);
                                 drawMap(hero);
+
                             }
                             else if (rn == 1)
                             {
@@ -190,6 +192,8 @@ public class Maps
                 }else{
                     mssg = gsm.getEnemyModel().getName() + " won the fight";
                     System.out.println(ANSI_CYAN + "Fight Lost: " + ANSI_RESET +  mssg);
+                    System.out.println(ANSI_YELLOW + ">>>>>> GAME OVER <<<<<<" + ANSI_RESET);
+                    System.exit(0);
                 }
             }
         }
