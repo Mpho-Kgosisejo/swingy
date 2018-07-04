@@ -2,6 +2,8 @@ package packages.models;
 
 import java.util.Random;
 
+import packages.utils.Formulas;
+
 public class GameSimulationModel{
     private HeroModel hero;
     private EnemyModel enemy;
@@ -28,6 +30,15 @@ public class GameSimulationModel{
             return (true);
         }
         return (false);
+    }
+
+    public static void lostGame(HeroModel hero){
+        hero.setLevel(hero.getLevel() - 1);
+        hero.setXPoints(Formulas.getXPoints(hero.getLevel()));
+    }
+
+    public String getVSMessage(HeroModel hero, EnemyModel enemy){
+        return (hero.getName() + " (" + hero.getHitPoints() + "HP) VS " + enemy.getName() + " (" + enemy.getHitPoints() + "HP)");
     }
 
     public int getSimulationCount(){

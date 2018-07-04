@@ -121,6 +121,11 @@ public class GameView extends JFrame{
         if ((this.hero.getCoordinates().getX() < 0 || this.hero.getCoordinates().getY() < 0) || (this.hero.getCoordinates().getX() >= this.mapSize || this.hero.getCoordinates().getY() >= this.mapSize)){
             this.winGame();
         }
+        if (this.hero.getHitPoints() <= 0){
+            GameSimulationModel.lostGame(this.hero);
+            SelectHeroView selectHeroView = new SelectHeroView(readFile.simulateFile());
+            selectHeroView.setVisible(true);
+        }
 
         for (EnemyModel enemyLoop: this.enemiesList) {
             if (enemyLoop.getCoordinates().Isequals(this.hero.getCoordinates())){
@@ -169,6 +174,7 @@ public class GameView extends JFrame{
                     this.setVisible(false);
                 }else{
                     // eg.: hero level -= 1
+                    
                 }
             }
             else{

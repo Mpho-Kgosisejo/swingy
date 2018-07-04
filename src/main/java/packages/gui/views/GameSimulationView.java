@@ -99,4 +99,8 @@ public class GameSimulationView extends JFrame
     {
         this._txtASimulation.setText(message);
     }
+
+    public void setWinTitle(String mssg){
+        this.setTitle(mssg);
+    }
 }

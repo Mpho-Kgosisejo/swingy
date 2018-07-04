@@ -74,7 +74,7 @@ public class GameSimulationController extends JFrameHelper
 
                 while(_model.nextFight()){
                     _view.setSimulationText(_model.getSimulationOutput() + "\n");
-                    System.out.println(">> " + _model.getSimulationOutput());
+                    _view.setWinTitle(_model.getVSMessage(_model.getHeroModel(), _model.getEnemyModel()));
                 }
                 _view.setSimulationText("Game ended...");
 
