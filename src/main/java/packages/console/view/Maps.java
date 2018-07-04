@@ -124,12 +124,11 @@ public class Maps
 
     private void FightOrRun(HeroModel hero, EnemyModel enemyModel) 
     {
-        System.out.println("bleh bleh bleh: " + enemy.getHitPoints());
         if (enemy.getHitPoints() > 0)
         {
             Scanner _reader = new Scanner(System.in);
         
-            System.out.println(ANSI_CYAN + hero.getName().toUpperCase() + ANSI_RESET  + " VS " + enemy.getName().toUpperCase());
+            System.out.println(ANSI_CYAN + hero.getName().toUpperCase() + ANSI_RESET  + " VS " + ANSI_RED + enemy.getName().toUpperCase() + ANSI_RESET);
             while (_reader.hasNextLine())
             {
                 if (_reader.hasNextInt())
@@ -140,10 +139,15 @@ public class Maps
                         case 1:
                             int rn = rand.nextInt(2);
                             if (rn == 0)
-                                System.out.println("You ran away");
+                            {
+                                System.out.println(ANSI_GREEN + "\n YOU CHOSE TO RUN YOU COWARD, GO BACK TO PREVIOUS SPOT!!" + ANSI_RESET);
+                                enemyList.remove(enemyModel);
+                                drawMap(hero);
+
+                            }
                             else if (rn == 1)
                             {
-                                System.out.println("Luck is not on your side, you still have to fight the enemy");
+                                System.out.println("\nLuck is not on your side, you still have to fight the enemy");
                                 Fight(hero, enemyModel);
                             }
                             break;
@@ -187,6 +191,8 @@ public class Maps
                 }else{
                     mssg = gsm.getEnemyModel().getName() + " won the fight";
                     System.out.println(ANSI_CYAN + "Fight Lost: " + ANSI_RESET +  mssg);
+                    System.out.println(ANSI_YELLOW + ">>>>>> GAME OVER <<<<<<" + ANSI_RESET);
+                    System.exit(0);
                 }
             }
         }
