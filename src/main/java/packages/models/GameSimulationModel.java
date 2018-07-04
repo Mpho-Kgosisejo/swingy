@@ -1,5 +1,7 @@
 package packages.models;
 
+import java.util.Random;
+
 public class GameSimulationModel{
     private HeroModel hero;
     private EnemyModel enemy;
@@ -15,8 +17,12 @@ public class GameSimulationModel{
     public Boolean nextFight() throws InterruptedException{
         if (this.isHeroAlive(this.hero) && this.isHeroAlive(this.enemy)){            
             simulationCount++;
-            this.enemy.setHitPoints((this.enemy.getHitPoints() - 1));
-
+            Random rand = new Random();
+            int rn = rand.nextInt(2);
+            if (rn == 0)
+                this.enemy.setHitPoints((this.enemy.getHitPoints() - 1));
+            else
+                this.hero.setHitPoints((this.hero.getHitPoints() - 1));
             simulationOutput = "* simulation " + simulationCount + "*";
             Thread.sleep(this.simulationMiliSecs);
             return (true);

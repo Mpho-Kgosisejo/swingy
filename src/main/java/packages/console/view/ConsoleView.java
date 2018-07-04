@@ -12,6 +12,7 @@ import packages.enums.CharacterType;
 import packages.enums.WeaponType;
 import packages.gui.controllers.*;
 import packages.gui.views.*;
+import packages.utils.HeroFactory;
 import packages.utils.Menus;
 import packages.utils.WriteFile;
 import packages.utils.readFile;
@@ -117,7 +118,7 @@ public class ConsoleView
         System.out.print(ANSI_CYAN + "\nGive your " + htype + " a name: " + ANSI_RESET);
         Scanner reader = new Scanner(System.in);
         String name = reader.next();
-        _hero = new HeroModel(name, htype, 0, 0, 0, 0, 0, WeaponType.bow, ArmorType.jacket, HelmType.frog_mouthed, "none");
+        _hero = HeroFactory.newHero(name, htype.toString(), 0, 0, 0, 0, 20, WeaponType.bow.toString(), ArmorType.jacket.toString(), HelmType.frog_mouthed.toString(), "none");
         WriteFile.writeToFile(_hero);
         CliGame.run(_hero);
         backToStart();
@@ -136,7 +137,6 @@ public class ConsoleView
             for (int index = 0; index < a; index++) {
                 Menus.printStats(heroList.get(index));
             }
-            System.out.println(ANSI_GREEN + "YOUR MISSION IS TO GET TO THE BORDERS OF THE MAP, ENJOY!!" + ANSI_RESET);
         }
         System.out.println(ANSI_CYAN + "\nTYPE IN THE NAME OF THE HERO YOU'D LIKE: " + ANSI_RESET);
         Scanner reader = new Scanner(System.in);

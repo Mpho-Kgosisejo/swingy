@@ -2,7 +2,11 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.List;
+
+import javax.print.DocFlavor.STRING;
+import javax.swing.JFileChooser;
 
 import packages.gui.views.CreateHeroView;
 import packages.gui.views.SelectHeroView;
@@ -48,7 +52,17 @@ public class CreateHeroController{
 
     class SelectHeroImageListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-            System.out.println("SelectHeroImageListener()");	
+            int i;
+            JFileChooser fileChooser = new JFileChooser();
+            i = fileChooser.showOpenDialog(null);
+
+            if (i == fileChooser.APPROVE_OPTION)
+            {
+                File file = fileChooser.getSelectedFile();
+                String filePath = file.getPath();
+                view.setHeroImagePath(filePath);
+                System.out.println(filePath);
+            }
 		}
     }
 
@@ -61,4 +75,6 @@ public class CreateHeroController{
             }
 		}
     }
+
+
 }

@@ -1,7 +1,3 @@
 John the Teenager,knight,5,540,10,5,5,sword,leather,pot,src/main/java/packages/images/default-image.png
 Alex the Great,elf,3,124,10,5,5,bow,leather,pot,src/main/java/packages/images/default-image.png
 Thor the Mighty,knight,6,990,10,5,5,sword,steel,pot,src/main/java/packages/images/default-image.png
-KaygoPhobos,knight,1,0,0,0,10,bow,jacket,pot,src/main/java/packages/images/default-image.png
-adefef,knight,0,0,0,0,10,bow,jacket,pot,src/main/java/packages/images/default-image.png
-andile,knight,5,0,0,0,0,bow,jacket,frog_mouthed,src/main/java/packages/images/default-image.png
-Godess of Evil,knight,15,0,0,0,100,bow,jacket,pot,src/main/java/packages/images/default-image.pnghel
