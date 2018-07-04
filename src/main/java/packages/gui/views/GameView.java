@@ -112,11 +112,14 @@ public class GameView extends JFrame{
             this.hero.setHitPoints(10);
             GameSimulationModel.lostGame(this.hero);
             
+            System.exit(0);
+            /*
             this.dispose();
             SelectHeroView selectHeroView = new SelectHeroView(readFile.simulateFile());
             selectHeroView.setVisible(true);
             System.out.println("if () {}");
             return ;
+            */
         }
 
         for (EnemyModel enemyLoop: this.enemiesList) {
