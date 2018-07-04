@@ -140,7 +140,10 @@ public class Maps
                         case 1:
                             int rn = rand.nextInt(2);
                             if (rn == 0)
-                                System.out.println("You ran away");
+                            {
+                                System.out.println(ANSI_GREEN + "\n YOU CHOSE TO RUN YOU COWARD, GO BACK TO PREVIOUS SPOT!!");
+                                drawMap(hero);
+                            }
                             else if (rn == 1)
                             {
                                 System.out.println("Luck is not on your side, you still have to fight the enemy");
