@@ -1,22 +1,14 @@
 package packages.console.view;
 
-import packages.enums.ArmorType;
-import packages.enums.CharacterType;
-import packages.enums.HelmType;
-import packages.enums.WeaponType;
 import packages.models.*;
 import packages.utils.EnemyFactory;
 import packages.utils.Formulas;
 import packages.utils.Menus;
-import packages.utils.WriteFile;
 
 import static packages.utils.Colours.*;
 import packages.console.controller.*;
 
-import java.io.*;
 import java.util.*;
-
-import javax.swing.text.DefaultStyledDocument.ElementSpec;
 
 public class Maps
 {

@@ -9,8 +9,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -18,7 +16,6 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import packages.console.controller.Coordinates;
@@ -30,8 +27,6 @@ import packages.models.HeroModel;
 import packages.utils.EnemyFactory;
 import packages.utils.Formulas;
 import packages.utils.JFrameHelper;
-import packages.utils.UpdateFile;
-import packages.utils.WriteFile;
 import packages.utils.readFile;
 
 public class GameView extends JFrame{
