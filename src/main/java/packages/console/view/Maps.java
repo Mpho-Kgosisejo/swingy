@@ -140,11 +140,7 @@ public class Maps
                             int rn = rand.nextInt(2);
                             if (rn == 0)
                             {
-<<<<<<< HEAD
-                                System.out.println(ANSI_GREEN + "\n YOU CHOSE TO RUN YOU COWARD, GO BACK TO PREVIOUS SPOT!!");
-=======
                                 System.out.println(ANSI_GREEN + "\n YOU CHOSE TO RUN YOU COWARD, GO BACK TO PREVIOUS SPOT!!" + ANSI_RESET);
->>>>>>> eb0e563744fbbad12e8bffa4187bf544e2f7b016
                                 enemyList.remove(enemyModel);
                                 drawMap(hero);
 
