@@ -34,7 +34,7 @@ public class GameSimulationModel{
     public static void winGame(HeroModel hero){
         hero.setLevel(hero.getLevel() + 1);
         hero.setXPoints(Formulas.getXPoints(hero.getLevel()));
-        hero.setHitPoints(10);
+        //hero.setHitPoints(10);
         WriteFile.findAndUpdate(readFile.simulateFile(), hero);
     }
 
@@ -46,12 +46,15 @@ public class GameSimulationModel{
         {
             case 0:
                     hero.setWeapon(enemy.getWeapon());
+                    hero.setAttack(hero.getAttack() + 2);
                     break;
             case 1:
                     hero.setArmor(enemy.getArmor());
+                    hero.setDefense(hero.getDefense() + 2);
                     break;
             case 2:
                     hero.setHelm(enemy.getHelm());
+                    hero.setHitPoints(hero.getHitPoints() + 2);
                     break;
         }
         WriteFile.findAndUpdate(readFile.simulateFile(), hero);
