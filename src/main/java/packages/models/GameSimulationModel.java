@@ -1,6 +1,7 @@
 package packages.models;
 
 import java.util.Random;
+import packages.utils.*;
 
 public class GameSimulationModel{
     private HeroModel hero;
@@ -28,6 +29,32 @@ public class GameSimulationModel{
             return (true);
         }
         return (false);
+    }
+
+    public static void winGame(HeroModel hero){
+        hero.setLevel(hero.getLevel() + 1);
+        hero.setXPoints(Formulas.getXPoints(hero.getLevel()));
+
+        WriteFile.findAndUpdate(readFile.simulateFile(), hero);
+    }
+
+    public static void dropArtifact(HeroModel hero, EnemyModel enemy)
+    {
+        Random rand = new Random();
+
+        switch (rand.nextInt(3))
+        {
+            case 0:
+                    hero.setWeapon(enemy.getWeapon());
+                    break;
+            case 1:
+                    hero.setArmor(enemy.getArmor());
+                    break;
+            case 2:
+                    hero.setHelm(enemy.getHelm());
+                    break;
+        }
+        WriteFile.findAndUpdate(readFile.simulateFile(), hero);
     }
 
     public int getSimulationCount(){
