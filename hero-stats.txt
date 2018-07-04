@@ -1,5 +1,4 @@
 John the Teenager,knight,5,540,10,5,5,sword,leather,pot,src/main/java/packages/images/default-image.png
 Alex the Great,elf,3,124,10,5,10,bow,leather,pot,src/main/java/packages/images/default-image.png
-Thor the Mighty,knight,7,23200,10,5,2,sword,steel,pot,src/main/java/packages/images/default-image.png
+Thor the Mighty,knight,7,23200,12,5,1,bow,steel,pot,src/main/java/packages/images/default-image.png
 KaygoPhobos,knight,1,0,0,0,10,bow,jacket,pot,src/main/java/packages/images/default-image.png
-
