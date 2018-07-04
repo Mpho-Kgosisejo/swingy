@@ -26,7 +26,7 @@ if(e.getSource()==open){
     System.out.println(i);    
     if(i==JFileChooser.APPROVE_OPTION){    
         File f=fc.getSelectedFile();    
-        String filepath=f.getPath();  
+        String filepath=f.getPath();
         System.out.println(filepath);  
         try{  
         BufferedReader br=new BufferedReader(new FileReader(filepath));    
