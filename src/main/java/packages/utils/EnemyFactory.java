@@ -13,6 +13,8 @@ import packages.models.EnemyModel;
 import packages.models.HeroModel;
 
 public class EnemyFactory{
+    public static String[] enemyName = {"Terminus", "Inara", "Strix", "Jenos", "Evulli", "Jacaramba"};
+
     public static List<EnemyModel> getEnemyList(HeroModel hero){
         List<EnemyModel> enemyList = new ArrayList<EnemyModel>();
         Random random = new Random();
@@ -21,7 +23,10 @@ public class EnemyFactory{
         int numberOfEnemies = Formulas.getNumberOfEnemiesToSpawn(hero);
 
         for(int i = 0; i <= numberOfEnemies; i++){
-            EnemyModel enemy = new EnemyModel("EnemyName", CharacterType.enemy, level, 0, 10, 10, 2 + random.nextInt(hero.getHitPoints() + 5),
+            EnemyModel enemy = new EnemyModel(enemyName[random.nextInt(6)], CharacterType.enemy, level, 0,
+            5 + random.nextInt(15),
+            1 + random.nextInt(6),
+            3 + random.nextInt(hero.getHitPoints()),
             WeaponType.values()[random.nextInt(WeaponType.values().length)], 
             ArmorType.values()[random.nextInt(ArmorType.values().length)], 
             HelmType.values()[random.nextInt(HelmType.values().length)],

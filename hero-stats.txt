@@ -1,3 +1,4 @@
-John the Teenager,knight,0,0,10,7,10,sword,curass,pot,src/main/java/packages/images/default-image.png
-Alex the Great,elf,4,8050,12,11,16,bow,leather,nasal,src/main/java/packages/images/default-image.png
-Thor the Mighty,knight,7,23200,10,5,10,sword,steel,pot,src/main/java/packages/images/default-image.png
+John the Teenager,knight,0,0,10,7,50,sword,curass,pot,src/main/java/packages/images/default-image.png
+Alex the Great,elf,4,8050,16,15,50,knife,leather,frog_mouthed,src/main/java/packages/images/default-image.png
+Thor the Mighty,knight,7,23200,12,7,52,bow,jacket,spartan,src/main/java/packages/images/default-image.png
+andile,warrior,0,0,6,8,50,pistol,steel,nasal,src/main/java/packages/images/default-image.png

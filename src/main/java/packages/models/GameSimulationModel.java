@@ -24,11 +24,16 @@ public class GameSimulationModel{
             simulationCount++;
             Random rand = new Random();
             int rn = rand.nextInt(2);
-            if (rn == 0)
-                this.enemy.setHitPoints((this.enemy.getHitPoints() - (this.hero.getAttack() - this.enemy.getDefense())));
-            else
-                this.hero.setHitPoints((this.hero.getHitPoints() - (this.enemy.getAttack() - this.hero.getDefense())));
-            simulationOutput = "* simulation " + simulationCount + "*";
+            int dmg = 0;
+            if (rn == 0){
+                dmg = (this.hero.getAttack() - this.enemy.getDefense());
+                this.enemy.setHitPoints((this.enemy.getHitPoints() - dmg));
+            }
+            else{
+                dmg = (this.enemy.getAttack() - this.hero.getDefense());
+                this.hero.setHitPoints((this.hero.getHitPoints() - dmg));
+            }
+            simulationOutput = "* simulation " + simulationCount + "* + dmg: " + dmg;
             Thread.sleep(this.simulationMiliSecs);
             return (true);
         }
