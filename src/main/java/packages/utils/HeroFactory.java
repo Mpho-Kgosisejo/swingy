@@ -74,19 +74,6 @@ public class HeroFactory
         int hitPoints  = 10;
 
         String storeType = type.trim().toLowerCase();
-            
-        /*if (storeType.equals("warrior") == true)
-            temp = "warrior";
-        else if (storeType.equals("hunter") == true)
-            temp = "hunter";
-        else if(storeType.equals("elf") == true)
-            temp = "elf";
-        else if(storeType.equals("knight") == true)
-            temp = "knight";
-        else if (storeType.equals("villager") == true)
-            temp = "villager";
-        else
-            temp = null;*/
         if (icon == null)
             icon = "src/main/java/packages/images/default-image.png";
 
