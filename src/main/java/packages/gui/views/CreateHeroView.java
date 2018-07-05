@@ -199,31 +199,10 @@ public class CreateHeroView extends JFrame{
             // WeaponType weapon = WeaponType.valueOf(this.txtFdWeapon.getText());
             // ArmorType armor = ArmorType.valueOf(this.txtFdArmor.getText());
             String iconPath = getHeroImagePath();
-            if (iconPath != null && iconPath != "" && (!iconPath.isEmpty()))
-            {
-                System.out.println("Image is set");                                                  
-                this.newHero = HeroFactory.newHero(this.txtFdName.getText(), this.listFdType.getSelectedItem().toString(), level, xPoint, attack, defense, HP, this.txtFdWeapon.getText(), this.txtFdArmor.getText(), HelmType.pot.toString(), iconPath);
-            }
+            if (iconPath != null && iconPath != "" && (!iconPath.isEmpty()))                                                  
+                this.newHero = HeroFactory.newHero(this.txtFdName.getText(), this.listFdType.getSelectedItem().toString(), iconPath);
             else
-            {
-                System.out.println("Default image is set");                
-                this.newHero = HeroFactory.newHero(this.txtFdName.getText(), this.listFdType.getSelectedItem().toString(), level, xPoint, attack, defense, HP, this.txtFdWeapon.getText(), this.txtFdArmor.getText(), HelmType.pot.toString(), "src/main/java/packages/images/default-image.png");                
-            }
-                // if (this.listFdType.getSelectedItem().toString().equals(CharacterType.elf.toString()) == true){
-            //     this.newHero = new ElfModel(this.txtFdName.getText(), CharacterType.elf, level, xPoint, attack, defense, HP, weapon, armor, HelmType.pot, iconPath);
-            // }
-            // else if (this.listFdType.getSelectedItem().toString().equals(CharacterType.hunter.toString()) == true){
-            //     this.newHero = new HunterModel(this.txtFdName.getText(), CharacterType.hunter, level, xPoint, attack, defense, HP, weapon, armor, HelmType.pot, iconPath);
-            // }
-            // else if (this.listFdType.getSelectedItem().toString().equals(CharacterType.knight.toString()) == true){
-            //     this.newHero = new KnightModel(this.txtFdName.getText(), CharacterType.knight, level, xPoint, attack, defense, HP, weapon, armor, HelmType.pot, iconPath);
-            // }
-            // else if (this.listFdType.getSelectedItem().toString().equals(CharacterType.villager.toString()) == true){
-            //     this.newHero = new VillagerModel(this.txtFdName.getText(), CharacterType.villager, level, xPoint, attack, defense, HP, weapon, armor, HelmType.pot, iconPath);
-            // }
-            // else if (this.listFdType.getSelectedItem().toString().equals(CharacterType.warrior.toString()) == true){
-            //     this.newHero = new WarriorModel(this.txtFdName.getText(), CharacterType.warrior, level, xPoint, attack, defense, HP, weapon, armor, HelmType.pot, iconPath);
-            // }
+                this.newHero = HeroFactory.newHero(this.txtFdName.getText(), this.listFdType.getSelectedItem().toString(), null);                
 
         }catch(Exception exc){
             JFrameHelper.ShowErrorDialog(this, "Exception: " + exc.getMessage());

@@ -21,7 +21,7 @@ public class EnemyFactory{
         int numberOfEnemies = Formulas.getNumberOfEnemiesToSpawn(hero);
 
         for(int i = 0; i <= numberOfEnemies; i++){
-            EnemyModel enemy = new EnemyModel("EnemyName", CharacterType.enemy, level, 0, 10, 10, hero.getHitPoints(),
+            EnemyModel enemy = new EnemyModel("EnemyName", CharacterType.enemy, level, 0, 10, 10, 2 + random.nextInt(hero.getHitPoints() + 5),
             WeaponType.values()[random.nextInt(WeaponType.values().length)], 
             ArmorType.values()[random.nextInt(ArmorType.values().length)], 
             HelmType.values()[random.nextInt(HelmType.values().length)],

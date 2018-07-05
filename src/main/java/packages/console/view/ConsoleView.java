@@ -117,7 +117,7 @@ public class ConsoleView
         System.out.print(ANSI_CYAN + "\nGive your " + htype + " a name: " + ANSI_RESET);
         Scanner reader = new Scanner(System.in);
         String name = reader.next();
-        _hero = HeroFactory.newHero(name, htype.toString(), 0, 0, 0, 0, 20, WeaponType.bow.toString(), ArmorType.jacket.toString(), HelmType.frog_mouthed.toString(), "none");
+        _hero = HeroFactory.newHero(name, htype.toString(), null);
         WriteFile.writeToFile(_hero);
         CliGame.run(_hero);
         backToStart();

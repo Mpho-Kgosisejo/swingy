@@ -11,10 +11,12 @@ public class GameSimulationModel{
     private String simulationOutput = "";
     private int simulationCount = 0;
     private int simulationMiliSecs = 1500;
+    private static int cpyHP;
 
     public GameSimulationModel(HeroModel hero, EnemyModel enemy){
         this.hero = hero;
         this.enemy = enemy;
+        cpyHP = this.hero.getHitPoints();
     }
 
     public Boolean nextFight() throws InterruptedException{
@@ -23,13 +25,14 @@ public class GameSimulationModel{
             Random rand = new Random();
             int rn = rand.nextInt(2);
             if (rn == 0)
-                this.enemy.setHitPoints((this.enemy.getHitPoints() - 1));
+                this.enemy.setHitPoints((this.enemy.getHitPoints() - (this.hero.getAttack() - this.enemy.getDefense())));
             else
-                this.hero.setHitPoints((this.hero.getHitPoints() - 1));
+                this.hero.setHitPoints((this.hero.getHitPoints() - (this.enemy.getAttack() - this.hero.getDefense())));
             simulationOutput = "* simulation " + simulationCount + "*";
             Thread.sleep(this.simulationMiliSecs);
             return (true);
         }
+        this.hero.setHitPoints(cpyHP);
         return (false);
     }
 
