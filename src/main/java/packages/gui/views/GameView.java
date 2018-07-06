@@ -9,8 +9,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -18,7 +16,6 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import packages.console.controller.Coordinates;
@@ -30,8 +27,6 @@ import packages.models.HeroModel;
 import packages.utils.EnemyFactory;
 import packages.utils.Formulas;
 import packages.utils.JFrameHelper;
-import packages.utils.UpdateFile;
-import packages.utils.WriteFile;
 import packages.utils.readFile;
 
 public class GameView extends JFrame{
@@ -104,9 +99,14 @@ public class GameView extends JFrame{
         EnemyModel enemy = null;
         this.panelMain.removeAll();
 
-        //Check if Hero is outside the map...
-        if ((this.hero.getCoordinates().getX() < 0 || this.hero.getCoordinates().getY() < 0) || (this.hero.getCoordinates().getX() >= this.mapSize || this.hero.getCoordinates().getY() >= this.mapSize)){
+        if ((this.hero.getCoordinates().getX() < 0 || this.hero.getCoordinates().getY() < 0) ||
+            (this.hero.getCoordinates().getX() >= this.mapSize || this.hero.getCoordinates().getY() >= this.mapSize)
+            )
+        {
+            //Check if Hero is outside the map...
             GameSimulationModel.winGame(this.hero);
+            JFrameHelper.ShowInfoDialog(this, "You Won", "You win...");
+            this.disposeWindow();
         }
         if (this.hero.getHitPoints() <= 0){
             System.out.println("if (this.hero.getHitPoints() <= 0) {}");
@@ -127,6 +127,16 @@ public class GameView extends JFrame{
             return ;
             */
         }
+
+        // if (this.hero.getHitPoints() <= 0){
+        //     //Check if is alive
+        //     GameSimulationModel.lostGame(this.hero);
+        //     System.out.println("hero lost");
+        
+        //     SelectHeroView selectHeroView = new SelectHeroView(readFile.simulateFile());
+        //     selectHeroView.setVisible(true);
+        //     this.dispose();
+        // }
 
         for (EnemyModel enemyLoop: this.enemiesList) {
             if (enemyLoop.getCoordinates().Isequals(this.hero.getCoordinates())){

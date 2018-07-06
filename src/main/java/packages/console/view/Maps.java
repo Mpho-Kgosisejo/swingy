@@ -1,22 +1,14 @@
 package packages.console.view;
 
-import packages.enums.ArmorType;
-import packages.enums.CharacterType;
-import packages.enums.HelmType;
-import packages.enums.WeaponType;
 import packages.models.*;
 import packages.utils.EnemyFactory;
 import packages.utils.Formulas;
 import packages.utils.Menus;
-import packages.utils.WriteFile;
 
 import static packages.utils.Colours.*;
 import packages.console.controller.*;
 
-import java.io.*;
 import java.util.*;
-
-import javax.swing.text.DefaultStyledDocument.ElementSpec;
 
 public class Maps
 {
@@ -85,7 +77,6 @@ public class Maps
 
     public void drawMap(HeroModel hero)
     {
-        boolean isSamePosition = false;
         System.out.println();
         for (int x = 0; x < this.mapSize; x++) {
             for (int y = 0; y < this.mapSize; y++) {
@@ -104,7 +95,6 @@ public class Maps
                         }
                         else if (hero.getCoordinates().Isequals(enemyModel.getCoordinates()))
                         {
-                            isSamePosition = true;
                             enemy = enemyModel;
                         }    
                     }
@@ -128,7 +118,7 @@ public class Maps
         {
             Scanner _reader = new Scanner(System.in);
         
-            System.out.println(ANSI_CYAN + hero.getName().toUpperCase() + ANSI_RESET  + " VS " + ANSI_RED + enemy.getName().toUpperCase() + ANSI_RESET);
+            Menus.PrintFightOpponents(hero, enemyModel);
             while (_reader.hasNextLine())
             {
                 if (_reader.hasNextInt())
@@ -169,6 +159,8 @@ public class Maps
 
     private void Fight(HeroModel hero, EnemyModel enemy) 
     {
+        int hpCopy = hero.getHitPoints();
+        System.out.println("hp one: " + hpCopy);
         try
         {
             GameSimulationModel gsm = new GameSimulationModel(hero, enemy);
@@ -187,6 +179,7 @@ public class Maps
                     System.out.println(ANSI_CYAN + "Fight Won: " + ANSI_RESET +  mssg); 
                     GameSimulationModel.dropArtifact(hero, enemy);
                     enemyList.remove(enemy);
+                    GameSimulationModel.resetHero(hero);
                     drawMap(hero);
                 }else{
                     mssg = gsm.getEnemyModel().getName() + " won the fight";
@@ -195,12 +188,13 @@ public class Maps
                     System.exit(0);
                 }
             }
+            
         }
         catch (Exception e)
         {
             System.out.println(ANSI_RED + "Something went wrong." + ANSI_RESET);
         }
-        
+        hero.setHitPoints(hpCopy);
     }
     
 }

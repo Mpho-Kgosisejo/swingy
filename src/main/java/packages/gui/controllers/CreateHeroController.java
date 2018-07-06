@@ -56,7 +56,7 @@ public class CreateHeroController{
             JFileChooser fileChooser = new JFileChooser();
             i = fileChooser.showOpenDialog(null);
 
-            if (i == fileChooser.APPROVE_OPTION)
+            if (i == JFileChooser.APPROVE_OPTION)
             {
                 File file = fileChooser.getSelectedFile();
                 String filePath = file.getPath();

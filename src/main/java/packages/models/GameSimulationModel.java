@@ -4,6 +4,7 @@ import java.util.Random;
 import packages.utils.*;
 
 import packages.utils.Formulas;
+import static packages.utils.Colours.*;
 
 public class GameSimulationModel{
     private HeroModel hero;
@@ -11,41 +12,61 @@ public class GameSimulationModel{
     private String simulationOutput = "";
     private int simulationCount = 0;
     private int simulationMiliSecs = 1500;
+    private static int cpyHP;
+    private Random rand;
+    private String attacks[] = {"Dragon Punch", "Blitz Upper", "Impaler Arrow", "Flash Bomb", "Fire Bomb", "Poison Bolts", "Explosive Potion", "Massacre Axe", "Cannon Bomb", "Frag Granade"};
 
     public GameSimulationModel(HeroModel hero, EnemyModel enemy){
         this.hero = hero;
         this.enemy = enemy;
+        cpyHP = this.hero.getHitPoints();
+        this.rand = new Random();
     }
 
     public Boolean nextFight() throws InterruptedException{
         if (this.isHeroAlive(this.hero) && this.isHeroAlive(this.enemy)){            
+            int rn = this.rand.nextInt(2);
+            int dmg = 0;
             simulationCount++;
-            Random rand = new Random();
-            int rn = rand.nextInt(2);
-            if (rn == 0)
-                this.enemy.setHitPoints((this.enemy.getHitPoints() - 1));
-            else
-                this.hero.setHitPoints((this.hero.getHitPoints() - 1));
-            simulationOutput = "* simulation " + simulationCount + "*";
+
+            if (rn == 0){
+                dmg = (this.hero.getAttack() - this.enemy.getDefense());
+                this.enemy.setHitPoints((this.enemy.getHitPoints() - this.fixDmg(dmg)));
+                simulationOutput = ANSI_CYAN + hero.getName() + ANSI_RESET + "hits " + ANSI_GREEN + enemy.getName() + ANSI_RESET + "with a " + attacks[rand.nextInt(10)] + " Attack, Causing " + dmg + " damage.";
+            }
+            else{
+                dmg = (this.enemy.getAttack() - this.hero.getDefense());
+                this.hero.setHitPoints((this.hero.getHitPoints() - this.fixDmg(dmg)));
+                simulationOutput = ANSI_GREEN + enemy.getName() + ANSI_RESET + "hits " + ANSI_CYAN + hero.getName() + ANSI_RESET + "with a " + attacks[rand.nextInt(10)] + " Attack, Causing " + dmg + " damage.";
+            }
             Thread.sleep(this.simulationMiliSecs);
             return (true);
         }
         return (false);
     }
 
-    public static void lostGame(HeroModel hero){
-        hero.setLevel(hero.getLevel() - 1);
-        hero.setXPoints(Formulas.getXPoints(hero.getLevel()));
+    private int fixDmg(int dmg){
+        if (dmg <= 0)
+            return (0);
+        return (dmg);
     }
 
-    public String getVSMessage(HeroModel hero, EnemyModel enemy){
-        return (hero.getName() + " (" + hero.getHitPoints() + "HP) VS " + enemy.getName() + " (" + enemy.getHitPoints() + "HP)");
+    public static void resetHero(HeroModel hero){
+        hero.setHitPoints(cpyHP);
+    }
+
+    public static void lostGame(HeroModel hero){
+        resetHero(hero);
+    }
+
+    public String getVSMessage(){
+        return (this.hero.getName() + " (" + this.hero.getHitPoints() + "HP) VS " + this.enemy.getName() + " (" + this.enemy.getHitPoints() + "HP)");
     }
     
     public static void winGame(HeroModel hero){
+        hero.setHitPoints(cpyHP);
         hero.setLevel(hero.getLevel() + 1);
         hero.setXPoints(Formulas.getXPoints(hero.getLevel()));
-        //hero.setHitPoints(10);
         WriteFile.findAndUpdate(readFile.simulateFile(), hero);
     }
 

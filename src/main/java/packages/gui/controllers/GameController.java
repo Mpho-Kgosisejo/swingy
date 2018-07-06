@@ -1,14 +1,9 @@
 package packages.gui.controllers;
 
-import java.awt.List;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
 
-import packages.console.controller.Coordinates;
-import packages.gui.controllers.WelcomeController.NavigateToSelectHeroListener;
 import packages.gui.views.GameView;
-import packages.gui.views.SelectHeroView;
 import packages.models.HeroModel;
 
 public class GameController{
@@ -36,8 +31,6 @@ public class GameController{
     private void moveHero(int code){
         int x = hero.getCoordinates().getX();
         int y = hero.getCoordinates().getY();
-        int oldX = x;
-        int oldY = y;
 
         switch (code){
             case 38:
@@ -67,11 +60,6 @@ public class GameController{
                 this.view.disposeWindow();
             break;
         }
-        // x = Coordinates.getPositionMax(x, (this.view.getMapSize() - 1));
-        // y = Coordinates.getPositionMax(y, (this.view.getMapSize() - 1));
-        // hero.setCoordinates(new Coordinates(x, y));
-        //if (oldX != x && oldY != y){
-            this.view.drawMap();
-        //}
+        this.view.drawMap();
     }
 }
