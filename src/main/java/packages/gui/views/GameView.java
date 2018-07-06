@@ -45,6 +45,7 @@ public class GameView extends JFrame{
     private int mapSize = 0;
     private List<EnemyModel> enemiesList;
     public static int FrameCount;
+    private int _retHitPoints;
 
     public GameView(HeroModel hero){
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -109,10 +110,15 @@ public class GameView extends JFrame{
         }
         if (this.hero.getHitPoints() <= 0){
             System.out.println("if (this.hero.getHitPoints() <= 0) {}");
+            setRetHitPoints(0);
             this.hero.setHitPoints(10);
+            EndingView endingView = new EndingView();
+            endingView.setVisible(true);
             GameSimulationModel.lostGame(this.hero);
-            
-            System.exit(0);
+            this.setVisible(false);
+            this.dispose();
+
+            //System.exit(0);
             /*
             this.dispose();
             SelectHeroView selectHeroView = new SelectHeroView(readFile.simulateFile());
@@ -208,4 +214,15 @@ public class GameView extends JFrame{
     public List<EnemyModel> getEnemyList(List<EnemyModel> list){
         return (this.enemiesList);
     }
+
+    public void setRetHitPoints(int retHitPoints)
+    {
+        this._retHitPoints = retHitPoints;
+    }
+
+    public int getRetHitPoints()
+    {
+        return this._retHitPoints;
+    }
+
 }

@@ -1,3 +1,6 @@
-John the Teenager,knight,5,540,10,5,5,sword,leather,pot,src/main/java/packages/images/default-image.png
-Alex the Great,elf,0,37800,10,5,2,bow,leather,pot,src/main/java/packages/images/default-image.png
-Thor the Mighty,knight,7,23200,10,5,2,sword,steel,pot,src/main/java/packages/images/default-image.png
+John the Teenager,knight,161,11681000,10,5,2,sword,leather,pot,src/main/java/packages/images/default-image.png
+Alex the Great,elf,24,262050,10,5,2,bow,leather,pot,src/main/java/packages/images/default-image.png
+Thor the Mighty,knight,29,381800,10,5,8,sword,steel,pot,src/main/java/packages/images/default-image.png
+Sods oh Mayor,warrior,20,182450,0,0,7,bow,jacket,spartan,src/main/java/packages/images/default-image.png
+Created Hero ,elf,0,0,0,0,10,bow,jacket,pot,src/main/java/packages/images/default-image.png
+Oliver the Mayor,knight,6,17250,0,0,10,bow,jacket,pot,/goinfre/tmekwa/Desktop/Workspace/main@2x.png
