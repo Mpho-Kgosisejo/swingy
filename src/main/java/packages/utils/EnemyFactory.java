@@ -26,7 +26,7 @@ public class EnemyFactory{
             EnemyModel enemy = new EnemyModel(enemyName[random.nextInt(6)], CharacterType.enemy, level, 0,
             10 + random.nextInt(hero.getAttack()),
             5 + random.nextInt(hero.getDefense()),
-            3 + random.nextInt(hero.getHitPoints()),
+            20 + random.nextInt(hero.getHitPoints() - 10),
             WeaponType.values()[random.nextInt(WeaponType.values().length)], 
             ArmorType.values()[random.nextInt(ArmorType.values().length)], 
             HelmType.values()[random.nextInt(HelmType.values().length)],

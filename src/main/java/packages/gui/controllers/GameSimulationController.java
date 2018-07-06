@@ -77,6 +77,7 @@ public class GameSimulationController extends JFrameHelper
                     _view.setWinTitle(_model.getVSMessage());
                 }
                 _view.setSimulationText("Game ended...");
+                GameSimulationModel.resetHero(_model.getHeroModel());
 
                 if (!_model.isHeroAlive(_model.getHeroModel()) && !_model.isHeroAlive(_model.getEnemyModel())){
                     ShowInfoDialog(_view, "No Winner","No winner...");
@@ -87,17 +88,17 @@ public class GameSimulationController extends JFrameHelper
                         mssg = _model.getHeroModel().getName() + " won the fight";
                         GameSimulationModel.dropArtifact(_model.getHeroModel(), _model.getEnemyModel());
                         ShowInfoDialog(_view, "Fight Won", mssg);
+                        _gameView.drawMap();
+                        _gameView.setVisible(true);
                     }else{
                         mssg = "Lost the Fight againt " + _model.getEnemyModel().getName();
                         ShowInfoDialog(_view, "Fight Lost", mssg);
-                        GameSimulationModel.restHero(_model.getHeroModel());
+                        GameSimulationModel.resetHero(_model.getHeroModel());
                         _gameView.disposeWindow();
                         _gameView.dispose();
                     }
                 }
                 _view.dispose();
-                _gameView.drawMap();
-                _gameView.setVisible(true);
             } catch (Exception e) {
                 System.out.println("Error @ GameSimulation(): " + e.getMessage());
             }
