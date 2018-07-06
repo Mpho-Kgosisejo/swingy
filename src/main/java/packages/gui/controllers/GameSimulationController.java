@@ -92,7 +92,7 @@ public class GameSimulationController extends JFrameHelper
                         ShowInfoDialog(_view, "Fight Lost", mssg);
                         GameSimulationModel.restHero(_model.getHeroModel());
                         _gameView.disposeWindow();
-                        return ;
+                        _gameView.dispose();
                     }
                 }
                 _view.dispose();

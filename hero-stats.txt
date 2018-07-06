@@ -1,3 +1,4 @@
-John the Teenager,knight,0,0,16,7,55,sword,curass,frog_mouthed,src/main/java/packages/images/default-image.png
+John the Teenager,knight,1,1000,22,13,9,sword,jacket,great,src/main/java/packages/images/default-image.png
 Alex the Great,elf,6,17250,20,15,55,knife,leather,great,src/main/java/packages/images/default-image.png
 Thor the Mighty,knight,7,23200,12,7,55,bow,jacket,spartan,src/main/java/packages/images/default-image.png
+Okay Ninja,hunter,0,0,2,2,50,spear,jacket,nasal,/goinfre/mkgosise/Downloads/download.jpeg
