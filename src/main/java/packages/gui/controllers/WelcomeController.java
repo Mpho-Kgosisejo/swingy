@@ -4,8 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import javax.swing.DefaultListModel;
-
 import packages.gui.views.CreateHeroView;
 import packages.gui.views.SelectHeroView;
 import packages.gui.views.WelcomeView;

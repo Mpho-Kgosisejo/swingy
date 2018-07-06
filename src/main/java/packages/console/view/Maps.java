@@ -77,7 +77,6 @@ public class Maps
 
     public void drawMap(HeroModel hero)
     {
-        boolean isSamePosition = false;
         System.out.println();
         for (int x = 0; x < this.mapSize; x++) {
             for (int y = 0; y < this.mapSize; y++) {
@@ -96,7 +95,6 @@ public class Maps
                         }
                         else if (hero.getCoordinates().Isequals(enemyModel.getCoordinates()))
                         {
-                            isSamePosition = true;
                             enemy = enemyModel;
                         }    
                     }
