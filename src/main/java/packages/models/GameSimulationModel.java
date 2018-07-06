@@ -4,6 +4,7 @@ import java.util.Random;
 import packages.utils.*;
 
 import packages.utils.Formulas;
+import static packages.utils.Colours.*;
 
 public class GameSimulationModel{
     private HeroModel hero;
@@ -13,6 +14,7 @@ public class GameSimulationModel{
     private int simulationMiliSecs = 1500;
     private static int cpyHP;
     private Random rand;
+    private String attacks[] = {"Dragon Punch", "Blitz Upper", "Impaler Arrow", "Flash Bomb", "Fire Bomb", "Poison Bolts", "Explosive Potion", "Massacre Axe", "Cannon Bomb", "Frag Granade"};
 
     public GameSimulationModel(HeroModel hero, EnemyModel enemy){
         this.hero = hero;
@@ -30,12 +32,13 @@ public class GameSimulationModel{
             if (rn == 0){
                 dmg = (this.hero.getAttack() - this.enemy.getDefense());
                 this.enemy.setHitPoints((this.enemy.getHitPoints() - this.fixDmg(dmg)));
+                simulationOutput = ANSI_CYAN + hero.getName() + ANSI_RESET + "hits " + ANSI_GREEN + enemy.getName() + ANSI_RESET + "with a " + attacks[rand.nextInt(10)] + " Attack, Causing " + dmg + " damage.";
             }
             else{
                 dmg = (this.enemy.getAttack() - this.hero.getDefense());
                 this.hero.setHitPoints((this.hero.getHitPoints() - this.fixDmg(dmg)));
+                simulationOutput = ANSI_GREEN + enemy.getName() + ANSI_RESET + "hits " + ANSI_CYAN + hero.getName() + ANSI_RESET + "with a " + attacks[rand.nextInt(10)] + " Attack, Causing " + dmg + " damage.";
             }
-            simulationOutput = "* simulation " + simulationCount + "* + dmg: " + dmg + " - ";
             Thread.sleep(this.simulationMiliSecs);
             return (true);
         }
@@ -48,12 +51,12 @@ public class GameSimulationModel{
         return (dmg);
     }
 
-    public static void restHero(HeroModel hero){
+    public static void resetHero(HeroModel hero){
         hero.setHitPoints(cpyHP);
     }
 
     public static void lostGame(HeroModel hero){
-        restHero(hero);
+        resetHero(hero);
     }
 
     public String getVSMessage(){
@@ -64,7 +67,6 @@ public class GameSimulationModel{
         hero.setHitPoints(cpyHP);
         hero.setLevel(hero.getLevel() + 1);
         hero.setXPoints(Formulas.getXPoints(hero.getLevel()));
-        //hero.setHitPoints(10);
         WriteFile.findAndUpdate(readFile.simulateFile(), hero);
     }
 

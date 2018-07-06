@@ -179,6 +179,7 @@ public class Maps
                     System.out.println(ANSI_CYAN + "Fight Won: " + ANSI_RESET +  mssg); 
                     GameSimulationModel.dropArtifact(hero, enemy);
                     enemyList.remove(enemy);
+                    GameSimulationModel.resetHero(hero);
                     drawMap(hero);
                 }else{
                     mssg = gsm.getEnemyModel().getName() + " won the fight";
@@ -187,13 +188,13 @@ public class Maps
                     System.exit(0);
                 }
             }
+            
         }
         catch (Exception e)
         {
             System.out.println(ANSI_RED + "Something went wrong." + ANSI_RESET);
         }
         hero.setHitPoints(hpCopy);
-        System.out.println("Hp two: " + hero.getHitPoints());
     }
     
 }

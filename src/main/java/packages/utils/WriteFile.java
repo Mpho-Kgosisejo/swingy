@@ -48,7 +48,6 @@ public class WriteFile
             bw = new BufferedWriter(fw);
             out = new PrintWriter(bw);
             out.print("");
-            System.out.println(_file.length());
             for (HeroModel hero : _heroList) {
                 if (_hero.getName().equalsIgnoreCase(hero.getName())){
                     writeToFile(_hero);    
