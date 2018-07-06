@@ -3,6 +3,7 @@ package packages.gui.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import packages.gui.views.EndingView;
 import packages.gui.views.GameSimulationView;
 import packages.gui.views.GameView;
 import packages.models.GameSimulationModel;
@@ -77,25 +78,32 @@ public class GameSimulationController extends JFrameHelper
                     _view.setWinTitle(_model.getVSMessage());
                 }
                 _view.setSimulationText("Game ended...");
-                GameSimulationModel.resetHero(_model.getHeroModel());
 
                 if (!_model.isHeroAlive(_model.getHeroModel()) && !_model.isHeroAlive(_model.getEnemyModel())){
                     ShowInfoDialog(_view, "No Winner","No winner...");
                 }else{
                     String mssg = "";
+                    String artifact = "";
 
                     if (_model.isHeroAlive(_model.getHeroModel())){
+                        // GameSimulationModel.resetHero(_model.getHeroModel());
                         mssg = _model.getHeroModel().getName() + " won the fight";
-                        GameSimulationModel.dropArtifact(_model.getHeroModel(), _model.getEnemyModel());
-                        ShowInfoDialog(_view, "Fight Won", mssg);
+                        artifact = "theArti...";
+                        if (JFrameHelper.ShowConfirmDialog(_view, "Fight Won", "You won the Fight.\n Artifact: " + artifact)){
+                            //Call setArti()
+                        }
                         _gameView.drawMap();
                         _gameView.setVisible(true);
                     }else{
+                        GameSimulationModel.resetHero(_model.getHeroModel());
                         mssg = "Lost the Fight againt " + _model.getEnemyModel().getName();
                         ShowInfoDialog(_view, "Fight Lost", mssg);
                         GameSimulationModel.resetHero(_model.getHeroModel());
-                        _gameView.disposeWindow();
+                        EndingView endingView = new EndingView();
+                        endingView.setVisible(true);
+                        // ?
                         _gameView.dispose();
+                        _gameView.disposeWindow();
                     }
                 }
                 _view.dispose();
