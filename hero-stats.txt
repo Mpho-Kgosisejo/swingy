@@ -1,12 +1,5 @@
-<<<<<<< HEAD
 John the Teenager,knight,161,11681000,10,5,2,sword,leather,pot,src/main/java/packages/images/default-image.png
 Alex the Great,elf,24,262050,10,5,2,bow,leather,pot,src/main/java/packages/images/default-image.png
 Thor the Mighty,knight,29,381800,10,5,8,sword,steel,pot,src/main/java/packages/images/default-image.png
 Sods oh Mayor,warrior,20,182450,0,0,7,bow,jacket,spartan,src/main/java/packages/images/default-image.png
 Created Hero ,elf,0,0,0,0,10,bow,jacket,pot,src/main/java/packages/images/default-image.png
-Oliver the Mayor,knight,6,17250,0,0,10,bow,jacket,pot,/goinfre/tmekwa/Desktop/Workspace/main@2x.png
-=======
-John the Teenager,knight,0,0,16,7,55,sword,curass,frog_mouthed,src/main/java/packages/images/default-image.png
-Alex the Great,elf,6,17250,20,15,39,knife,leather,pot,src/main/java/packages/images/default-image.png
-Thor the Mighty,knight,7,23200,18,15,52,sword,leather,nasal,src/main/java/packages/images/default-image.png
->>>>>>> 9fcb5e3a4d988995337f4a9994f59cec2c3baaba
