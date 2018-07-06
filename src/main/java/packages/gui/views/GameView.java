@@ -98,24 +98,25 @@ public class GameView extends JFrame{
         EnemyModel enemy = null;
         this.panelMain.removeAll();
 
-        //Check if Hero is outside the map...
-        if ((this.hero.getCoordinates().getX() < 0 || this.hero.getCoordinates().getY() < 0) || (this.hero.getCoordinates().getX() >= this.mapSize || this.hero.getCoordinates().getY() >= this.mapSize)){
+        if ((this.hero.getCoordinates().getX() < 0 || this.hero.getCoordinates().getY() < 0) ||
+            (this.hero.getCoordinates().getX() >= this.mapSize || this.hero.getCoordinates().getY() >= this.mapSize)
+            )
+        {
+            //Check if Hero is outside the map...
             GameSimulationModel.winGame(this.hero);
+            JFrameHelper.ShowInfoDialog(this, "You Won", "You win...");
+            this.disposeWindow();
         }
-        if (this.hero.getHitPoints() <= 0){
-            System.out.println("if (this.hero.getHitPoints() <= 0) {}");
-            this.hero.setHitPoints(10);
-            GameSimulationModel.lostGame(this.hero);
-            
-            System.exit(0);
-            /*
-            this.dispose();
-            SelectHeroView selectHeroView = new SelectHeroView(readFile.simulateFile());
-            selectHeroView.setVisible(true);
-            System.out.println("if () {}");
-            return ;
-            */
-        }
+
+        // if (this.hero.getHitPoints() <= 0){
+        //     //Check if is alive
+        //     GameSimulationModel.lostGame(this.hero);
+        //     System.out.println("hero lost");
+        
+        //     SelectHeroView selectHeroView = new SelectHeroView(readFile.simulateFile());
+        //     selectHeroView.setVisible(true);
+        //     this.dispose();
+        // }
 
         for (EnemyModel enemyLoop: this.enemiesList) {
             if (enemyLoop.getCoordinates().Isequals(this.hero.getCoordinates())){

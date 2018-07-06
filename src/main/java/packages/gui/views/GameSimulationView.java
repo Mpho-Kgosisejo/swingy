@@ -31,7 +31,8 @@ public class GameSimulationView extends JFrame
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this._model = model;
-            
+        
+        this.setTitle(this._model.getVSMessage());
         this.init();
     }
 

@@ -71,7 +71,7 @@ public class HeroFactory
         int xPoints = 0;
         int attack  = 2;
         int defense = 2;
-        int hitPoints  = 10;
+        int hitPoints  = 50;
 
         String storeType = type.trim().toLowerCase();
         if (icon == null)

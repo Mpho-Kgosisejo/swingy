@@ -74,7 +74,7 @@ public class GameSimulationController extends JFrameHelper
 
                 while(_model.nextFight()){
                     _view.setSimulationText(_model.getSimulationOutput() + "\n");
-                    _view.setWinTitle(_model.getVSMessage(_model.getHeroModel(), _model.getEnemyModel()));
+                    _view.setWinTitle(_model.getVSMessage());
                 }
                 _view.setSimulationText("Game ended...");
 
@@ -85,10 +85,14 @@ public class GameSimulationController extends JFrameHelper
 
                     if (_model.isHeroAlive(_model.getHeroModel())){
                         mssg = _model.getHeroModel().getName() + " won the fight";
+                        GameSimulationModel.dropArtifact(_model.getHeroModel(), _model.getEnemyModel());
                         ShowInfoDialog(_view, "Fight Won", mssg);
                     }else{
-                        mssg = _model.getEnemyModel().getName() + " won the fight";
+                        mssg = "Lost the Fight againt " + _model.getEnemyModel().getName();
                         ShowInfoDialog(_view, "Fight Lost", mssg);
+                        GameSimulationModel.restHero(_model.getHeroModel());
+                        _gameView.disposeWindow();
+                        return ;
                     }
                 }
                 _view.dispose();

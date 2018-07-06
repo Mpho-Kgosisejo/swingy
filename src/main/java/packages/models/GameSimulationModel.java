@@ -12,40 +12,56 @@ public class GameSimulationModel{
     private int simulationCount = 0;
     private int simulationMiliSecs = 1500;
     private static int cpyHP;
+    private Random rand;
 
     public GameSimulationModel(HeroModel hero, EnemyModel enemy){
         this.hero = hero;
         this.enemy = enemy;
         cpyHP = this.hero.getHitPoints();
+        this.rand = new Random();
     }
 
     public Boolean nextFight() throws InterruptedException{
         if (this.isHeroAlive(this.hero) && this.isHeroAlive(this.enemy)){            
+            int rn = this.rand.nextInt(2);
+            int dmg = 0;
             simulationCount++;
-            Random rand = new Random();
-            int rn = rand.nextInt(2);
-            if (rn == 0)
-                this.enemy.setHitPoints((this.enemy.getHitPoints() - (this.hero.getAttack() - this.enemy.getDefense())));
-            else
-                this.hero.setHitPoints((this.hero.getHitPoints() - (this.enemy.getAttack() - this.hero.getDefense())));
-            simulationOutput = "* simulation " + simulationCount + "*";
+
+            if (rn == 0){
+                dmg = (this.hero.getAttack() - this.enemy.getDefense());
+                this.enemy.setHitPoints((this.enemy.getHitPoints() - this.fixDmg(dmg)));
+            }
+            else{
+                dmg = (this.enemy.getAttack() - this.hero.getDefense());
+                this.hero.setHitPoints((this.hero.getHitPoints() - this.fixDmg(dmg)));
+            }
+            simulationOutput = "* simulation " + simulationCount + "* + dmg: " + dmg + " - ";
             Thread.sleep(this.simulationMiliSecs);
             return (true);
         }
-        this.hero.setHitPoints(cpyHP);
         return (false);
     }
 
-    public static void lostGame(HeroModel hero){
-        hero.setLevel(hero.getLevel() - 1);
-        hero.setXPoints(Formulas.getXPoints(hero.getLevel()));
+    private int fixDmg(int dmg){
+        if (dmg <= 0)
+            return (0);
+        return (dmg);
     }
 
-    public String getVSMessage(HeroModel hero, EnemyModel enemy){
-        return (hero.getName() + " (" + hero.getHitPoints() + "HP) VS " + enemy.getName() + " (" + enemy.getHitPoints() + "HP)");
+    public static void restHero(HeroModel hero){
+        hero.setHitPoints(cpyHP);
+    }
+
+    public static void lostGame(HeroModel hero){
+        restHero(hero);
+    }
+
+    public String getVSMessage(){
+        return (this.hero.getName() + " (" + this.hero.getHitPoints() + "HP) VS " + this.enemy.getName() + " (" + this.enemy.getHitPoints() + "HP)");
     }
     
     public static void winGame(HeroModel hero){
+        hero.setHitPoints(cpyHP);
         hero.setLevel(hero.getLevel() + 1);
         hero.setXPoints(Formulas.getXPoints(hero.getLevel()));
         //hero.setHitPoints(10);

@@ -118,7 +118,7 @@ public class Maps
         {
             Scanner _reader = new Scanner(System.in);
         
-            System.out.println(ANSI_CYAN + hero.getName().toUpperCase() + ANSI_RESET  + " VS " + ANSI_RED + enemy.getName().toUpperCase() + ANSI_RESET);
+            Menus.PrintFightOpponents(hero, enemyModel);
             while (_reader.hasNextLine())
             {
                 if (_reader.hasNextInt())
@@ -159,6 +159,8 @@ public class Maps
 
     private void Fight(HeroModel hero, EnemyModel enemy) 
     {
+        int hpCopy = hero.getHitPoints();
+        System.out.println("hp one: " + hpCopy);
         try
         {
             GameSimulationModel gsm = new GameSimulationModel(hero, enemy);
@@ -190,7 +192,8 @@ public class Maps
         {
             System.out.println(ANSI_RED + "Something went wrong." + ANSI_RESET);
         }
-        
+        hero.setHitPoints(hpCopy);
+        System.out.println("Hp two: " + hero.getHitPoints());
     }
     
 }
