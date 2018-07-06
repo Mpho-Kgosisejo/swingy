@@ -13,7 +13,7 @@ import packages.models.EnemyModel;
 import packages.models.HeroModel;
 
 public class EnemyFactory{
-    public static String[] enemyName = {"Terminus", "Inara", "Strix", "Jenos", "Evulli", "Jacaramba"};
+    public static String[] enemyName = {"Terminus", "Inara", "Strix", "Jenos", "Makoa", "Sha Lin", "Drogoz", "Bomb King", "Evie", "Androxus"};
 
     public static List<EnemyModel> getEnemyList(HeroModel hero){
         List<EnemyModel> enemyList = new ArrayList<EnemyModel>();

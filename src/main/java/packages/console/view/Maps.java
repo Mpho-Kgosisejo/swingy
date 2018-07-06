@@ -117,8 +117,6 @@ public class Maps
         if (enemy.getHitPoints() > 0)
         {
             Scanner _reader = new Scanner(System.in);
-        
-            Menus.PrintFightOpponents(hero, enemyModel);
             while (_reader.hasNextLine())
             {
                 if (_reader.hasNextInt())
@@ -159,11 +157,12 @@ public class Maps
 
     private void Fight(HeroModel hero, EnemyModel enemy) 
     {
-        int hpCopy = hero.getHitPoints();
-        System.out.println("hp one: " + hpCopy);
+        String yesORno;
+        Menus.PrintFightOpponents(hero, enemy);
         try
         {
             GameSimulationModel gsm = new GameSimulationModel(hero, enemy);
+            gsm.setSimulationMiliSecs(500);
             while (gsm.nextFight())
             {
                 System.out.println(gsm.getSimulationOutput());
@@ -177,24 +176,22 @@ public class Maps
                 if (gsm.isHeroAlive(gsm.getHeroModel())){
                     mssg = gsm.getHeroModel().getName() + " won the fight";
                     System.out.println(ANSI_CYAN + "Fight Won: " + ANSI_RESET +  mssg); 
-                    GameSimulationModel.dropArtifact(hero, enemy);
-                    enemyList.remove(enemy);
                     GameSimulationModel.resetHero(hero);
+                    yesORno =  GameSimulationModel.dropArtifact(enemy);
+                    enemyList.remove(enemy);
                     drawMap(hero);
                 }else{
                     mssg = gsm.getEnemyModel().getName() + " won the fight";
                     System.out.println(ANSI_CYAN + "Fight Lost: " + ANSI_RESET +  mssg);
                     System.out.println(ANSI_YELLOW + ">>>>>> GAME OVER <<<<<<" + ANSI_RESET);
+                    GameSimulationModel.lostGame(hero);
                     System.exit(0);
                 }
             }
-            
         }
         catch (Exception e)
         {
             System.out.println(ANSI_RED + "Something went wrong." + ANSI_RESET);
         }
-        hero.setHitPoints(hpCopy);
     }
-    
 }

@@ -61,6 +61,6 @@ public class Menus {
         System.out.println("Hit Points: " + hero.getHitPoints() + ANSI_YELLOW + "   |   " + ANSI_RESET + "Hit Points: " + enemy.getHitPoints());
         System.out.println("Weapon: " + hero.getWeapon() + ANSI_YELLOW + "   |   " + ANSI_RESET + "Weapon: " + enemy.getWeapon());
         System.out.println("Armor: " + hero.getArmor() + ANSI_YELLOW + "   |   " + ANSI_RESET + "Armor: " + enemy.getArmor());
-        System.out.println("Helm: " + hero.getHelm() + ANSI_YELLOW + "   |   " + ANSI_RESET + "Helm: " + enemy.getHelm());
+        System.out.println("Helm: " + hero.getHelm() + ANSI_YELLOW + "   |   " + ANSI_RESET + "Helm: " + enemy.getHelm() + "\n");
     }
 }

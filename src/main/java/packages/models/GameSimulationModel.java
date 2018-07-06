@@ -1,6 +1,10 @@
 package packages.models;
 
 import java.util.Random;
+
+import javax.swing.text.DefaultStyledDocument.ElementSpec;
+
+import packages.enums.WeaponType;
 import packages.utils.*;
 
 import packages.utils.Formulas;
@@ -14,6 +18,7 @@ public class GameSimulationModel{
     private int simulationMiliSecs = 1500;
     private static int cpyHP;
     private Random rand;
+    private static int artifactType;
     private String attacks[] = {"Dragon Punch", "Blitz Upper", "Impaler Arrow", "Flash Bomb", "Fire Bomb", "Poison Bolts", "Explosive Potion", "Massacre Axe", "Cannon Bomb", "Frag Granade"};
 
     public GameSimulationModel(HeroModel hero, EnemyModel enemy){
@@ -26,19 +31,24 @@ public class GameSimulationModel{
     public Boolean nextFight() throws InterruptedException{
         if (this.isHeroAlive(this.hero) && this.isHeroAlive(this.enemy)){            
             int rn = this.rand.nextInt(2);
+            int attackRan = this.rand.nextInt(10);
             int dmg = 0;
+            String attacker, attacked;
             simulationCount++;
 
             if (rn == 0){
-                dmg = (this.hero.getAttack() - this.enemy.getDefense());
-                this.enemy.setHitPoints((this.enemy.getHitPoints() - this.fixDmg(dmg)));
-                simulationOutput = ANSI_CYAN + hero.getName() + ANSI_RESET + "hits " + ANSI_GREEN + enemy.getName() + ANSI_RESET + "with a " + attacks[rand.nextInt(10)] + " Attack, Causing " + dmg + " damage.";
+                dmg = this.fixDmg((this.hero.getAttack() - this.enemy.getDefense()));
+                this.enemy.setHitPoints((this.enemy.getHitPoints() - dmg));
+                attacked = enemy.getName();
+                attacker = hero.getName();
             }
             else{
-                dmg = (this.enemy.getAttack() - this.hero.getDefense());
-                this.hero.setHitPoints((this.hero.getHitPoints() - this.fixDmg(dmg)));
-                simulationOutput = ANSI_GREEN + enemy.getName() + ANSI_RESET + "hits " + ANSI_CYAN + hero.getName() + ANSI_RESET + "with a " + attacks[rand.nextInt(10)] + " Attack, Causing " + dmg + " damage.";
+                dmg = this.fixDmg((this.enemy.getAttack() - this.hero.getDefense()));
+                this.hero.setHitPoints((this.hero.getHitPoints() - dmg));
+                attacker = enemy.getName();
+                attacked = hero.getName();
             }
+            simulationOutput = attacker + " hits " + attacked + " with a " +  this.attacks[attackRan] +" Attack, Causing " + dmg + " damage.";
             Thread.sleep(this.simulationMiliSecs);
             return (true);
         }
@@ -57,6 +67,7 @@ public class GameSimulationModel{
 
     public static void lostGame(HeroModel hero){
         resetHero(hero);
+        WriteFile.findAndUpdate(readFile.simulateFile(), hero);
     }
 
     public String getVSMessage(){
@@ -70,26 +81,42 @@ public class GameSimulationModel{
         WriteFile.findAndUpdate(readFile.simulateFile(), hero);
     }
 
-    public static void dropArtifact(HeroModel hero, EnemyModel enemy)
+    public static String dropArtifact(EnemyModel enemy)
     {
         Random rand = new Random();
 
         switch (rand.nextInt(3))
         {
             case 0:
-                    hero.setWeapon(enemy.getWeapon());
-                    hero.setAttack(hero.getAttack() + 2);
-                    break;
+                    artifactType = 0;
+                    return enemy.getWeapon().toString();
             case 1:
-                    hero.setArmor(enemy.getArmor());
-                    hero.setDefense(hero.getDefense() + 2);
-                    break;
+                    artifactType = 1;
+                    return enemy.getArmor().toString();
             case 2:
-                    hero.setHelm(enemy.getHelm());
-                    hero.setHitPoints(hero.getHitPoints() + 2);
-                    break;
+                    artifactType = 2;
+                    return enemy.getHelm().toString();
         }
-        WriteFile.findAndUpdate(readFile.simulateFile(), hero);
+        return null;
+    }
+
+    public static void setArtifact(HeroModel hero, EnemyModel enemy) 
+    {
+        if (artifactType == 0)
+        {
+            hero.setWeapon(enemy.getWeapon());
+            hero.setAttack(hero.getAttack() + 2);            
+        }
+        else if (artifactType == 1)
+        {
+            hero.setArmor(enemy.getArmor());
+            hero.setDefense(hero.getDefense() + 2);
+        }
+        else
+        {
+            hero.setHelm(enemy.getHelm());
+            hero.setHitPoints(hero.getHitPoints() + 2);
+        } 
     }
 
     public int getSimulationCount(){
