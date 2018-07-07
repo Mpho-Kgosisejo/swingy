@@ -33,7 +33,6 @@ public class GameView extends JFrame{
     //H: 1080, W: 1920 (Current Mac - screen size)
     private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private HeroModel hero;
-    private JFrame thisFrame;
     private JLabel lblHeroImage;
     private JPanel panelMain;
     private int mapSize = 0;
@@ -47,7 +46,6 @@ public class GameView extends JFrame{
         //Todo: setResizable(true) ? Make a class ResizeListener() and invoke this.drawMap()
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.thisFrame = this;
         FrameCount++;
         
         this.hero = hero;
@@ -63,13 +61,8 @@ public class GameView extends JFrame{
     }
 
     public void disposeWindow(){
-        List<HeroModel> heroList = readFile.simulateFile();
-        
-        SelectHeroView selectHeroView = new SelectHeroView(heroList);
-        selectHeroView.setVisible(true);
-        new SelectHeroController(selectHeroView, heroList);
         FrameCount--;
-        thisFrame.dispose();
+        this.dispose();
     }
 
     private void init(){
