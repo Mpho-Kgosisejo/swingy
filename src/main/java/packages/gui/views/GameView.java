@@ -40,6 +40,7 @@ public class GameView extends JFrame{
     private int mapSize = 0;
     private List<EnemyModel> enemiesList;
     public static int FrameCount;
+    private int _retHitPoints;
 
     public GameView(HeroModel hero){
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -99,24 +100,13 @@ public class GameView extends JFrame{
         this.panelMain.removeAll();
 
         if ((this.hero.getCoordinates().getX() < 0 || this.hero.getCoordinates().getY() < 0) ||
-            (this.hero.getCoordinates().getX() >= this.mapSize || this.hero.getCoordinates().getY() >= this.mapSize)
-            )
+            (this.hero.getCoordinates().getX() >= this.mapSize || this.hero.getCoordinates().getY() >= this.mapSize))
         {
             //Check if Hero is outside the map...
             GameSimulationModel.winGame(this.hero);
             JFrameHelper.ShowInfoDialog(this, "You Won", "You win...");
             this.disposeWindow();
         }
-
-        // if (this.hero.getHitPoints() <= 0){
-        //     //Check if is alive
-        //     GameSimulationModel.lostGame(this.hero);
-        //     System.out.println("hero lost");
-        
-        //     SelectHeroView selectHeroView = new SelectHeroView(readFile.simulateFile());
-        //     selectHeroView.setVisible(true);
-        //     this.dispose();
-        // }
 
         for (EnemyModel enemyLoop: this.enemiesList) {
             if (enemyLoop.getCoordinates().Isequals(this.hero.getCoordinates())){
@@ -204,4 +194,15 @@ public class GameView extends JFrame{
     public List<EnemyModel> getEnemyList(List<EnemyModel> list){
         return (this.enemiesList);
     }
+
+    public void setRetHitPoints(int retHitPoints)
+    {
+        this._retHitPoints = retHitPoints;
+    }
+
+    public int getRetHitPoints()
+    {
+        return this._retHitPoints;
+    }
+
 }

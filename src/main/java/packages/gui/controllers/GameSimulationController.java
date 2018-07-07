@@ -3,6 +3,7 @@ package packages.gui.controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import packages.gui.views.EndingView;
 import packages.gui.views.GameSimulationView;
 import packages.gui.views.GameView;
 import packages.models.GameSimulationModel;
@@ -82,22 +83,31 @@ public class GameSimulationController extends JFrameHelper
                     ShowInfoDialog(_view, "No Winner","No winner...");
                 }else{
                     String mssg = "";
+                    String artifact = "";
 
                     if (_model.isHeroAlive(_model.getHeroModel())){
+                        // GameSimulationModel.resetHero(_model.getHeroModel());
                         mssg = _model.getHeroModel().getName() + " won the fight";
-                        GameSimulationModel.dropArtifact(_model.getHeroModel(), _model.getEnemyModel());
-                        ShowInfoDialog(_view, "Fight Won", mssg);
+                        artifact = GameSimulationModel.dropArtifact(_model.getEnemyModel());
+
+                        if (JFrameHelper.ShowConfirmDialog(_view, "Fight Won", "You won the Fight.\n You picked up a " + artifact + ", do you want to keep it?")){
+                            GameSimulationModel.setArtifact(_model.getHeroModel(), _model.getEnemyModel());
+                        }
+                        _gameView.drawMap();
+                        _gameView.setVisible(true);
                     }else{
+                        GameSimulationModel.resetHero(_model.getHeroModel());
                         mssg = "Lost the Fight againt " + _model.getEnemyModel().getName();
                         ShowInfoDialog(_view, "Fight Lost", mssg);
                         GameSimulationModel.resetHero(_model.getHeroModel());
+                        EndingView endingView = new EndingView();
+                        endingView.setVisible(true);
+                        // ?
+                        _gameView.dispose();
                         _gameView.disposeWindow();
-                        return ;
                     }
                 }
                 _view.dispose();
-                _gameView.drawMap();
-                _gameView.setVisible(true);
             } catch (Exception e) {
                 System.out.println("Error @ GameSimulation(): " + e.getMessage());
             }

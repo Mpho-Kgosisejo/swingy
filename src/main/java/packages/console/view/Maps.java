@@ -157,7 +157,7 @@ public class Maps
 
     private void Fight(HeroModel hero, EnemyModel enemy) 
     {
-        String yesORno;
+        String artifact;
         Menus.PrintFightOpponents(hero, enemy);
         try
         {
@@ -177,7 +177,9 @@ public class Maps
                     mssg = gsm.getHeroModel().getName() + " won the fight";
                     System.out.println(ANSI_CYAN + "Fight Won: " + ANSI_RESET +  mssg); 
                     GameSimulationModel.resetHero(hero);
-                    yesORno =  GameSimulationModel.dropArtifact(enemy);
+                    artifact =  GameSimulationModel.dropArtifact(enemy);
+                    System.out.println("The enemy dropped a " + artifact + " do you want to keep it? \n1. Yes\n2.No \n");
+                    PickOrNot(hero, enemy);
                     enemyList.remove(enemy);
                     drawMap(hero);
                 }else{
@@ -192,6 +194,24 @@ public class Maps
         catch (Exception e)
         {
             System.out.println(ANSI_RED + "Something went wrong." + ANSI_RESET);
+        }
+    }
+
+    private void PickOrNot(HeroModel hero, EnemyModel enemy) 
+    {
+        Scanner read = new Scanner(System.in);
+        int choice;
+        
+        while ((choice = read.nextInt()) != -1)
+        {
+            switch (choice)
+            {
+                case 1:
+                    GameSimulationModel.setArtifact(hero, enemy);
+                    break;
+                case 2:
+                    break;
+            }
         }
     }
 }

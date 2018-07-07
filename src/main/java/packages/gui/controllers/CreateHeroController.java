@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.List;
 
-import javax.print.DocFlavor.STRING;
 import javax.swing.JFileChooser;
 
 import packages.gui.views.CreateHeroView;
