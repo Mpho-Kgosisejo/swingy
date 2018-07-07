@@ -72,6 +72,7 @@ public class EndingView extends JFrame
             // SelectHeroView selectHeroView = new SelectHeroView(readFile.simulateFile());
             // selectHeroView.setVisible(true);
     }
+    
     public void checkHitPoints()
     {
         // String win =

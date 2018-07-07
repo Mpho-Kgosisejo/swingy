@@ -36,7 +36,6 @@ public class GameView extends JFrame{
     private JFrame thisFrame;
     private JLabel lblHeroImage;
     private JPanel panelMain;
-    private List<HeroModel> _heroList;
     private int mapSize = 0;
     private List<EnemyModel> enemiesList;
     public static int FrameCount;
@@ -51,8 +50,8 @@ public class GameView extends JFrame{
         this.thisFrame = this;
         FrameCount++;
         
-        this._heroList = readFile.simulateFile();
         this.hero = hero;
+        GameSimulationModel.setCopyHP(this.hero.getHitPoints());
         this.init();        
 
         this.addWindowListener(new WindowAdapter() {
@@ -64,12 +63,8 @@ public class GameView extends JFrame{
     }
 
     public void disposeWindow(){
-        List<HeroModel> heroList = null;
-        try{
-            heroList = readFile.simulateFile();
-        }catch(Exception exc){
-
-        }
+        List<HeroModel> heroList = readFile.simulateFile();
+        
         SelectHeroView selectHeroView = new SelectHeroView(heroList);
         selectHeroView.setVisible(true);
         new SelectHeroController(selectHeroView, heroList);

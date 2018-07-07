@@ -57,10 +57,15 @@ public class SelectHeroController extends JFrameHelper{
     class SelectHeroListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) { 
             if (GameView.FrameCount < 1){
-                GameView gameView = new GameView(heroList.get(view.getMouseClickIndex()));
-                gameView.setVisible(true);
-                new GameController(gameView);
-                view.dispose();
+                HeroModel hero = heroList.get(view.getMouseClickIndex());
+                if (hero.getHitPoints() <= 0){
+                    JFrameHelper.ShowErrorDialog(null, hero.getName() + "'s HP is " + hero.getHitPoints() + ".\nHero's HP most be \"Greater then\" zero(0)!");
+                }else{
+                    GameView gameView = new GameView(hero);
+                    gameView.setVisible(true);
+                    new GameController(gameView);
+                    view.dispose();
+                }
             }
         }
     }
