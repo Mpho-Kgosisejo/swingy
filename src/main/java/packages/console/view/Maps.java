@@ -200,16 +200,19 @@ public class Maps
     private void PickOrNot(HeroModel hero, EnemyModel enemy) 
     {
         Scanner read = new Scanner(System.in);
-        int choice;
-        
-        while ((choice = read.nextInt()) != -1)
+        int choice = 0;
+
+        while (choice != -1)
         {
+            choice = read.nextInt();
             switch (choice)
             {
                 case 1:
                     GameSimulationModel.setArtifact(hero, enemy);
+                    choice = -1;
                     break;
                 case 2:
+                    choice = -1;
                     break;
             }
         }

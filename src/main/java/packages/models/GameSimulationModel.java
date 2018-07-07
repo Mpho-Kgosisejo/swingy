@@ -26,6 +26,9 @@ public class GameSimulationModel{
         this.enemy = enemy;
         setCopyHP(this.hero.getHitPoints());
         this.rand = new Random();
+
+        WriteFile.write(WriteFile.SimulationOutputName, "", false);
+        WriteFile.write(WriteFile.SimulationOutputName, this.getVSMessage() + "\n", true);
     }
 
     public Boolean nextFight() throws InterruptedException{
@@ -49,6 +52,8 @@ public class GameSimulationModel{
                 attacked = hero.getName();
             }
             simulationOutput = attacker + " hits " + attacked + " with a " +  this.attacks[attackRan] +" Attack, Causing " + dmg + " damage.";
+            WriteFile.write(WriteFile.SimulationOutputName, simulationOutput + "\n", true);
+            WriteFile.write(WriteFile.SimulationOutputName, hero.getName() + ": " + hero.getHitPoints() + "HP - " + enemy.getName() + ": " + enemy.getHitPoints() + "HP\n", true);
             Thread.sleep(this.simulationMiliSecs);
             return (true);
         }

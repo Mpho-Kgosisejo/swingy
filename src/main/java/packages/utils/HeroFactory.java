@@ -18,7 +18,9 @@ public class HeroFactory
     {
         String storeType = type.trim().toLowerCase();
         String temp = "";
-            
+        if (hitPoints <= 0)
+            hitPoints = 50;
+
         if (storeType.equals("warrior") == true)
             temp = "warrior";
         else if (storeType.equals("hunter") == true)

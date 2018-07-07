@@ -5,6 +5,7 @@
 .vscode
 .project
 .maven-build-log
+simulation-output.txt
 .DS_Store
 target
 bin
