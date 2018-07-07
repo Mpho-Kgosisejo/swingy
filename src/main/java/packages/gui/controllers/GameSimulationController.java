@@ -77,7 +77,7 @@ public class GameSimulationController extends JFrameHelper
                     _view.setSimulationText(_model.getSimulationOutput() + "\n");
                     _view.setWinTitle(_model.getVSMessage());
                 }
-                _view.setSimulationText("Game ended...");
+                _view.setSimulationText("----- Game Over -----\n\n");
 
                 if (!_model.isHeroAlive(_model.getHeroModel()) && !_model.isHeroAlive(_model.getEnemyModel())){
                     ShowInfoDialog(_view, "No Winner","No winner...");
@@ -86,24 +86,22 @@ public class GameSimulationController extends JFrameHelper
                     String artifact = "";
 
                     if (_model.isHeroAlive(_model.getHeroModel())){
-                        // GameSimulationModel.resetHero(_model.getHeroModel());
+                        GameSimulationModel.resetHero(_model.getHeroModel());
                         mssg = _model.getHeroModel().getName() + " won the fight";
+                        _view.setSimulationText(mssg);
                         artifact = GameSimulationModel.dropArtifact(_model.getEnemyModel());
 
-                        if (JFrameHelper.ShowConfirmDialog(_view, "Fight Won", "You won the Fight.\n You picked up a " + artifact + ", do you want to keep it?")){
+                        if (JFrameHelper.ShowConfirmDialog(_view, "Fight Won", "You won the Fight.\nYou picked up a " + artifact + ", do you want to keep it?")){
                             GameSimulationModel.setArtifact(_model.getHeroModel(), _model.getEnemyModel());
                         }
                         _gameView.drawMap();
                         _gameView.setVisible(true);
                     }else{
-                        GameSimulationModel.resetHero(_model.getHeroModel());
+                        GameSimulationModel.lostGame(_model.getHeroModel());
                         mssg = "Lost the Fight againt " + _model.getEnemyModel().getName();
-                        ShowInfoDialog(_view, "Fight Lost", mssg);
-                        GameSimulationModel.resetHero(_model.getHeroModel());
                         new EndingView().setVisible(true);
+                        _view.setSimulationText(mssg);
                         
-                        // ?
-                        _gameView.dispose();
                         _gameView.disposeWindow();
                     }
                 }

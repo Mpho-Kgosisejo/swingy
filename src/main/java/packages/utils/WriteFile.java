@@ -21,7 +21,21 @@ public class WriteFile
     private static List<HeroModel> _heroList;
     private HeroModel _hero;
     public static String FileName = "hero-stats.txt";
+    public static String SimulationOutputName = "simulation-output.txt";
     
+    public static void write(String filename, String str, Boolean append){
+        try
+        {
+            fw = new FileWriter(filename, append);
+            bw = new BufferedWriter(fw);
+            out = new PrintWriter(bw);
+            out.write(str);
+            out.close();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void writeToFile(HeroModel _hero)
     {
         try

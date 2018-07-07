@@ -20,12 +20,17 @@ public class GameSimulationModel{
     private Random rand;
     private static int artifactType;
     private String attacks[] = {"Dragon Punch", "Blitz Upper", "Impaler Arrow", "Flash Bomb", "Fire Bomb", "Poison Bolts", "Explosive Potion", "Massacre Axe", "Cannon Bomb", "Frag Granade"};
+    public static int OldX;
+    public static int OldY;
 
     public GameSimulationModel(HeroModel hero, EnemyModel enemy){
         this.hero = hero;
         this.enemy = enemy;
         setCopyHP(this.hero.getHitPoints());
         this.rand = new Random();
+
+        WriteFile.write(WriteFile.SimulationOutputName, "", false);
+        WriteFile.write(WriteFile.SimulationOutputName, this.getVSMessage() + "\n", true);
     }
 
     public Boolean nextFight() throws InterruptedException{
@@ -49,6 +54,8 @@ public class GameSimulationModel{
                 attacked = hero.getName();
             }
             simulationOutput = attacker + " hits " + attacked + " with a " +  this.attacks[attackRan] +" Attack, Causing " + dmg + " damage.";
+            WriteFile.write(WriteFile.SimulationOutputName, simulationOutput + "\n", true);
+            WriteFile.write(WriteFile.SimulationOutputName, hero.getName() + ": " + hero.getHitPoints() + "HP - " + enemy.getName() + ": " + enemy.getHitPoints() + "HP\n", true);
             Thread.sleep(this.simulationMiliSecs);
             return (true);
         }

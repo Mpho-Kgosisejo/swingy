@@ -24,6 +24,7 @@ public class ConsoleView
 
     public static void start()
     {
+
         try {
             heroList = readFile.simulateFile();
         }
@@ -52,6 +53,8 @@ public class ConsoleView
                             view.setVisible(true);
                             new WelcomeController(view);
                             break;
+                        case 4:
+                            System.exit(0);
                         default:
                             System.out.println(ANSI_RED + "\nYOUR CHOICE DOES NOT CORRESPOND TO GIVEN CHOICES\n" + ANSI_RESET);
                             break;
@@ -78,6 +81,9 @@ public class ConsoleView
             {
                 int n = reader.nextInt();
                 switch (n) {
+                    case 0:
+                        start();
+                        break;
                     case 1:
                         declareHero(CharacterType.knight);
                         break;
@@ -182,4 +188,5 @@ public class ConsoleView
                }
        }
    }
+
 }

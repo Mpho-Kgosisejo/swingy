@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import packages.console.controller.Coordinates;
+import packages.gui.controllers.GameController;
 import packages.gui.controllers.GameSimulationController;
 import packages.gui.controllers.SelectHeroController;
 import packages.models.EnemyModel;
@@ -34,7 +35,6 @@ public class GameView extends JFrame{
     //H: 1080, W: 1920 (Current Mac - screen size)
     private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     private HeroModel hero;
-    private JFrame thisFrame;
     private JLabel lblHeroImage;
     private JPanel panelMain;
     private int mapSize = 0;
@@ -48,7 +48,6 @@ public class GameView extends JFrame{
         //Todo: setResizable(true) ? Make a class ResizeListener() and invoke this.drawMap()
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.thisFrame = this;
         FrameCount++;
         
         this.hero = hero;
@@ -64,13 +63,8 @@ public class GameView extends JFrame{
     }
 
     public void disposeWindow(){
-        List<HeroModel> heroList = readFile.simulateFile();
-        
-        SelectHeroView selectHeroView = new SelectHeroView(heroList);
-        selectHeroView.setVisible(true);
-        new SelectHeroController(selectHeroView, heroList);
         FrameCount--;
-        thisFrame.dispose();
+        this.dispose();
     }
 
     private void init(){
@@ -151,6 +145,7 @@ public class GameView extends JFrame{
                     this.setVisible(false);
                 }else{
                     // eg.: hero level -= 1
+<<<<<<< HEAD
                     int n = ran.nextInt(2) + 1;
                     switch(n)
                     {
@@ -166,6 +161,11 @@ public class GameView extends JFrame{
                         default:
                             break;
                     }
+=======
+                    this.hero.getCoordinates().setX(GameSimulationModel.OldX);
+                    this.hero.getCoordinates().setY(GameSimulationModel.OldY);
+                    this.drawMap();
+>>>>>>> 711bf5a004f20598167b4cea0f92e241094da329
                 }
             }
             else{

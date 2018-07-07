@@ -38,15 +38,12 @@ public class EndingView extends JFrame
 
         checkHitPoints();            
         this.init();
-        System.out.println("Ending View Constructor");
         this.continueBtnListener(new ContinueBtnListener());        
         
     }
 
     public void init()
-    {
-            System.out.println("Ending View init method");
-            System.out.println(getGameOverText());            
+    {          
             JTextArea message = new JTextArea();
             this._mainPanel = new JPanel();
             this._bottomPanel = new JPanel();
