@@ -144,12 +144,13 @@ public class GameView extends JFrame{
                     this.setVisible(false);
                 }else{
                     // eg.: hero level -= 1
-<<<<<<< HEAD
                     int n = ran.nextInt(2) + 1;
                     switch(n)
                     {
                         case 1:
-                            System.out.println("Lucky 1 boss");
+                            this.hero.getCoordinates().setX(GameSimulationModel.OldX);
+                            this.hero.getCoordinates().setY(GameSimulationModel.OldY);
+                            this.drawMap();
                             break;
                         case 2:
                             JOptionPane.showConfirmDialog(null, "The Gods say you must fight!", "The Gods Have Spoken", JOptionPane.DEFAULT_OPTION);
@@ -160,11 +161,6 @@ public class GameView extends JFrame{
                         default:
                             break;
                     }
-=======
-                    this.hero.getCoordinates().setX(GameSimulationModel.OldX);
-                    this.hero.getCoordinates().setY(GameSimulationModel.OldY);
-                    this.drawMap();
->>>>>>> 711bf5a004f20598167b4cea0f92e241094da329
                 }
             }
             else{
