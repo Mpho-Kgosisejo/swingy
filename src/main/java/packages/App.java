@@ -16,6 +16,7 @@ public class App
 
             if (arg.equals("console")){
                 System.out.println(ANSI_BLUE + "\n######## CONSOLE VIEW ######## \n" + ANSI_RESET);
+                System.out.println(ANSI_PURPLE + "WELCOME TO SWINGY" + ANSI_RESET);
                 ConsoleView.start();
                 return ;
             }

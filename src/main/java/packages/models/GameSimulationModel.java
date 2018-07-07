@@ -20,6 +20,8 @@ public class GameSimulationModel{
     private Random rand;
     private static int artifactType;
     private String attacks[] = {"Dragon Punch", "Blitz Upper", "Impaler Arrow", "Flash Bomb", "Fire Bomb", "Poison Bolts", "Explosive Potion", "Massacre Axe", "Cannon Bomb", "Frag Granade"};
+    public static int OldX;
+    public static int OldY;
 
     public GameSimulationModel(HeroModel hero, EnemyModel enemy){
         this.hero = hero;

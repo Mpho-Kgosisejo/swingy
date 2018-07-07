@@ -16,6 +16,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import packages.console.controller.Coordinates;
@@ -133,7 +134,7 @@ public class GameView extends JFrame{
         }
         this.panelMain.revalidate();
         this.panelMain.repaint();
-        
+        Random ran = new Random();
         if (heroEnemyCoordinatesMatch != null && enemy != null){
             if (enemy.getHitPoints() > 0){
                 if (JFrameHelper.ShowConfirmDialog(this, "Fight || Run", "You have encounterd a Villan" + "\n      (N)Run Or (Y)Fight ")){
@@ -143,9 +144,27 @@ public class GameView extends JFrame{
                     this.setVisible(false);
                 }else{
                     // eg.: hero level -= 1
-                    this.hero.getCoordinates().setX(GameController.OldX);
-                    this.hero.getCoordinates().setY(GameController.OldY);
+<<<<<<< HEAD
+                    int n = ran.nextInt(2) + 1;
+                    switch(n)
+                    {
+                        case 1:
+                            System.out.println("Lucky 1 boss");
+                            break;
+                        case 2:
+                            JOptionPane.showConfirmDialog(null, "The Gods say you must fight!", "The Gods Have Spoken", JOptionPane.DEFAULT_OPTION);
+                            GameSimulationModel model  =  new GameSimulationModel(this.hero, enemy);
+                            new GameSimulationController(new GameSimulationView(model), model, this);
+                            this.setVisible(false);
+                            break;
+                        default:
+                            break;
+                    }
+=======
+                    this.hero.getCoordinates().setX(GameSimulationModel.OldX);
+                    this.hero.getCoordinates().setY(GameSimulationModel.OldY);
                     this.drawMap();
+>>>>>>> 711bf5a004f20598167b4cea0f92e241094da329
                 }
             }
             else{

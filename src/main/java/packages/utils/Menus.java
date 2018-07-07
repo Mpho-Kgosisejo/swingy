@@ -8,13 +8,12 @@ import packages.models.HeroModel;
 public class Menus {
     public static void menu()
     {
-        System.out.println(ANSI_PURPLE + "WELCOME TO SWINGY" + ANSI_RESET);
-        System.out.print(ANSI_CYAN + "\n>>>>>> START <<<<<<" + "\nSELECT ONE OF THE OPTIONS\n" + ANSI_RESET + "1. create a new Hero\n" + "2. Select from existing Heroes\n" + "3. Switch to gui\n");
+        System.out.print(ANSI_CYAN + "\n>>>>>> START <<<<<<" + "\nSELECT ONE OF THE OPTIONS\n" + ANSI_RESET + "1. create a new Hero\n" + "2. Select from existing Heroes\n" + "3. Switch to gui\n" + "4. Exit\n");
     }
 
     public static void heroMenu()
     {
-        System.out.println(ANSI_CYAN+ "\nSELECT HERO TYPE\n" + ANSI_RESET + "1. Knight\n" + "2. Warrior\n" + "3. Elf\n" + "4. Hunter\n" + "5. Villager\n" + "6. Switch to GUI\n");
+        System.out.println(ANSI_CYAN+ "\nSELECT HERO TYPE\n" + ANSI_RESET + "1. Knight\n" + "2. Warrior\n" + "3. Elf\n" + "4. Hunter\n" + "5. Villager\n" + "6. Switch to GUI\n" + "0. Back\n");
     }
 
     public static void printStats(HeroModel _hero)

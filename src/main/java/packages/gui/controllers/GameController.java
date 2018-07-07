@@ -4,13 +4,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import packages.gui.views.GameView;
+import packages.models.GameSimulationModel;
 import packages.models.HeroModel;
 
 public class GameController{
     private GameView view;
     private HeroModel hero;
-   public static int OldX  = 0;
-   public static int OldY  = 0;
 
     public GameController(GameView view){
         this.view = view;
@@ -31,8 +30,8 @@ public class GameController{
     private void moveHero(int code){
         int x = hero.getCoordinates().getX();
         int y = hero.getCoordinates().getY();
-        OldX = x;
-        OldY = y;
+        GameSimulationModel.OldX = x;
+        GameSimulationModel.OldY = y;
 
         switch (code){
             case 38:
