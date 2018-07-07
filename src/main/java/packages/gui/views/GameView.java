@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import packages.console.controller.Coordinates;
+import packages.gui.controllers.GameController;
 import packages.gui.controllers.GameSimulationController;
 import packages.gui.controllers.SelectHeroController;
 import packages.models.EnemyModel;
@@ -143,7 +144,9 @@ public class GameView extends JFrame{
                     this.setVisible(false);
                 }else{
                     // eg.: hero level -= 1
-                    
+                    this.hero.getCoordinates().setX(GameController.OldX);
+                    this.hero.getCoordinates().setY(GameController.OldY);
+                    this.drawMap();
                 }
             }
             else{

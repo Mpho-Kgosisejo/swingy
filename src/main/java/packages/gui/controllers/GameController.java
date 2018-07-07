@@ -9,8 +9,8 @@ import packages.models.HeroModel;
 public class GameController{
     private GameView view;
     private HeroModel hero;
-    
-    //private List<HeroModel> _heroList = new ArrayList<>();
+   public static int OldX  = 0;
+   public static int OldY  = 0;
 
     public GameController(GameView view){
         this.view = view;
@@ -31,6 +31,8 @@ public class GameController{
     private void moveHero(int code){
         int x = hero.getCoordinates().getX();
         int y = hero.getCoordinates().getY();
+        OldX = x;
+        OldY = y;
 
         switch (code){
             case 38:
