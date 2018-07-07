@@ -58,7 +58,6 @@ public class CreateHeroView extends JFrame{
         this.txtFdName = new JTextField(10);
         JPanel panelTop2 = new JPanel();
         JLabel lblType = new JLabel("Type:");
-        //this.txtFdType = new JTextField(10);
         this.listFdType = new JComboBox<CharacterType>(CharacterType.values());
         this.listFdType.removeItem(CharacterType.enemy);
         JPanel panelTop3 = new JPanel();
