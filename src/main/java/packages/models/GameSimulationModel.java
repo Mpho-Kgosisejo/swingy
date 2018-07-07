@@ -12,14 +12,14 @@ public class GameSimulationModel{
     private String simulationOutput = "";
     private int simulationCount = 0;
     private int simulationMiliSecs = 1500;
-    private static int cpyHP;
+    private static int copyHP;
     private Random rand;
     private String attacks[] = {"Dragon Punch", "Blitz Upper", "Impaler Arrow", "Flash Bomb", "Fire Bomb", "Poison Bolts", "Explosive Potion", "Massacre Axe", "Cannon Bomb", "Frag Granade"};
 
     public GameSimulationModel(HeroModel hero, EnemyModel enemy){
         this.hero = hero;
         this.enemy = enemy;
-        cpyHP = this.hero.getHitPoints();
+        setCopyHP(this.hero.getHitPoints());
         this.rand = new Random();
     }
 
@@ -51,8 +51,12 @@ public class GameSimulationModel{
         return (dmg);
     }
 
+    public static void setCopyHP(int hp){
+        copyHP = hp;
+    }
+
     public static void resetHero(HeroModel hero){
-        hero.setHitPoints(cpyHP);
+        hero.setHitPoints(copyHP);
     }
 
     public static void lostGame(HeroModel hero){
@@ -64,7 +68,7 @@ public class GameSimulationModel{
     }
     
     public static void winGame(HeroModel hero){
-        hero.setHitPoints(cpyHP);
+        resetHero(hero);
         hero.setLevel(hero.getLevel() + 1);
         hero.setXPoints(Formulas.getXPoints(hero.getLevel()));
         WriteFile.findAndUpdate(readFile.simulateFile(), hero);

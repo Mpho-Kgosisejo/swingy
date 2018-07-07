@@ -99,8 +99,8 @@ public class GameSimulationController extends JFrameHelper
                         mssg = "Lost the Fight againt " + _model.getEnemyModel().getName();
                         ShowInfoDialog(_view, "Fight Lost", mssg);
                         GameSimulationModel.resetHero(_model.getHeroModel());
-                        EndingView endingView = new EndingView();
-                        endingView.setVisible(true);
+                        new EndingView().setVisible(true);
+                        
                         // ?
                         _gameView.dispose();
                         _gameView.disposeWindow();
