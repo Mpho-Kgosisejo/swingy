@@ -16,20 +16,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.text.DefaultStyledDocument.ElementSpec;
-import javax.xml.validation.ValidatorHandler;
 
-import packages.models.ElfModel;
 import packages.models.HeroModel;
-import packages.models.HunterModel;
-import packages.models.KnightModel;
-import packages.models.VillagerModel;
-import packages.models.WarriorModel;
-import packages.enums.ArmorType;
-import packages.enums.HelmType;
 import packages.enums.CharacterType;
-import packages.enums.WeaponType;
 import packages.utils.HeroFactory;
 import packages.utils.JFrameHelper;
 
@@ -71,7 +60,6 @@ public class CreateHeroView extends JFrame{
         this.txtFdName = new JTextField(10);
         JPanel panelTop2 = new JPanel();
         JLabel lblType = new JLabel("Type:");
-        //this.txtFdType = new JTextField(10);
         this.listFdType = new JComboBox<CharacterType>(CharacterType.values());
         this.listFdType.removeItem(CharacterType.enemy);
         JPanel panelTop3 = new JPanel();

@@ -21,14 +21,12 @@ import javax.swing.JPanel;
 import packages.console.controller.Coordinates;
 import packages.gui.controllers.GameController;
 import packages.gui.controllers.GameSimulationController;
-import packages.gui.controllers.SelectHeroController;
 import packages.models.EnemyModel;
 import packages.models.GameSimulationModel;
 import packages.models.HeroModel;
 import packages.utils.EnemyFactory;
 import packages.utils.Formulas;
 import packages.utils.JFrameHelper;
-import packages.utils.readFile;
 
 public class GameView extends JFrame{
     //H: 1080, W: 1920 (Current Mac - screen size)
@@ -86,6 +84,7 @@ public class GameView extends JFrame{
         Random rand = new Random();
         Coordinates heroEnemyCoordinatesMatch = null;
         EnemyModel enemy = null;
+        int imageSize = ((this.getWidth() / Formulas.sizeMap(this.hero.getLevel())) - 12);
         this.panelMain.removeAll();
 
         if ((this.hero.getCoordinates().getX() < 0 || this.hero.getCoordinates().getY() < 0) ||
@@ -109,15 +108,15 @@ public class GameView extends JFrame{
                 JPanel panel = new JPanel();
                 Coordinates loopCoordinates = new Coordinates(x, y);
                 if (this.hero.getCoordinates().Isequals(loopCoordinates)){
-                    this.setImage(hero.getIcon(), this.lblHeroImage);
+                    //this.setImage(hero.getIcon(), this.lblHeroImage);
+                    this.lblHeroImage = JFrameHelper.getLabelImage(this.hero.getIcon(), imageSize);
                     panel.setBackground(new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)));
                     panel.add(this.lblHeroImage);
                 }
                 for (EnemyModel enemyLoop: this.enemiesList) {
                     if (loopCoordinates.Isequals(enemyLoop.getCoordinates()) && enemyLoop.getHitPoints() > 0){
                         // Enemy is here, and alive
-                        JLabel lblEnemyImage = new JLabel();
-                        this.setImage(enemyLoop.getIcon(), lblEnemyImage);
+                        JLabel lblEnemyImage = JFrameHelper.getLabelImage(enemyLoop.getIcon(), imageSize);
                         panel.add(lblEnemyImage);
 
                         if((heroEnemyCoordinatesMatch != null && enemy != null) && enemy.getCoordinates().Isequals(enemyLoop.getCoordinates())){
@@ -154,20 +153,6 @@ public class GameView extends JFrame{
                 //JFrameHelper.ShowErrorDialog(this, "Enemy was here... now dead! :-)");
             }
         }
-    }
-
-    private boolean setImage(String imagePath, JLabel lblImage){
-        try{
-            int imageSize = ((this.getWidth() / Formulas.sizeMap(this.hero.getLevel())) - 12);
-            ImageIcon imageIcon = new ImageIcon(ImageIO.read(new File(imagePath)));
-            Image image = imageIcon.getImage();
-            Image heroImage = image.getScaledInstance(imageSize, imageSize, Image.SCALE_SMOOTH);
-            lblImage.setIcon(new ImageIcon(heroImage));
-            return (true);
-        }catch(Exception exc){
-            System.err.println("Error Setting Image: " + exc.getMessage());
-        }
-        return (false);
     }
 
     public HeroModel getHero(){
