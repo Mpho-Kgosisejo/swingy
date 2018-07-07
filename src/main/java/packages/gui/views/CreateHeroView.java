@@ -1,6 +1,5 @@
 package packages.gui.views;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionListener;
@@ -16,20 +15,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.text.DefaultStyledDocument.ElementSpec;
-import javax.xml.validation.ValidatorHandler;
-
-import packages.models.ElfModel;
 import packages.models.HeroModel;
-import packages.models.HunterModel;
-import packages.models.KnightModel;
-import packages.models.VillagerModel;
-import packages.models.WarriorModel;
-import packages.enums.ArmorType;
-import packages.enums.HelmType;
 import packages.enums.CharacterType;
-import packages.enums.WeaponType;
 import packages.utils.HeroFactory;
 import packages.utils.JFrameHelper;
 

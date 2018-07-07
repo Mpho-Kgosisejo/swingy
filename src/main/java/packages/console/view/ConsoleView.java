@@ -5,10 +5,7 @@ import java.util.Scanner;
 
 import packages.models.HeroModel;
 import packages.console.controller.CliGame;
-import packages.enums.ArmorType;
-import packages.enums.HelmType;
 import packages.enums.CharacterType;
-import packages.enums.WeaponType;
 import packages.gui.controllers.*;
 import packages.gui.views.*;
 import packages.utils.HeroFactory;
