@@ -144,8 +144,8 @@ public class GameView extends JFrame{
                     this.setVisible(false);
                 }else{
                     // eg.: hero level -= 1
-                    this.hero.getCoordinates().setX(GameController.OldX);
-                    this.hero.getCoordinates().setY(GameController.OldY);
+                    this.hero.getCoordinates().setX(GameSimulationModel.OldX);
+                    this.hero.getCoordinates().setY(GameSimulationModel.OldY);
                     this.drawMap();
                 }
             }

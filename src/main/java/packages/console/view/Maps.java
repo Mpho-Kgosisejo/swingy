@@ -44,6 +44,9 @@ public class Maps
             if (scan.hasNextInt())
             {
                 int n = scan.nextInt();
+                GameSimulationModel.OldX = hero.getCoordinates().getX();
+                GameSimulationModel.OldY = hero.getCoordinates().getY();
+
                 switch (n)
                 {
                     case 1:
@@ -64,6 +67,7 @@ public class Maps
                     default:
                         break;
                 }
+
                 drawMap(hero);
             }
             else
@@ -129,7 +133,9 @@ public class Maps
                             if (rn == 0)
                             {
                                 System.out.println(ANSI_GREEN + "\n YOU CHOSE TO RUN YOU COWARD, GO BACK TO PREVIOUS SPOT!!" + ANSI_RESET);
-                                enemyList.remove(enemyModel);
+                                // enemyList.remove(enemyModel);
+                                hero.getCoordinates().setX(GameSimulationModel.OldX);
+                                hero.getCoordinates().setY(GameSimulationModel.OldY);
                                 drawMap(hero);
 
                             }
