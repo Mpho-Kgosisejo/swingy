@@ -1,3 +1,4 @@
 John the Teenager,knight,5,12200,22,11,0,knife,curass,great,src/main/java/packages/images/default-image.png
 Alex the Great,elf,9,37800,20,15,55,knife,leather,pot,src/main/java/packages/images/default-image.png
 Thor the Mighty,knight,9,37800,18,15,50,sword,leather,nasal,src/main/java/packages/images/default-image.png
+Sods the Creator of all,hunter,0,0,2,2,50,spear,jacket,nasal,/goinfre/tmekwa/Downloads/10a9e8a11da92681a5024cefbe34c95c.png
