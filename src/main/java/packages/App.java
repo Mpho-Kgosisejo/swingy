@@ -11,7 +11,7 @@ public class App
 {
     public static void main( String[] args ) throws IOException
     {
-        if (args.length == 2){
+        if (args.length == 1){
             String arg = args[0].trim().toLowerCase();
 
             if (arg.equals("console")){
