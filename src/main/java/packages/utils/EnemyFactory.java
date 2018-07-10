@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import packages.config.Config;
 import packages.console.controller.Coordinates;
 import packages.enums.ArmorType;
 import packages.enums.CharacterType;
@@ -30,7 +31,7 @@ public class EnemyFactory{
             WeaponType.values()[random.nextInt(WeaponType.values().length)], 
             ArmorType.values()[random.nextInt(ArmorType.values().length)], 
             HelmType.values()[random.nextInt(HelmType.values().length)],
-            "src/main/java/packages/images/green-monster.png");
+            Config.ENEMY_DEFAULT_IMAGE_PATH);
             
             enemy.setCoordinates(new Coordinates(random.nextInt(mapSize), random.nextInt(mapSize)));
             if (isSamePosition(enemyList, enemy) || enemy.getCoordinates().Isequals(hero.getCoordinates())){

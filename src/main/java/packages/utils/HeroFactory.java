@@ -1,5 +1,6 @@
 package packages.utils;
 
+import packages.config.Config;
 import packages.enums.ArmorType;
 import packages.enums.CharacterType;
 import packages.enums.WeaponType;
@@ -67,7 +68,7 @@ public class HeroFactory
 
         String storeType = type.toString();
         if (icon == null)
-            icon = "src/main/java/packages/images/default-image.png";
+            icon = Config.HERO_DEFAULT_IMAGE_PATH;
 
         CharacterType tempCharacterType = CharacterType.valueOf(storeType);
         HelmType tempHelmType = HelmType.nasal;

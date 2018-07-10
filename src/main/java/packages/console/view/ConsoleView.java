@@ -113,7 +113,7 @@ public class ConsoleView
 
     public  static void declareHero(CharacterType htype)
     {
-        System.out.print(ANSI_CYAN + "\nGive your " + htype + " a name: " + ANSI_RESET);
+        SwingyIO.ConsoleOutput(ANSI_CYAN + "\nGive your " + htype + " a name: ", ANSI_CYAN);
         Scanner reader = new Scanner(System.in);
         String name = reader.next();
         _hero = HeroFactory.newHero(name, htype, null);
