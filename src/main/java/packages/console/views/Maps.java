@@ -192,7 +192,7 @@ public class Maps
                     GameSimulationModel.resetHero(hero);
                     GameSimulationModel.winFight(hero, enemy);
                     artifact =  GameSimulationModel.dropArtifact(enemy);
-                    SwingyIO.ConsoleOutput("\n" + ANSI_PURPLE + "THE ENEMY DROPPED A " + artifact + " DO YOU WISH TO KEEP IT?" + ANSI_RESET + "\n");
+                    SwingyIO.ConsoleOutput("\n" + ANSI_PURPLE + "THE ENEMY DROPPED A " + artifact + " DO YOU WISH TO KEEP IT?" + ANSI_RESET + "\n\n");
                     SwingyIO.ConsoleOutput("1. " + ANSI_BLUE  + "Yes" + ANSI_RESET + "\n");
                     SwingyIO.ConsoleOutput("2. " + ANSI_BLUE + "No" + ANSI_RESET + "\n");
                     PickOrNot(hero, enemy);

@@ -1,21 +1,13 @@
-Okay (50HP) VS Sha Lin (39HP)
-Sha Lin hits Okay with a Cannon Bomb Attack, Causing 12 damage.
-Okay: 38HP - Sha Lin: 39HP
-Okay hits Sha Lin with a Cannon Bomb Attack, Causing 3 damage.
-Okay: 38HP - Sha Lin: 36HP
-Sha Lin hits Okay with a Massacre Axe Attack, Causing 12 damage.
-Okay: 26HP - Sha Lin: 36HP
-Okay hits Sha Lin with a Poison Bolts Attack, Causing 3 damage.
-Okay: 26HP - Sha Lin: 33HP
-Okay hits Sha Lin with a Fire Bomb Attack, Causing 3 damage.
-Okay: 26HP - Sha Lin: 30HP
-Okay hits Sha Lin with a Dragon Punch Attack, Causing 3 damage.
-Okay: 26HP - Sha Lin: 27HP
-Okay hits Sha Lin with a Impaler Arrow Attack, Causing 3 damage.
-Okay: 26HP - Sha Lin: 24HP
-Sha Lin hits Okay with a Flash Bomb Attack, Causing 12 damage.
-Okay: 14HP - Sha Lin: 24HP
-Sha Lin hits Okay with a Massacre Axe Attack, Causing 12 damage.
-Okay: 2HP - Sha Lin: 24HP
-Sha Lin hits Okay with a Poison Bolts Attack, Causing 12 damage.
-Okay: -10HP - Sha Lin: 24HP
+Korg the rock (50HP) VS Jenos (23HP)
+Korg the rock hits Jenos with a Flash Bomb Attack, Causing 7 damage.
+Korg the rock: 50HP - Jenos: 16HP
+Jenos hits Korg the rock with a Flash Bomb Attack, Causing 16 damage.
+Korg the rock: 34HP - Jenos: 16HP
+Korg the rock hits Jenos with a Blitz Upper Attack, Causing 7 damage.
+Korg the rock: 34HP - Jenos: 9HP
+Jenos hits Korg the rock with a Explosive Potion Attack, Causing 16 damage.
+Korg the rock: 18HP - Jenos: 9HP
+Korg the rock hits Jenos with a Frag Granade Attack, Causing 7 damage.
+Korg the rock: 18HP - Jenos: 2HP
+Korg the rock hits Jenos with a Flash Bomb Attack, Causing 7 damage.
+Korg the rock: 18HP - Jenos: -5HP
