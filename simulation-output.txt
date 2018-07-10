@@ -1,13 +1,43 @@
-Korg the rock (50HP) VS Jenos (23HP)
-Korg the rock hits Jenos with a Flash Bomb Attack, Causing 7 damage.
-Korg the rock: 50HP - Jenos: 16HP
-Jenos hits Korg the rock with a Flash Bomb Attack, Causing 16 damage.
-Korg the rock: 34HP - Jenos: 16HP
-Korg the rock hits Jenos with a Blitz Upper Attack, Causing 7 damage.
-Korg the rock: 34HP - Jenos: 9HP
-Jenos hits Korg the rock with a Explosive Potion Attack, Causing 16 damage.
-Korg the rock: 18HP - Jenos: 9HP
-Korg the rock hits Jenos with a Frag Granade Attack, Causing 7 damage.
-Korg the rock: 18HP - Jenos: 2HP
-Korg the rock hits Jenos with a Flash Bomb Attack, Causing 7 damage.
-Korg the rock: 18HP - Jenos: -5HP
+Anythink (50HP) VS Jenos (41HP)
+Jenos hits Anythink with a Flash Bomb Attack, Causing 3 damage.
+Anythink: 47HP - Jenos: 41HP
+Jenos hits Anythink with a Explosive Potion Attack, Causing 3 damage.
+Anythink: 44HP - Jenos: 41HP
+Jenos hits Anythink with a Dragon Punch Attack, Causing 3 damage.
+Anythink: 41HP - Jenos: 41HP
+Jenos hits Anythink with a Impaler Arrow Attack, Causing 3 damage.
+Anythink: 38HP - Jenos: 41HP
+Anythink hits Jenos with a Cannon Bomb Attack, Causing 4 damage.
+Anythink: 38HP - Jenos: 37HP
+Jenos hits Anythink with a Poison Bolts Attack, Causing 3 damage.
+Anythink: 35HP - Jenos: 37HP
+Jenos hits Anythink with a Poison Bolts Attack, Causing 3 damage.
+Anythink: 32HP - Jenos: 37HP
+Anythink hits Jenos with a Explosive Potion Attack, Causing 4 damage.
+Anythink: 32HP - Jenos: 33HP
+Jenos hits Anythink with a Frag Granade Attack, Causing 3 damage.
+Anythink: 29HP - Jenos: 33HP
+Jenos hits Anythink with a Flash Bomb Attack, Causing 3 damage.
+Anythink: 26HP - Jenos: 33HP
+Jenos hits Anythink with a Frag Granade Attack, Causing 3 damage.
+Anythink: 23HP - Jenos: 33HP
+Jenos hits Anythink with a Cannon Bomb Attack, Causing 3 damage.
+Anythink: 20HP - Jenos: 33HP
+Jenos hits Anythink with a Dragon Punch Attack, Causing 3 damage.
+Anythink: 17HP - Jenos: 33HP
+Jenos hits Anythink with a Impaler Arrow Attack, Causing 3 damage.
+Anythink: 14HP - Jenos: 33HP
+Jenos hits Anythink with a Cannon Bomb Attack, Causing 3 damage.
+Anythink: 11HP - Jenos: 33HP
+Jenos hits Anythink with a Poison Bolts Attack, Causing 3 damage.
+Anythink: 8HP - Jenos: 33HP
+Anythink hits Jenos with a Fire Bomb Attack, Causing 4 damage.
+Anythink: 8HP - Jenos: 29HP
+Jenos hits Anythink with a Cannon Bomb Attack, Causing 3 damage.
+Anythink: 5HP - Jenos: 29HP
+Anythink hits Jenos with a Fire Bomb Attack, Causing 4 damage.
+Anythink: 5HP - Jenos: 25HP
+Jenos hits Anythink with a Massacre Axe Attack, Causing 3 damage.
+Anythink: 2HP - Jenos: 25HP
+Jenos hits Anythink with a Frag Granade Attack, Causing 3 damage.
+Anythink: -1HP - Jenos: 25HP

@@ -104,7 +104,7 @@ public class GameSimulationController extends JFrameHelper
                         new EndingView().setVisible(true);
                         _view.setSimulationText(mssg);
                         
-                        _gameView.disposeWindow();
+                        _gameView.dispose();
                     }
                 }
                 _view.dispose();
