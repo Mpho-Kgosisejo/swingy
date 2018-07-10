@@ -9,7 +9,6 @@ import packages.factories.EnemyFactory;
 import static packages.content.Colors.*;
 
 import packages.config.Config;
-import packages.console.controllers.*;
 
 import java.util.*;
 
@@ -165,6 +164,7 @@ public class Maps
                     FightOrRun(hero, enemyModel);
                 }
             } 
+            _reader.close();
         }   
     }
 
@@ -234,5 +234,6 @@ public class Maps
                     break;
             }
         }
+        read.close();
     }
 }
