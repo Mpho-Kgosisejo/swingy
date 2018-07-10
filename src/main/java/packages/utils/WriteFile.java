@@ -1,16 +1,11 @@
 package packages.utils;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-import packages.enums.ArmorType;
-import packages.enums.CharacterType;
-import packages.enums.HelmType;
-import packages.enums.WeaponType;
 import packages.models.HeroModel;
 
 public class WriteFile

@@ -1,18 +1,18 @@
 package packages;
 
 import packages.config.Config;
-import packages.console.view.ConsoleView;
+import packages.console.views.ConsoleView;
 import packages.enums.AppDisplay;
 
-import static packages.utils.Colours.*;
+import packages.utils.SwingyIO;
 
+import static packages.content.Colors.*;
 import packages.gui.controllers.WelcomeController;
 import packages.gui.views.WelcomeView;
 import packages.models.HeroModel;
 import packages.providers.Cache;
 import packages.providers.DataProvider;
 import packages.providers.db.Database;
-import packages.utils.SwingyIO;
 
 import java.io.*;
 
@@ -28,8 +28,10 @@ public class App
         // {
             if (Config.AppDisplayMode == AppDisplay.console)
             {
-                SwingyIO.ConsoleOutput("######## CONSOLE VIEW ########\n", ANSI_BLUE);
-                SwingyIO.ConsoleOutput("WELCOME TO SWINGY", ANSI_PURPLE);
+                SwingyIO.ConsoleOutput("######## CONSOLE VIEW ########\n", ANSI_YELLOW);
+                SwingyIO.ConsoleOutput("\n");
+                SwingyIO.ConsoleOutput("WELCOME TO SWINGY", ANSI_CYAN);
+                SwingyIO.ConsoleOutput("\n");
                 ConsoleView.start();
                 return ;
             }

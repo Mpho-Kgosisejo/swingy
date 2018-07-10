@@ -1,10 +1,10 @@
 package packages.interfaces;
 
-import packages.console.controller.Coordinates;
 import packages.enums.ArmorType;
 import packages.enums.HelmType;
 import packages.enums.CharacterType;
 import packages.enums.WeaponType;
+import packages.utils.Coordinates;
 
 public interface IHero
 {

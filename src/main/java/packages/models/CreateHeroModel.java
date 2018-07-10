@@ -5,7 +5,7 @@ import java.util.List;
 import packages.config.Config;
 import packages.enums.CharacterType;
 import packages.providers.Cache;
-import packages.utils.HeroFactory;
+import packages.factories.*;
 import packages.utils.Messages;
 
 public class CreateHeroModel{

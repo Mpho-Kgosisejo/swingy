@@ -11,8 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
-import packages.console.view.ConsoleView;
 import packages.gui.controllers.WelcomeController;
 
 public class WelcomeView extends JFrame{

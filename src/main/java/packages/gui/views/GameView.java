@@ -16,13 +16,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import packages.config.Config;
-import packages.console.controller.Coordinates;
+import packages.factories.EnemyFactory;
 import packages.gui.controllers.GameSimulationController;
 import packages.gui.controllers.SelectHeroController;
 import packages.models.EnemyModel;
 import packages.models.GameSimulationModel;
 import packages.models.HeroModel;
-import packages.utils.EnemyFactory;
+import packages.utils.Coordinates;
 import packages.utils.Formulas;
 import packages.utils.JFrameHelper;
 

@@ -9,7 +9,6 @@ public class Config
     public static Boolean IS_DEVELOPMENT = false;
     public static String HERO_TEXT_FILE_NAME = "hero-stats.txt";
     public static String HERO_DEFAULT_IMAGE_PATH = "src/main/java/packages/images/default-image.png";
-    public static String ENEMY_DEFAULT_IMAGE_PATH = "src/main/java/packages/images/green-monster.png";
     public static DataProviderType DATA_PROVIDER = DataProviderType.filedata;
     public static String DB_JDBC_DRIVER = "com.mysql.jdbc.Driver";//"oracle.jdbc.driver.OracleDriver";//
     public static String DB_URL = "jdbc:mysql://localhost/";

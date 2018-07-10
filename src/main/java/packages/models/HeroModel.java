@@ -1,55 +1,26 @@
 package packages.models;
 
-import javax.validation.constraints.*;
-
-import packages.console.controller.Coordinates;
 import packages.enums.ArmorType;
 import packages.enums.CharacterType;
-import packages.enums.WeaponType;
 import packages.enums.HelmType;
+import packages.enums.WeaponType;
+import packages.utils.Coordinates;
 
 public class HeroModel
 {
 	private static int _idCounter = 0;
-
-	@NotNull
 	protected int _id = 0;
-
-	@NotNull
-	@NotEmpty
 	protected String _name;
-
-	@NotNull
     protected CharacterType _type;
-	
-	@Positive
-	protected int _level;
-
-	@Positive
+    protected int _level;
 	protected int _xPoints;
-
-	@Positive
-	protected int _attack;
-	
-	@Positive
-	protected int _defense;
-	
-	@Positive
-	protected int _hitPoints;	
-	
-	@NotNull
-	protected WeaponType _weapon;
-	
-	@NotNull
+    protected int _attack;
+    protected int _defense;
+    protected int _hitPoints;	
+    protected WeaponType _weapon;
 	protected ArmorType _armor;
-
-	@NotNull
 	protected HelmType _helm;	
-
-	@NotNull
 	protected String _icon;
-
-	@NotNull
 	protected Coordinates _coordinates;	
 	
 	public HeroModel(String name, CharacterType type, int level, int xPoints, int attack, int defense, int hitPoints, WeaponType weapon, ArmorType armor, HelmType helm, String icon)
@@ -74,9 +45,9 @@ public class HeroModel
 		this._coordinates = coordinates;
 	}
 
-	private static int setNextId()
+	private int setNextId()
 	{
-		return (++_idCounter);
+		return (++this._idCounter);
 	}
 
 	public int getId()

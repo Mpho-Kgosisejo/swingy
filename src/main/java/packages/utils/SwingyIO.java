@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import packages.config.Config;
+import packages.content.Colors;
 import packages.enums.AppDisplay;
 
 public class SwingyIO{
@@ -13,6 +14,11 @@ public class SwingyIO{
         _jFrame = jFrame;
     }
 
+    public static void IntegerOutput(int number)
+    {
+        System.out.print(number);
+    }
+
     public static void ConsoleOutput(String message)
     {
         System.out.print(message);
@@ -20,7 +26,7 @@ public class SwingyIO{
 
     public static void ConsoleOutput(String message, String colour)
     {
-        ConsoleOutput(colour + message + Colours.ANSI_RESET);
+        ConsoleOutput(colour + message + Colors.ANSI_RESET);
     }
 
     public static void Output(String message)
@@ -50,7 +56,7 @@ public class SwingyIO{
     public static void OutputError(String title, String message){
         if (Config.AppDisplayMode == AppDisplay.console)
         {
-            ConsoleOutput("[" + title + "] => " + message, Colours.ANSI_RED);
+            ConsoleOutput("[" + title + "] => " + message, Colors.ANSI_RED);
         }
         else if (Config.AppDisplayMode == AppDisplay.gui)
         {
@@ -61,7 +67,7 @@ public class SwingyIO{
     public static void OutputWarning(String title, String message){
         if (Config.AppDisplayMode == AppDisplay.console)
         {
-            ConsoleOutput("[" + title + "] => " + message, Colours.ANSI_YELLOW);
+            ConsoleOutput("[" + title + "] => " + message, Colors.ANSI_YELLOW);
         }
         else if (Config.AppDisplayMode == AppDisplay.gui)
         {
