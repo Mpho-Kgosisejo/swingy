@@ -7,3 +7,4 @@ Okay,knight,0,0,15,10,50,spear,jacket,nasal,src/main/java/packages/images/defaul
 Okay,knight,0,0,15,10,50,spear,jacket,nasal,src/main/java/packages/images/default-image.png
 Anythink,warrior,0,0,15,10,50,spear,jacket,nasal,src/main/java/packages/images/default-image.png
 Something else,warrior,0,0,15,10,50,spear,jacket,nasal,src/main/java/packages/images/default-image.png
+Korg the rock,warrior,0,229,17,10,50,pistol,jacket,nasal,src/main/java/packages/images/default-image.png

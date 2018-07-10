@@ -1,29 +1,21 @@
-Thato the Great (50HP) VS Makoa (43HP)
-Makoa hits Thato the Great with a Blitz Upper Attack, Causing 9 damage.
-Thato the Great: 41HP - Makoa: 43HP
-Thato the Great hits Makoa with a Explosive Potion Attack, Causing 0 damage.
-Thato the Great: 41HP - Makoa: 43HP
-Thato the Great hits Makoa with a Impaler Arrow Attack, Causing 0 damage.
-Thato the Great: 41HP - Makoa: 43HP
-Makoa hits Thato the Great with a Dragon Punch Attack, Causing 9 damage.
-Thato the Great: 32HP - Makoa: 43HP
-Thato the Great hits Makoa with a Frag Granade Attack, Causing 0 damage.
-Thato the Great: 32HP - Makoa: 43HP
-Makoa hits Thato the Great with a Explosive Potion Attack, Causing 9 damage.
-Thato the Great: 23HP - Makoa: 43HP
-Thato the Great hits Makoa with a Frag Granade Attack, Causing 0 damage.
-Thato the Great: 23HP - Makoa: 43HP
-Makoa hits Thato the Great with a Explosive Potion Attack, Causing 9 damage.
-Thato the Great: 14HP - Makoa: 43HP
-Thato the Great hits Makoa with a Flash Bomb Attack, Causing 0 damage.
-Thato the Great: 14HP - Makoa: 43HP
-Thato the Great hits Makoa with a Poison Bolts Attack, Causing 0 damage.
-Thato the Great: 14HP - Makoa: 43HP
-Thato the Great hits Makoa with a Dragon Punch Attack, Causing 0 damage.
-Thato the Great: 14HP - Makoa: 43HP
-Thato the Great hits Makoa with a Flash Bomb Attack, Causing 0 damage.
-Thato the Great: 14HP - Makoa: 43HP
-Makoa hits Thato the Great with a Impaler Arrow Attack, Causing 9 damage.
-Thato the Great: 5HP - Makoa: 43HP
-Makoa hits Thato the Great with a Frag Granade Attack, Causing 9 damage.
-Thato the Great: -4HP - Makoa: 43HP
+Okay (50HP) VS Sha Lin (39HP)
+Sha Lin hits Okay with a Cannon Bomb Attack, Causing 12 damage.
+Okay: 38HP - Sha Lin: 39HP
+Okay hits Sha Lin with a Cannon Bomb Attack, Causing 3 damage.
+Okay: 38HP - Sha Lin: 36HP
+Sha Lin hits Okay with a Massacre Axe Attack, Causing 12 damage.
+Okay: 26HP - Sha Lin: 36HP
+Okay hits Sha Lin with a Poison Bolts Attack, Causing 3 damage.
+Okay: 26HP - Sha Lin: 33HP
+Okay hits Sha Lin with a Fire Bomb Attack, Causing 3 damage.
+Okay: 26HP - Sha Lin: 30HP
+Okay hits Sha Lin with a Dragon Punch Attack, Causing 3 damage.
+Okay: 26HP - Sha Lin: 27HP
+Okay hits Sha Lin with a Impaler Arrow Attack, Causing 3 damage.
+Okay: 26HP - Sha Lin: 24HP
+Sha Lin hits Okay with a Flash Bomb Attack, Causing 12 damage.
+Okay: 14HP - Sha Lin: 24HP
+Sha Lin hits Okay with a Massacre Axe Attack, Causing 12 damage.
+Okay: 2HP - Sha Lin: 24HP
+Sha Lin hits Okay with a Poison Bolts Attack, Causing 12 damage.
+Okay: -10HP - Sha Lin: 24HP

@@ -20,7 +20,7 @@ public class WelcomeView extends JFrame{
     private JFrame jFrameWelcomeView;
 
     public WelcomeView(){
-        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Welcome to... who cares");
         this.setSize(400, 150);
         this.setResizable(false);

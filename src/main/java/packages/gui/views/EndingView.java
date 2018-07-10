@@ -36,7 +36,6 @@ public class EndingView extends JFrame
         this.setLocationRelativeTo(null);
         this.setVisible(true);
 
-        checkHitPoints();            
         this.init();
         this.continueBtnListener(new ContinueBtnListener());        
         
@@ -65,39 +64,6 @@ public class EndingView extends JFrame
             this._mainPanel.setBounds(0, 0, this.getWidth(), this.getHeight() - 60);            
 
             this.add(this._mainPanel);
-            // this.dispose();
-            // SelectHeroView selectHeroView = new SelectHeroView(readFile.simulateFile());
-            // selectHeroView.setVisible(true);
-    }
-    
-    public void checkHitPoints()
-    {
-        // String win =
-        // "\n#     #                  #     #           ###     " +
-        // "\n #   #   ####  #    #    #  #  # # #    #  ###     " +
-        // "\n  # #   #    # #    #    #  #  # # ##   #  ###     " +
-        // "\n   #    #    # #    #    #  #  # # # #  #   #      " +
-        // "\n   #    #    # #    #    #  #  # # #  # #          " +
-        // "\n   #    #    # #    #    #  #  # # #   ##  ###     " +
-        // "\n   #     ####   ####      ## ##  # #    #  ###     ";
-        
-        String loose = 
-        "\n#     #                  #                                   ###         " +
-        "\n #   #   ####  #    #    #        ####   ####   ####  ###### ###         " +
-        "\n  # #   #    # #    #    #       #    # #    # #      #      ###         " +
-        "\n   #    #    # #    #    #       #    # #    #  ####  #####   #          " +
-        "\n   #    #    # #    #    #       #    # #    #      # #                  " +
-        "\n   #    #    # #    #    #       #    # #    # #    # #      ###         " +
-        "\n   #     ####   ####     #######  ####   ####   ####  ###### ###         ";
-
-        // if (__hero.getHitPoints() > 0)
-        // {
-        //     setGameOverText(win);
-        // }
-        // else
-        // {
-            setGameOverText(loose);            
-        //}
     }
 
     public void setGameOverText(String gameOverText)
