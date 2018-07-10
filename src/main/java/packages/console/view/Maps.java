@@ -4,6 +4,7 @@ import packages.models.*;
 import packages.utils.EnemyFactory;
 import packages.utils.Formulas;
 import packages.utils.Menus;
+import packages.utils.SwingyIO;
 
 import static packages.utils.Colours.*;
 import packages.console.controller.*;
@@ -28,7 +29,7 @@ public class Maps
     public void move(Scanner scan, HeroModel hero, int MapSize) {
         if (hero.getCoordinates().getX() == MapSize || hero.getCoordinates().getY() == MapSize || hero.getCoordinates().getY() == - 1 || hero.getCoordinates().getX() == - 1)
         {
-            System.out.println(ANSI_YELLOW +  "\n>>>>>> You won the game! <<<<<<\n" + ANSI_RESET);
+            SwingyIO.ConsoleOutput("\n>>>>>> You won the game! <<<<<<\n", ANSI_YELLOW);
             GameSimulationModel.winGame(hero);
             ConsoleView.start();
         }
@@ -72,7 +73,7 @@ public class Maps
             }
             else
             {
-                System.out.println(ANSI_RED + "\nInput must be numeric please select another option" + ANSI_RESET);
+                SwingyIO.ConsoleOutput("\nInput must be numeric please select another option", ANSI_RED);
                 drawMap(hero);
             }
             
@@ -81,8 +82,8 @@ public class Maps
 
     public void drawMap(HeroModel hero)
     {
-        System.out.println();
-        System.out.println("Your coordinates: " + hero.getCoordinates().getX() + "," + hero.getCoordinates().getY());
+        SwingyIO.ConsoleOutput("\n");
+        SwingyIO.ConsoleOutput("Your coordinates: " + hero.getCoordinates().getX() + "," + hero.getCoordinates().getY() + "\n");
         for (int x = 0; x < this.mapSize; x++) {
             for (int y = 0; y < this.mapSize; y++) {
                 Coordinates loopCoordinates = new Coordinates(x, y);
@@ -110,7 +111,7 @@ public class Maps
                 }
 
             }
-            System.out.println(); 
+            SwingyIO.ConsoleOutput("\n"); 
         }
         Menus.printMovementMenu();
         Scanner reader = new Scanner(System.in);
@@ -133,7 +134,7 @@ public class Maps
                             int rn = rand.nextInt(2);
                             if (rn == 0)
                             {
-                                System.out.println(ANSI_GREEN + "\nYOU CHOSE TO RUN YOU COWARD" + ANSI_RESET);
+                                SwingyIO.ConsoleOutput("\nYOU CHOSE TO RUN YOU COWARD", ANSI_GREEN);
                                 hero.getCoordinates().setX(GameSimulationModel.OldX);
                                 hero.getCoordinates().setY(GameSimulationModel.OldY);
                                 drawMap(hero);
@@ -141,7 +142,7 @@ public class Maps
                             }
                             else if (rn == 1)
                             {
-                                System.out.println("\nLuck is not on your side, you still have to fight the enemy");
+                                SwingyIO.ConsoleOutput("\nLuck is not on your side, you still have to fight the enemy");
                                 Fight(hero, enemyModel);
                             }
                             break;
@@ -154,7 +155,7 @@ public class Maps
                 }
                 else
                 {
-                    System.out.println(ANSI_RED + "\nInput must be numeric please select another option" + ANSI_RESET);
+                    SwingyIO.ConsoleOutput("\nInput must be numeric please select another option", ANSI_RED);
                     FightOrRun(hero, enemyModel);
                 }
             } 
@@ -171,27 +172,28 @@ public class Maps
             gsm.setSimulationMiliSecs(500);
             while (gsm.nextFight())
             {
-                System.out.println(gsm.getSimulationOutput());
-                System.out.println("hero: " + hero.getHitPoints() + " enemy: " + enemy.getHitPoints());
+                SwingyIO.ConsoleOutput(gsm.getSimulationOutput());
+                SwingyIO.ConsoleOutput("hero: " + hero.getHitPoints() + " enemy: " + enemy.getHitPoints());
             }
             if (!gsm.isHeroAlive(gsm.getHeroModel()) && !gsm.isHeroAlive(gsm.getEnemyModel())){
-                System.out.println("No Winner No winner...");
+                SwingyIO.ConsoleOutput("No Winner No winner...");
             }else{
                 String mssg = "";
 
                 if (gsm.isHeroAlive(gsm.getHeroModel())){
                     mssg = gsm.getHeroModel().getName() + " won the fight";
-                    System.out.println(ANSI_CYAN + "Fight Won: " + ANSI_RESET +  mssg); 
+                    SwingyIO.ConsoleOutput(ANSI_CYAN + "Fight Won: " + ANSI_RESET +  mssg); 
                     GameSimulationModel.resetHero(hero);
+                    GameSimulationModel.winFight(hero, enemy);
                     artifact =  GameSimulationModel.dropArtifact(enemy);
-                    System.out.println("The enemy dropped a " + artifact + " do you want to keep it? \n1. Yes\n2.No \n");
+                    SwingyIO.ConsoleOutput("The enemy dropped a " + artifact + " do you want to keep it? \n1. Yes\n2.No \n");
                     PickOrNot(hero, enemy);
                     enemyList.remove(enemy);
                     drawMap(hero);
                 }else{
                     mssg = gsm.getEnemyModel().getName() + " won the fight";
-                    System.out.println(ANSI_CYAN + "Fight Lost: " + ANSI_RESET +  mssg);
-                    System.out.println(ANSI_YELLOW + ">>>>>> GAME OVER <<<<<<" + ANSI_RESET);
+                    SwingyIO.ConsoleOutput(ANSI_CYAN + "Fight Lost: " + ANSI_RESET +  mssg);
+                    SwingyIO.ConsoleOutput(">>>>>> GAME OVER <<<<<<", ANSI_YELLOW);
                     GameSimulationModel.lostGame(hero);
                     System.exit(0);
                 }
@@ -199,7 +201,7 @@ public class Maps
         }
         catch (Exception e)
         {
-            System.out.println(ANSI_RED + "Something went wrong." + ANSI_RESET);
+            SwingyIO.ConsoleOutput("Something went wrong.", ANSI_RED);
         }
     }
 

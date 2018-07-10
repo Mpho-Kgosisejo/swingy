@@ -3,33 +3,28 @@ package packages.gui.views;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.util.List;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import packages.models.HeroModel;
 import packages.enums.CharacterType;
-import packages.utils.HeroFactory;
 import packages.utils.JFrameHelper;
+import packages.utils.Log;
 
 public class CreateHeroView extends JFrame{
-    private static JFileChooser chooseFile;
     private JLabel lblHeroImage;
     private JButton btnSelectHeroImage;
-    private Image heroImage;
     private JButton btnCreateHero;
     private JButton btnCanel;
     private JTextField txtFdName;
-    //private JTextField txtFdType;
-    private JComboBox listFdType;
+    private JComboBox<CharacterType> listFdType;
     private JTextField txtFdLevel;
     private JTextField txtFdXPoints;
     private JTextField txtFdWeapon;
@@ -48,7 +43,6 @@ public class CreateHeroView extends JFrame{
     }
 
     private void init(){
-        this.chooseFile = new JFileChooser();
         JPanel panelMain = new JPanel();
         JPanel panelTop = new JPanel();
         JPanel panelMid = new JPanel();
@@ -77,8 +71,6 @@ public class CreateHeroView extends JFrame{
         this.btnCreateHero = new JButton("Create Hero");
         this.btnCanel = new JButton("Cancel");
 
-
-    
         panelMain.setLayout(null);
         panelMain.setBounds(0, 0, this.getWidth(), this.getHeight());
         panelTop.setBounds(0, 0, this.getWidth(), 80);
@@ -87,16 +79,19 @@ public class CreateHeroView extends JFrame{
         this.lblHeroImage.setSize(10, 10);
         panelBottom.setBounds(0, 200, this.getWidth(), 38);
 
-        if (this.setImage("src/main/java/packages/images/default-image.png")){
-            panelTop.add(this.lblHeroImage);
-            panelTop.add(this.btnSelectHeroImage);
-        }
+        // Image image = JFrameHelper.getImage("src/main/java/packages/images/default-image.pngs", 70);
+        // if (image != null){
+        //     this.lblHeroImage.setIcon(new ImageIcon(image));
+        // }
+
+        panelTop.add(this.btnSelectHeroImage);
+        panelTop.add(this.lblHeroImage);
+
         panelTop1.add(lblName);
         panelTop1.add(txtFdName);
         panelMid.add(panelTop1);
 
         panelTop2.add(lblType);
-        //panelTop2.add(txtFdType);
         panelTop2.add(listFdType);
         panelMid.add(panelTop2);
 
@@ -136,19 +131,6 @@ public class CreateHeroView extends JFrame{
         this.add(panelMain);
     }
 
-    private boolean setImage(String imagePath){
-        try{
-            ImageIcon imageIcon = new ImageIcon(ImageIO.read(new File(imagePath)));
-            Image image = imageIcon.getImage();
-            this.heroImage = image.getScaledInstance(70, 70, Image.SCALE_SMOOTH);
-            this.lblHeroImage.setIcon(new ImageIcon(this.heroImage));
-            return (true);
-        }catch(Exception exc){
-            System.err.println("Error Setting Image: " + exc.getMessage());
-        }
-        return (false);
-    }
-
     public void createHeroListener(ActionListener listener){
         this.btnCreateHero.addActionListener(listener);
     }
@@ -165,7 +147,6 @@ public class CreateHeroView extends JFrame{
         try{
             this.listFdType.setSelectedItem(this.listFdType.getSelectedItem());
 
-            System.out.println(this.listFdType.getItemCount());
             if (this.txtFdName.getText().isEmpty() || this.listFdType.getItemCount() == 0){
                 JFrameHelper.ShowErrorDialog(this, "Hero Name and Type can not be empty!");
                 return ;
@@ -176,24 +157,25 @@ public class CreateHeroView extends JFrame{
                     return ;
                 }
             }
-
-            int level = Integer.parseInt(this.txtFdLevel.getText());
-            int xPoint = Integer.parseInt(this.txtFdXPoints.getText());
-            int attack = 0;
-            int defense = 0;
-            int HP = 10;
-            // WeaponType weapon = WeaponType.valueOf(this.txtFdWeapon.getText());
-            // ArmorType armor = ArmorType.valueOf(this.txtFdArmor.getText());
-            String iconPath = getHeroImagePath();
-            if (iconPath != null && iconPath != "" && (!iconPath.isEmpty()))                                                  
-                this.newHero = HeroFactory.newHero(this.txtFdName.getText(), this.listFdType.getSelectedItem().toString(), iconPath);
-            else
-                this.newHero = HeroFactory.newHero(this.txtFdName.getText(), this.listFdType.getSelectedItem().toString(), null);                
+            
+            // String iconPath = this.getHeroImagePath();
+            // if (iconPath != null && iconPath != "" && (!iconPath.isEmpty()))                                                  
+            //     this.newHero = HeroFactory.newHero(this.txtFdName.getText(), this.listFdType.getSelectedItem().toString(), iconPath);
+            // else
+            //     this.newHero = HeroFactory.newHero(this.txtFdName.getText(), this.listFdType.getSelectedItem().toString(), null);                
 
         }catch(Exception exc){
             JFrameHelper.ShowErrorDialog(this, "Exception: " + exc.getMessage());
-            System.out.println("Exception: " + exc.getMessage());
+           Log.out(this, "Exception: " + exc.getMessage());
         }
+    }
+
+    public String getHeroName(){
+        return (this.txtFdName.getText());
+    }
+
+    public String getCharacterType(){
+        return (this.listFdType.getSelectedItem().toString());
     }
 
     public HeroModel getNewHero(){
@@ -203,6 +185,8 @@ public class CreateHeroView extends JFrame{
     public void setHeroImagePath(String path)
     {
         this._heroImagePath = path;
+        Image image = JFrameHelper.getImage(path, 70);
+        this.lblHeroImage.setIcon(new ImageIcon(image));
     }
 
     public String getHeroImagePath()

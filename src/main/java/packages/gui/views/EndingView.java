@@ -119,23 +119,11 @@ public class EndingView extends JFrame
     {
         this.dispose();
     }
-
-    private List<HeroModel> getHeroList(){
-        List<HeroModel> heroList = null;
-    
-        try {
-          heroList = readFile.simulateFile();
-        } catch (Exception exc) {
-          exc.printStackTrace();
-        }
-        return (heroList);
-      }
     
     private class ContinueBtnListener implements ActionListener
     {
 		public void actionPerformed(ActionEvent e) {
-            new SelectHeroView(getHeroList()).setVisible(true);
-            //System.exit(1);
+            new SelectHeroController(new SelectHeroView());
             exitProgram();
 		}
     }

@@ -29,15 +29,19 @@ public class JFrameHelper{
 
     public static JLabel getLabelImage(String imagePath, int imageSize)
     {
-        try{
+        JLabel lblImage = new JLabel();
+        lblImage.setIcon(new ImageIcon(getImage(imagePath, imageSize)));
+        return (lblImage);
+    }
+
+    public static Image getImage(String imagePath, int imageSize){
+        try {
             ImageIcon imageIcon = new ImageIcon(ImageIO.read(new File(imagePath)));
             Image image = imageIcon.getImage();
             Image imageScaled = image.getScaledInstance(imageSize, imageSize, Image.SCALE_SMOOTH);
-            JLabel lblImage = new JLabel();
-            lblImage.setIcon(new ImageIcon(imageScaled));
-            return (lblImage);
-        }catch(Exception exc){
-            System.err.println("Error Setting Image: " + exc.getMessage());
+            return (imageScaled);
+        } catch (Exception exc) {
+            System.err.println("Error getting Image: " + exc.getMessage() + ". [ImagePath=" + imagePath + "]");
         }
         return (null);
     }

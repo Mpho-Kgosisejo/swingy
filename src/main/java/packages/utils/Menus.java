@@ -13,7 +13,7 @@ public class Menus {
 
     public static void heroMenu()
     {
-        System.out.println(ANSI_CYAN+ "\nSELECT HERO TYPE\n" + ANSI_RESET + "1. Knight\n" + "2. Warrior\n" + "3. Elf\n" + "4. Hunter\n" + "5. Villager\n" + "6. Switch to GUI\n" + "0. Back\n");
+        SwingyIO.ConsoleOutput(ANSI_CYAN+ "\nSELECT HERO TYPE\n" + ANSI_RESET + "1. Knight\n" + "2. Warrior\n" + "3. Elf\n" + "4. Hunter\n" + "5. Villager\n" + "6. Switch to GUI\n" + "0. Back\n");
     }
 
     public static void printStats(HeroModel _hero)
@@ -30,7 +30,7 @@ public class Menus {
             ANSI_PURPLE  + "Armor: " + ANSI_RESET + _hero.getArmor() + "\n" +
             ANSI_PURPLE  + "Helm: " + ANSI_RESET + _hero.getHelm();
 
-        System.out.println(hero_info);
+        SwingyIO.ConsoleOutput(hero_info);
     }
 
     public static void printMovementMenu()
@@ -49,17 +49,17 @@ public class Menus {
         String choice = ANSI_CYAN + "\nYOU HAVE ENCOUNTERED AN ENEMY, WHAT DO YOU WANT TO DO?\n" + ANSI_RESET +
             "1. Run\n" + 
             "2. Fight\n";
-        System.out.println(choice);     
+        SwingyIO.ConsoleOutput(choice);     
     }
     
     public static void PrintFightOpponents(HeroModel hero, EnemyModel enemy) 
     {
-        System.out.println(ANSI_CYAN + hero.getName().toUpperCase() + ANSI_RESET + " VS " + ANSI_RED + enemy.getName().toUpperCase() + ANSI_RESET);
-        System.out.println("Attack: " + hero.getAttack() + ANSI_YELLOW + "   |   " + ANSI_RESET + "Attack: " + enemy.getAttack());
-        System.out.println("Defense: " + hero.getDefense() + ANSI_YELLOW + "   |   " + ANSI_RESET + "Defense: " + enemy.getDefense());
-        System.out.println("Hit Points: " + hero.getHitPoints() + ANSI_YELLOW + "   |   " + ANSI_RESET + "Hit Points: " + enemy.getHitPoints());
-        System.out.println("Weapon: " + hero.getWeapon() + ANSI_YELLOW + "   |   " + ANSI_RESET + "Weapon: " + enemy.getWeapon());
-        System.out.println("Armor: " + hero.getArmor() + ANSI_YELLOW + "   |   " + ANSI_RESET + "Armor: " + enemy.getArmor());
-        System.out.println("Helm: " + hero.getHelm() + ANSI_YELLOW + "   |   " + ANSI_RESET + "Helm: " + enemy.getHelm() + "\n");
+        SwingyIO.ConsoleOutput(ANSI_CYAN + hero.getName().toUpperCase() + ANSI_RESET + " VS " + ANSI_RED + enemy.getName().toUpperCase() + ANSI_RESET);
+        SwingyIO.ConsoleOutput("Attack: " + hero.getAttack() + ANSI_YELLOW + "   |   " + ANSI_RESET + "Attack: " + enemy.getAttack());
+        SwingyIO.ConsoleOutput("Defense: " + hero.getDefense() + ANSI_YELLOW + "   |   " + ANSI_RESET + "Defense: " + enemy.getDefense());
+        SwingyIO.ConsoleOutput("Hit Points: " + hero.getHitPoints() + ANSI_YELLOW + "   |   " + ANSI_RESET + "Hit Points: " + enemy.getHitPoints());
+        SwingyIO.ConsoleOutput("Weapon: " + hero.getWeapon() + ANSI_YELLOW + "   |   " + ANSI_RESET + "Weapon: " + enemy.getWeapon());
+        SwingyIO.ConsoleOutput("Armor: " + hero.getArmor() + ANSI_YELLOW + "   |   " + ANSI_RESET + "Armor: " + enemy.getArmor());
+        SwingyIO.ConsoleOutput("Helm: " + hero.getHelm() + ANSI_YELLOW + "   |   " + ANSI_RESET + "Helm: " + enemy.getHelm() + "\n");
     }
 }

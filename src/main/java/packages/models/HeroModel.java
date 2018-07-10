@@ -8,8 +8,8 @@ import packages.enums.HelmType;
 
 public class HeroModel
 {
-	private int _idCounter = 0;
-	protected static int _id = 0;
+	private static int _idCounter = 0;
+	protected int _id = 0;
 	protected String _name;
     protected CharacterType _type;
     protected int _level;
@@ -45,9 +45,9 @@ public class HeroModel
 		this._coordinates = coordinates;
 	}
 
-	private int setNextId()
+	private static int setNextId()
 	{
-		return (++this._idCounter);
+		return (++_idCounter);
 	}
 
 	public int getId()

@@ -2,14 +2,14 @@ package packages.gui.views;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
-import java.io.File;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.List;
 
-import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,6 +21,10 @@ import javax.swing.JTextArea;
 
 import packages.gui.controllers.SelectHeroController;
 import packages.models.HeroModel;
+import packages.providers.Cache;
+import packages.utils.JFrameHelper;
+import packages.utils.Log;
+import packages.utils.SwingyIO;
 
 public class SelectHeroView extends JFrame{
     private JPanel panelRight;
@@ -33,19 +37,18 @@ public class SelectHeroView extends JFrame{
     private JButton btnSelectHero;
     private int listIndex = -1;
     private List<HeroModel> heroList;
-    private Image heroImage;
     private JLabel lblHeroImage;
 
-    public SelectHeroView(List<HeroModel> heroList){
+    public SelectHeroView()
+    {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Select Hero");
         this.setSize(600, 300);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
 
-        this.heroList = heroList;
+        this.heroList = Cache.HeroList;
         this.init(getHeroNames());
-        new SelectHeroController(this, this.heroList);
     }
 
     private DefaultListModel<String> getHeroNames(){
@@ -90,10 +93,7 @@ public class SelectHeroView extends JFrame{
         this.lblHeroImage = new JLabel();
         this.lblHeroImage.setSize(10, 10);
         
-        if (this.setImage("src/main/java/packages/images/default-image.png")){
-            this.panelRightTop.add(this.lblHeroImage);
-        }
-
+        this.panelRightTop.add(this.lblHeroImage);
         panelLeftControllers.add(this.btnCreateHero);
         panelLeftControllers.add(this.btnLoadHeroInfo);
         panelLeft.add(this.lstHeroNames);
@@ -110,22 +110,6 @@ public class SelectHeroView extends JFrame{
         this.btnSelectHero.setEnabled(false);
         this.add(panelMain);
     }
-
-    private boolean setImage(String imagePath){
-        try{
-            ImageIcon imageIcon = new ImageIcon(ImageIO.read(new File(imagePath)));
-            //ImageIcon imageIcon = new ImageIcon(this.getClass().getClassLoader().getResource("packages/images/default-image.png"));
-            Image image = imageIcon.getImage();
-            this.heroImage = image.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-            this.lblHeroImage.setIcon(new ImageIcon(this.heroImage));
-            return (true);
-        }catch(Exception exc){
-            System.err.println("Error Setting Image: " + exc.getMessage());
-        }
-        return (false);
-    }
-
-    //#region - Listener
     public void navigateToCreateHeroListener(ActionListener action){
         this.btnCreateHero.addActionListener(action);
     }
@@ -141,7 +125,6 @@ public class SelectHeroView extends JFrame{
     public void heroClickListener(MouseListener listener){
         this.lstHeroNames.addMouseListener(listener);
     }
-    //#endregion
 
     public int getMouseClickIndex(){
         return (this.listIndex);
@@ -151,27 +134,10 @@ public class SelectHeroView extends JFrame{
         this.listIndex = lstHeroNames.locationToIndex(point);
     }
 
-    public void setSelectedHero(){
-        HeroModel hero = this.heroList.get(listIndex);
+    public void setHeroInfo(String heroName, String info, String imagePath){
+        this.lblHeroName.setText(heroName);
+        this.txtAHeroInfo.setText(info);
+        this.lblHeroImage.setIcon(new ImageIcon(JFrameHelper.getImage(imagePath, 60)));
         this.btnSelectHero.setEnabled(true);
-        this.lblHeroName.setText(hero.getName());
-        String hero_info = "Name: " + hero.getName() + "\n" +
-            "Type: " + hero.getType() + "\n" +
-            "Level: " + hero.getLevel() + "\n" +
-            "X-Points: " + hero.getXPoints() + "\n" +
-            "Attack: " + hero.getAttack() + "\n" +
-            "Defense: " + hero.getDefense() + "\n" +
-            "Hit Points: " + hero.getHitPoints() + "\n" +            
-            "Weapon: " + hero.getWeapon() + "\n" +
-            "Armor: " + hero.getArmor() + "\n" + 
-            "Helm: " + hero.getHelm();            
-        this.txtAHeroInfo.setText(hero_info);
-
-        if (!this.setImage(hero.getIcon())){
-            //JFrameHelper.ShowErrorDialog(this, "Error setting Hero Image.");
-            System.err.println("Error Setting Image");
-        }else{
-            //todo: If no error setting image...
-        }
     }
 }

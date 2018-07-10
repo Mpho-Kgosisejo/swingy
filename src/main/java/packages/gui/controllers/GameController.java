@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import packages.gui.views.GameView;
+import packages.gui.views.SelectHeroView;
 import packages.models.GameSimulationModel;
 import packages.models.HeroModel;
 
@@ -13,6 +14,7 @@ public class GameController{
 
     public GameController(GameView view){
         this.view = view;
+        this.view.setVisible(true);
         this.hero = this.view.getHero();
         this.view.setKeyListener(new TheKeyListener());
     }
@@ -56,9 +58,11 @@ public class GameController{
             break;
             case 81:
                 this.view.disposeWindow();
+                // new SelectHeroController(new SelectHeroView());
             break;
             case 27:
                 this.view.disposeWindow();
+                // new SelectHeroController(new SelectHeroView());
             break;
         }
         this.view.drawMap();
