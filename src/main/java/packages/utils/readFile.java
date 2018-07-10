@@ -7,37 +7,26 @@ import packages.models.HeroModel;
 
 public class readFile
 {
-    public static List<HeroModel>  simulateFile()
+    public static String getContent(String filename)
     {
-        List<HeroModel> heroList = new ArrayList<HeroModel>();
-        try
-        {
-            BufferedReader reader = new BufferedReader(new FileReader(WriteFile.FileName));
-            String line = "";
-            if (line != null)
+        String line = null;
+        String content = null;
+        BufferedReader reader = null;
+
+        try {
+            reader = new BufferedReader(new FileReader(filename));
+            content = "";
+
+            while ((line = reader.readLine()) != null)
             {
-                while((line = reader.readLine()) != null)
-                {   
-                    try 
-                    {
-                       if (line.trim().length() > 0){
-                        HeroModel iHero = HeroFactory.newHero(line.split(",")[0], line.split(",")[1], Integer.parseInt(line.split(",")[2]), Integer.parseInt(line.split(",")[3]), Integer.parseInt(line.split(",")[4]),
-                        Integer.parseInt(line.split(",")[5]), Integer.parseInt(line.split(",")[6]), line.split(",")[7], line.split(",")[8], line.split(",")[9], line.split(",")[10]);
-                    
-                        heroList.add(iHero); 
-                       }
-                    }
-                    catch (NumberFormatException e)
-                    {
-                        System.out.println("Number badly formatted");
-                    }
-                    //System.out.println(line);
-                }
+                line = line.trim();
+                if (line != null)
+                    content += line + "\n";
             }
-        }catch(IOException e)
-        {
-            System.out.println("Cannot find file" + e);
+            reader.close();
+        } catch (Exception e) {
+            Log.out("getContent() " + e.getMessage());
         }
-        return (heroList);
+        return (content);
     }
 }

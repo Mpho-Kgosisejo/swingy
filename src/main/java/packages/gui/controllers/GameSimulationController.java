@@ -8,6 +8,7 @@ import packages.gui.views.GameSimulationView;
 import packages.gui.views.GameView;
 import packages.models.GameSimulationModel;
 import packages.utils.JFrameHelper;
+import packages.utils.Log;
 
 public class GameSimulationController extends JFrameHelper
 {
@@ -89,6 +90,7 @@ public class GameSimulationController extends JFrameHelper
                         GameSimulationModel.resetHero(_model.getHeroModel());
                         mssg = _model.getHeroModel().getName() + " won the fight";
                         _view.setSimulationText(mssg);
+                        GameSimulationModel.winFight(_model.getHeroModel(), _model.getEnemyModel());
                         artifact = GameSimulationModel.dropArtifact(_model.getEnemyModel());
 
                         if (JFrameHelper.ShowConfirmDialog(_view, "Fight Won", "You won the Fight.\nYou picked up a " + artifact + ", do you want to keep it?")){
@@ -107,7 +109,7 @@ public class GameSimulationController extends JFrameHelper
                 }
                 _view.dispose();
             } catch (Exception e) {
-                System.out.println("Error @ GameSimulation(): " + e.getMessage());
+                Log.out(this, "Error @ GameSimulation(): " + e.getMessage());
             }
 		}
     }

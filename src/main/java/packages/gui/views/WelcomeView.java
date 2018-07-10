@@ -2,8 +2,9 @@ package packages.gui.views;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,17 +12,22 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import packages.console.view.ConsoleView;
+import packages.gui.controllers.WelcomeController;
+
 public class WelcomeView extends JFrame{
-    JLabel lblWelcomeMssg;
-    JButton btnSelectHero;
-    JButton btnCreateNewHero;
+    private JLabel lblWelcomeMssg;
+    private JButton btnSelectHero;
+    private JButton btnCreateNewHero;
+    private JFrame jFrameWelcomeView;
 
     public WelcomeView(){
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setTitle("Welcome to... who cares");
         this.setSize(400, 150);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        jFrameWelcomeView = this;
 
         this.init();
     }
@@ -39,7 +45,6 @@ public class WelcomeView extends JFrame{
         panelMain.setSize(new Dimension(this.getWidth(), this.getHeight()));
         panelTop.setBackground(new Color(228, 228, 228));
         panelTop.setBounds(0, 0, this.getWidth(), 50);
-        //panelBottom.setBackground(new Color(240, 238, 255));
         panelBottom.setBounds(0, 50, this.getWidth(), 100);
         
         panelTop.add(this.lblWelcomeMssg);

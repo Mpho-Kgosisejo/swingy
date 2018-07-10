@@ -4,13 +4,18 @@ import java.util.List;
 import java.util.Scanner;
 
 import packages.models.HeroModel;
+import packages.providers.Cache;
+import packages.providers.DataProvider;
+import packages.config.Config;
 import packages.console.controller.CliGame;
+import packages.enums.AppDisplay;
 import packages.enums.CharacterType;
 import packages.gui.controllers.*;
 import packages.gui.views.*;
 import packages.utils.HeroFactory;
+import packages.utils.Log;
 import packages.utils.Menus;
-import packages.utils.WriteFile;
+import packages.utils.SwingyIO;
 import packages.utils.readFile;
 import static packages.utils.Colours.*;
 
@@ -22,13 +27,7 @@ public class ConsoleView
     public static void start()
     {
 
-        try {
-            heroList = readFile.simulateFile();
-        }
-        catch (Exception e)
-        {
-            System.out.println("Could not read from file");
-        }
+        heroList = Cache.HeroList;
         Scanner read = new Scanner(System.in);
         Menus.menu();
         while (read.hasNextLine())
@@ -46,21 +45,19 @@ public class ConsoleView
                             existingHero();
                             break;
                         case 3:
-                            WelcomeView view = new WelcomeView();
-                            view.setVisible(true);
-                            new WelcomeController(view);
+                            new WelcomeController(new WelcomeView());
                             break;
                         case 4:
                             System.exit(0);
                         default:
-                            System.out.println(ANSI_RED + "\nYOUR CHOICE DOES NOT CORRESPOND TO GIVEN CHOICES\n" + ANSI_RESET);
+                            SwingyIO.ConsoleOutput("\nYOUR CHOICE DOES NOT CORRESPOND TO GIVEN CHOICES\n", ANSI_RED);
                             break;
                     }
 
                 }
                 else
                 {
-                    System.out.println(ANSI_RED + "INPUT MUST BE NUMERIC PLEASE SELECT ANOTHER OPTION" + ANSI_RESET);
+                    SwingyIO.ConsoleOutput("INPUT MUST BE NUMERIC PLEASE SELECT ANOTHER OPTION", ANSI_RED);
                     start();
                 }
         }
@@ -97,18 +94,17 @@ public class ConsoleView
                         declareHero(CharacterType.villager);
                         break;
                     case 6:
-                        CreateHeroView view = new CreateHeroView();
-                        view.setVisible(true);
-                        new CreateHeroController(view, heroList);
+                        new CreateHeroController(new CreateHeroView());
+                        Config.AppDisplayMode = AppDisplay.gui;
                         break;
                     default:
-                        System.out.println(ANSI_RED + "\nYOUR CHOICE DOES NOT CORRESPOND TO GIVEN CHOICES\n" + ANSI_RESET);
+                        SwingyIO.ConsoleOutput("\nYOUR CHOICE DOES NOT CORRESPOND TO GIVEN CHOICES\n", ANSI_RED);
                         break;
                 }
             }
             else
             {
-                System.out.println(ANSI_RED + "INPUT MUST BE NUMERIC PLEASE SELECT ANOTHER OPTION" + ANSI_RESET);
+                SwingyIO.ConsoleOutput("INPUT MUST BE NUMERIC PLEASE SELECT ANOTHER OPTION", ANSI_RED);
                 createHero();
             }
         }
@@ -120,8 +116,9 @@ public class ConsoleView
         System.out.print(ANSI_CYAN + "\nGive your " + htype + " a name: " + ANSI_RESET);
         Scanner reader = new Scanner(System.in);
         String name = reader.next();
-        _hero = HeroFactory.newHero(name, htype.toString(), null);
-        WriteFile.writeToFile(_hero);
+        _hero = HeroFactory.newHero(name, htype, null);
+        DataProvider dataProvider = new DataProvider(Config.DATA_PROVIDER);
+        dataProvider.insertHero(_hero);
         CliGame.run(_hero);
         backToStart();
     }
@@ -129,18 +126,18 @@ public class ConsoleView
 
     public  static void existingHero() {
         boolean isMatch = false;
-        System.out.println(ANSI_CYAN+ "\nCHARACTERS TO CHOOSE FROM OR TYPE IN GUI TO SWITCH TO GUI\n" + ANSI_RESET);
+        SwingyIO.ConsoleOutput("\nCHARACTERS TO CHOOSE FROM OR TYPE IN GUI TO SWITCH TO GUI\n", ANSI_CYAN);
         int a = heroList.size();
         if (a == 0)
         {
-            System.out.println(ANSI_RED + "THERE ARE NO HERO'S YOU CAN CHOOSE!!!" + ANSI_RESET);
+            SwingyIO.ConsoleOutput("THERE ARE NO HERO'S YOU CAN CHOOSE!!!", ANSI_RED);
         }
         else {
             for (int index = 0; index < a; index++) {
                 Menus.printStats(heroList.get(index));
             }
         }
-        System.out.println(ANSI_CYAN + "\nTYPE IN THE NAME OF THE HERO YOU'D LIKE: " + ANSI_RESET);
+        SwingyIO.ConsoleOutput("\nTYPE IN THE NAME OF THE HERO YOU'D LIKE: ", ANSI_CYAN);
         Scanner reader = new Scanner(System.in);
         String choice = reader.nextLine();
         int i = 0;
@@ -154,9 +151,8 @@ public class ConsoleView
                 }
                 else if (choice.toLowerCase().equals("gui"))
                 {
-                    SelectHeroView view = new SelectHeroView(heroList);
-                    view.setVisible(true);
-                    new SelectHeroController(view, heroList);
+                    new SelectHeroController(new SelectHeroView());
+                    Config.AppDisplayMode = AppDisplay.gui;
                     break;
                 }
                 else if(!(choice.toLowerCase().equals(heroList.get(i).getName().toLowerCase())))
@@ -165,14 +161,14 @@ public class ConsoleView
             }
             if (!isMatch)
             {
-                System.out.println(ANSI_RED +  "THE HERO YOU SELECTED DOES NOT EXIST!!!REDIRECTING YOU TO START\n" + ANSI_RESET);
+                SwingyIO.ConsoleOutput("THE HERO YOU SELECTED DOES NOT EXIST!!!REDIRECTING YOU TO START\n", ANSI_RED);
                 start();
             }
         }
 
     public static void backToStart()
    {
-       System.out.println("0. Back");
+       SwingyIO.ConsoleOutput("0. Back");
        Scanner reader = new Scanner(System.in);
        while (reader.hasNextLine())
        {

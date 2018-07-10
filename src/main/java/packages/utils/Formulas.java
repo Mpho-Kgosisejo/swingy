@@ -23,4 +23,11 @@ public class Formulas{
         ret = level + 5;
         return ret;
     }
+
+    public static int getLevel(int xp) 
+    {
+        double level = 0;
+        level = (-100 + Math.sqrt(-800000 + 1800 * ((double)xp))) / (900);
+        return (int)level;   
+    }
 }

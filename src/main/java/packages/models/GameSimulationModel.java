@@ -2,13 +2,10 @@ package packages.models;
 
 import java.util.Random;
 
-import javax.swing.text.DefaultStyledDocument.ElementSpec;
-
-import packages.enums.WeaponType;
+import packages.config.Config;
+import packages.providers.DataProvider;
 import packages.utils.*;
-
 import packages.utils.Formulas;
-import static packages.utils.Colours.*;
 
 public class GameSimulationModel{
     private HeroModel hero;
@@ -78,18 +75,26 @@ public class GameSimulationModel{
 
     public static void lostGame(HeroModel hero){
         resetHero(hero);
-        WriteFile.findAndUpdate(readFile.simulateFile(), hero);
+        
+        DataProvider dp = new DataProvider(Config.DATA_PROVIDER);
+        dp.updateHero(hero);
     }
 
     public String getVSMessage(){
         return (this.hero.getName() + " (" + this.hero.getHitPoints() + "HP) VS " + this.enemy.getName() + " (" + this.enemy.getHitPoints() + "HP)");
     }
-    
+
+    public static void winFight(HeroModel hero, EnemyModel enemy)
+    {
+        hero.setXPoints(hero.getXPoints() + enemy.getXPoints());
+    }
+
     public static void winGame(HeroModel hero){
         resetHero(hero);
-        hero.setLevel(hero.getLevel() + 1);
-        hero.setXPoints(Formulas.getXPoints(hero.getLevel()));
-        WriteFile.findAndUpdate(readFile.simulateFile(), hero);
+        hero.setXPoints(hero.getXPoints() + 200);
+
+        DataProvider dp = new DataProvider(Config.DATA_PROVIDER);
+        dp.updateHero(hero);
     }
 
     public static String dropArtifact(EnemyModel enemy)

@@ -3,25 +3,22 @@ package packages.gui.views;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
 import java.util.List;
 import java.util.Random;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import packages.config.Config;
 import packages.console.controller.Coordinates;
-import packages.gui.controllers.GameController;
 import packages.gui.controllers.GameSimulationController;
+import packages.gui.controllers.SelectHeroController;
 import packages.models.EnemyModel;
 import packages.models.GameSimulationModel;
 import packages.models.HeroModel;
@@ -37,16 +34,13 @@ public class GameView extends JFrame{
     private JPanel panelMain;
     private int mapSize = 0;
     private List<EnemyModel> enemiesList;
-    public static int FrameCount;
     private int _retHitPoints;
 
     public GameView(HeroModel hero){
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setTitle("Game");
-        //Todo: setResizable(true) ? Make a class ResizeListener() and invoke this.drawMap()
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        FrameCount++;
         
         this.hero = hero;
         GameSimulationModel.setCopyHP(this.hero.getHitPoints());
@@ -61,8 +55,8 @@ public class GameView extends JFrame{
     }
 
     public void disposeWindow(){
-        FrameCount--;
         this.dispose();
+        new SelectHeroController(new SelectHeroView());
     }
 
     private void init(){
@@ -109,18 +103,31 @@ public class GameView extends JFrame{
                 JPanel panel = new JPanel();
                 Coordinates loopCoordinates = new Coordinates(x, y);
                 if (this.hero.getCoordinates().Isequals(loopCoordinates)){
-                    //this.setImage(hero.getIcon(), this.lblHeroImage);
-                    this.lblHeroImage = JFrameHelper.getLabelImage(this.hero.getIcon(), imageSize);
+                    // this.setImages(this.lblHeroImage, this.hero.getIcon(), imageSize);
+                    this.lblHeroImage = this.getImageLabel(this.hero.getIcon(), imageSize);
+                    if (this.lblHeroImage != null)
+                        panel.add(this.lblHeroImage);
                     panel.setBackground(new Color(rand.nextInt(255), rand.nextInt(255), rand.nextInt(255)));
-                    panel.add(this.lblHeroImage);
                 }
+                
                 for (EnemyModel enemyLoop: this.enemiesList) {
                     if (loopCoordinates.Isequals(enemyLoop.getCoordinates()) && enemyLoop.getHitPoints() > 0){
                         // Enemy is here, and alive
-                        JLabel lblEnemyImage = JFrameHelper.getLabelImage(enemyLoop.getIcon(), imageSize);
-                        panel.add(lblEnemyImage);
-
+                        if (Config.IS_DEVELOPMENT == true){
+                            JLabel lblEnemyImage = this.getImageLabel(enemyLoop.getIcon(), imageSize);
+                            if (lblEnemyImage != null)
+                                panel.add(lblEnemyImage);
+                            else
+                                panel.setBackground(new Color(150, 150, 150));
+                        }
                         if((heroEnemyCoordinatesMatch != null && enemy != null) && enemy.getCoordinates().Isequals(enemyLoop.getCoordinates())){
+                            if (Config.IS_DEVELOPMENT == false){
+                                JLabel lblEnemyImage = this.getImageLabel(enemy.getIcon(), imageSize);
+                                if (lblEnemyImage != null){
+                                    panel.removeAll();
+                                    panel.add(lblEnemyImage);
+                                }
+                            }
                             panel.setBackground(new Color(255, 50, 50));
                         }
                     }
@@ -165,9 +172,13 @@ public class GameView extends JFrame{
             }
             else{
                 // Enemy is dead, show Dead monster or something
-                //JFrameHelper.ShowErrorDialog(this, "Enemy was here... now dead! :-)");
+                // JFrameHelper.ShowErrorDialog(this, "Enemy was here... now dead! :-)");
             }
         }
+    }
+
+    private JLabel getImageLabel(String imagePath, int imageSize){
+        return (JFrameHelper.getLabelImage(imagePath, imageSize));
     }
 
     public HeroModel getHero(){

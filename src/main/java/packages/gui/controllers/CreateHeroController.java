@@ -3,44 +3,36 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.List;
 
 import javax.swing.JFileChooser;
 
+import packages.config.Config;
 import packages.gui.views.CreateHeroView;
 import packages.gui.views.SelectHeroView;
-import packages.models.HeroModel;
-import packages.utils.JFrameHelper;
+import packages.models.CreateHeroModel;
+import packages.providers.DataProvider;
+import packages.utils.Messages;
+import packages.utils.SwingyIO;
 import packages.utils.WriteFile;
-import packages.utils.readFile;
 
 public class CreateHeroController{
-    private CreateHeroView view;
-    private List<HeroModel> heroList;
+    private CreateHeroView _view;
+    private CreateHeroModel _model;
 
-    public CreateHeroController(CreateHeroView view, List<HeroModel> heroList){
-        this.view = view;
-        this.heroList = heroList;
+    public CreateHeroController(CreateHeroView view){
+        this._view = view;
+        this._view.setVisible(true);
 
-        this.view.cancelListener(new CancelListener());
-        this.view.selectHeroImageListener(new SelectHeroImageListener());
-        this.view.createHeroListener(new CreateHeroListener());
+        this._view.cancelListener(new CancelListener());
+        this._view.selectHeroImageListener(new SelectHeroImageListener());
+        this._view.createHeroListener(new CreateHeroListener());
+
+        this._model = new CreateHeroModel();
     }
 
     private void navigateToSelectHero(){
-        List<HeroModel> heros;
-        try {
-            heros = readFile.simulateFile();
-        } catch (Exception e) {
-            JFrameHelper.ShowErrorDialog(view, "Error getting new Hero List. Old Hero List will be passed.");
-            heros = this.heroList;
-        }
-
-        SelectHeroView selectHeroView = new SelectHeroView(heros);
-        selectHeroView.setVisible(true);
-        new SelectHeroController(selectHeroView, heros);
-        
-        view.dispose();
+        new SelectHeroController(new SelectHeroView());
+        _view.dispose();
     }
 
     class CancelListener implements ActionListener{
@@ -51,25 +43,36 @@ public class CreateHeroController{
 
     class SelectHeroImageListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-            int i;
             JFileChooser fileChooser = new JFileChooser();
-            i = fileChooser.showOpenDialog(null);
 
-            if (i == JFileChooser.APPROVE_OPTION)
+            if (fileChooser.showOpenDialog(_view) == JFileChooser.APPROVE_OPTION)
             {
                 File file = fileChooser.getSelectedFile();
                 String filePath = file.getPath();
-                view.setHeroImagePath(filePath);
+                
+                _model.setHeroImagePath(filePath);
+                _view.setHeroImagePath(filePath);
             }
 		}
     }
 
     class CreateHeroListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-            view.setNewHero(heroList);
-            if (view.getNewHero() != null){
-                WriteFile.writeToFile(view.getNewHero());
+            String errorMessage = _model.setHero(_view.getHeroName(), _view.getCharacterType());
+
+            if (_model.getHero() != null)
+            {
+                DataProvider db = new DataProvider(Config.DATA_PROVIDER);
+                db.insertHero(_model.getHero());
+                //WriteFile.writeToFile(_model.getHero());
                 navigateToSelectHero();
+            }
+            else
+            {
+                if (errorMessage != null)
+                    SwingyIO.OutputWarning(_view.getTitle() + " - Warning", errorMessage);
+                else
+                    SwingyIO.OutputError(Messages.UnknownError, Messages.UnknownErrorOccurred);
             }
 		}
     }
