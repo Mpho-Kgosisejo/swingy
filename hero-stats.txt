@@ -1,10 +1,3 @@
 John the Teenager,knight,1,2000,34,21,0,pistol,spacesuit,frog_mouthed,src/main/java/packages/images/default-image.png
 Alex the Great,elf,2,2517,20,15,55,knife,leather,pot,src/main/java/packages/images/default-image.png
 Thor the Mighty,knight,1,2000,18,15,50,sword,leather,nasal,src/main/java/packages/images/default-image.png
-Thato the Great,hunter,0,0,15,15,50,spear,jacket,nasal,src/main/java/packages/images/default-image.png
-Okay,elf,0,0,15,10,50,spear,jacket,nasal,src/main/java/packages/images/default-image.png
-Okay,knight,0,0,15,10,50,spear,jacket,nasal,src/main/java/packages/images/default-image.png
-Okay,knight,0,0,15,10,50,spear,jacket,nasal,src/main/java/packages/images/default-image.png
-Anythink,warrior,0,0,15,10,50,spear,jacket,nasal,src/main/java/packages/images/default-image.png
-Something else,warrior,0,0,15,10,50,spear,jacket,nasal,src/main/java/packages/images/default-image.png
-Korg the rock,warrior,0,657,19,16,50,bow,steel,frog_mouthed,src/main/java/packages/images/default-image.png

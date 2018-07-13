@@ -1,5 +1,9 @@
 package packages.models;
 
+import javax.validation.constraints.*;
+import javax.validation.*;
+import java.util.*;
+
 import packages.enums.ArmorType;
 import packages.enums.CharacterType;
 import packages.enums.HelmType;
@@ -9,18 +13,46 @@ import packages.utils.Coordinates;
 public class HeroModel
 {
 	private static int _idCounter = 0;
+
+	@NotNull
 	protected int _id = 0;
+
+	@NotNull (message = "name cannot be null")
+	@NotEmpty (message = "name cannot be empty")
 	protected String _name;
-    protected CharacterType _type;
-    protected int _level;
+
+	@NotNull (message = "type cannot be null")
+	protected CharacterType _type;
+	
+	@NotNull
+	@PositiveOrZero (message = "level cannot be less than zero")
+	protected int _level;
+	
+	@PositiveOrZero (message = "Xp cannot be less than zero")
 	protected int _xPoints;
+
+	@PositiveOrZero (message = "attack cannot be less than zero")
     protected int _attack;
-    protected int _defense;
-    protected int _hitPoints;	
-    protected WeaponType _weapon;
+	
+	@PositiveOrZero (message = "defense cannot be less than zero")
+	protected int _defense;
+	
+	@PositiveOrZero (message = "HP cannot be less than zero")
+	protected int _hitPoints;	
+	
+	@NotNull
+	protected WeaponType _weapon;
+	
+	@NotNull
 	protected ArmorType _armor;
+	
+	@NotNull
 	protected HelmType _helm;	
+	
+	@NotNull
 	protected String _icon;
+	
+	@NotNull
 	protected Coordinates _coordinates;	
 	
 	public HeroModel(String name, CharacterType type, int level, int xPoints, int attack, int defense, int hitPoints, WeaponType weapon, ArmorType armor, HelmType helm, String icon)
@@ -38,6 +70,13 @@ public class HeroModel
 		this._armor = armor;
 		this._helm = helm;
 		_coordinates = new Coordinates(0, 0);
+		
+		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+		Validator validator = factory.getValidator();
+		Set<ConstraintViolation<HeroModel>> violations = validator.validate(this);
+		for (ConstraintViolation<HeroModel> violation : violations) {
+			System.out.println(violation.getMessage()); 
+		}
 	}
 
 	public void setCoordinates(Coordinates coordinates)
